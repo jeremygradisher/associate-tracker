@@ -1,0 +1,43 @@
+<%- model_class = Associate -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:phone_primary) %></th>
+      <th><%= model_class.human_attribute_name(:phone_cell) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:postition) %></th>
+      <th><%= model_class.human_attribute_name(:working_locations) %></th>
+      <th><%= model_class.human_attribute_name(:active) %></th>
+      
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @associates.each do |associate| %>
+      <tr>
+        
+        <td><%= link_to associate.name, associate_path(associate), style: "color:#428bca;"  %></td>
+        <td><%= associate.phone_primary %></td>
+        <td><%= associate.phone_cell %></td>
+        <td><%= associate.email %></td>
+        <td><%= associate.position %></td>
+        <td><%= associate.working_locations %></td>
+        <td><%= associate.active %></td>
+        
+        <td>
+          <%= link_to t('.view', :default => t("helpers.links.view")),
+                      associate_path(associate), :class => 'btn btn-default btn-xs' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_associate_path,
+            :class => 'btn btn-primary' %>

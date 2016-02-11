@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :associates
   devise_for :users, :controllers => { :registrations => 'devise/registrations' }
   root 'home#index'
 

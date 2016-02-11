@@ -1,0 +1,64 @@
+<%- model_class = Associate -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:phone_primary) %></th>
+      <th><%= model_class.human_attribute_name(:phone_cell) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:email_personal) %></th>
+      <th><%= model_class.human_attribute_name(:address_home) %></th>
+      <th><%= model_class.human_attribute_name(:address_business) %></th>
+      <th><%= model_class.human_attribute_name(:project_history) %></th>
+      <th><%= model_class.human_attribute_name(:position) %></th>
+      <th><%= model_class.human_attribute_name(:working_locations) %></th>
+      <th><%= model_class.human_attribute_name(:notes) %></th>
+      <th><%= model_class.human_attribute_name(:active) %></th>
+      <th><%= model_class.human_attribute_name(:ein_ss) %></th>
+      <th><%= model_class.human_attribute_name(:birthday) %></th>
+      <th><%= model_class.human_attribute_name(:family) %></th>
+      
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @associates.each do |associate| %>
+      <tr>
+        
+        <td><%= link_to associate.name, associate_path(associate) %></td>
+        <td><%= associate.phone_primary %></td>
+        <td><%= associate.phone_cell %></td>
+        <td><%= associate.email %></td>
+        <td><%= associate.email_personal %></td>
+        <td><%= associate.address_home %></td>
+        <td><%= associate.address_business %></td>
+        <td><%= associate.project_history %></td>
+        <td><%= associate.position %></td>
+        <td><%= associate.working_locations %></td>
+        <td><%= associate.notes %></td>
+        <td><%= associate.active %></td>
+        <td><%= associate.ein_ss %></td>
+        <td><%= associate.birthday %></td>
+        <td><%= associate.family %></td>
+        
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_associate_path(associate), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      associate_path(associate),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_associate_path,
+            :class => 'btn btn-primary' %>
