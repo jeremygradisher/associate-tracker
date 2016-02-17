@@ -2,5 +2,8 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @associate_attachment %> |
-<%= link_to 'Back', associate_attachments_path %>
+<%#= link_to 'Show', @associate_attachment %>
+<%#= link_to 'Back', associate_attachments_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              associates_path, :class => 'btn btn-default'  %>
+
