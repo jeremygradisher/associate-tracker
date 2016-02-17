@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Associate Attachments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Associate</th>
+      <th>Avatar</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @associate_attachments.each do |associate_attachment| %>
+      <tr>
+        <td><%= associate_attachment.associate_id %></td>
+        <td><%= associate_attachment.avatar %></td>
+        <td><%= link_to 'Show', associate_attachment %></td>
+        <td><%= link_to 'Edit', edit_associate_attachment_path(associate_attachment) %></td>
+        <td><%= link_to 'Destroy', associate_attachment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Associate attachment', new_associate_attachment_path %>

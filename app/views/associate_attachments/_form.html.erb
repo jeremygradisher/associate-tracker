@@ -1,0 +1,21 @@
+<%= image_tag @associate_attachment.avatar, :style => 'max-width:300px;padding:20px;' %>
+  <%= form_for(@associate_attachment) do |f| %>
+    <% if @associate_attachment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@associate_attachment.errors.count, "error") %> prohibited this associate_attachment from being saved:</h2>
+
+      <ul>
+      <% @associate_attachment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :avatar %><br>
+      <%= f.file_field :avatar %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
