@@ -11,17 +11,20 @@ class AssociatesController < ApplicationController
   # GET /associates/1.json
   def show
     @associate_attachments = @associate.associate_attachments.all
+    @associate_resumes = @associate.associate_resumes.all
   end
 
   # GET /associates/new
   def new
     @associate = Associate.new
     @associate_attachment = @associate.associate_attachments.build
+    @associate_resume = @associate.associate_resumes.build
   end
 
   # GET /associates/1/edit
   def edit
     @associate_attachment = @associate.associate_attachments.build
+    @associate_resume = @associate.associate_resumes.build
   end
 
   # POST /associates
@@ -34,6 +37,11 @@ class AssociatesController < ApplicationController
          if params.has_key?(:associate_attachments)
            params[:associate_attachments]['avatar'].each do |a|
               @associate_attachment = @associate.associate_attachments.create!(:avatar => a)
+           end
+         end
+         if params.has_key?(:associate_resumes)
+           params[:associate_resumes]['resume'].each do |a|
+              @associate_resume = @associate.associate_resumes.create!(:resume => a)
            end
          end
          format.html { redirect_to @associate, notice: 'Associate was successfully created.' }
@@ -51,6 +59,11 @@ class AssociatesController < ApplicationController
         if params.has_key?(:associate_attachments)
            params[:associate_attachments]['avatar'].each do |a|
               @associate_attachment = @associate.associate_attachments.create!(:avatar => a)
+           end
+        end
+        if params.has_key?(:associate_resumes)
+           params[:associate_resumes]['resume'].each do |a|
+              @associate_resume = @associate.associate_resumes.create!(:resume => a)
            end
         end
         format.html { redirect_to @associate, notice: 'Associate was successfully updated.' }
@@ -80,6 +93,6 @@ class AssociatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def associate_params
-      params.require(:associate).permit(:name, :phone_primary, :phone_cell, :email, :email_personal, :address_home, :address_business, :project_history, :position, :working_locations, :notes, :active, :ein_ss, :birthday, :family, associate_attachments_attributes: [:id, :associate_id, :avatar])
+      params.require(:associate).permit(:name, :phone_primary, :phone_cell, :email, :email_personal, :address_home, :address_business, :project_history, :position, :working_locations, :notes, :active, :ein_ss, :birthday, :family, associate_attachments_attributes: [:id, :associate_id, :avatar], associate_resumes_attributes: [:id, :associate_id, :resume])
     end
 end

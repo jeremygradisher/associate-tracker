@@ -1,0 +1,21 @@
+<%= link_to @associate_resume.resume, @associate_resume.resume_url, :target => '_blank'  %>
+  <%= form_for(@associate_resume) do |f| %>
+    <% if @associate_resume.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@associate_resume.errors.count, "error") %> prohibited this associate_resume from being saved:</h2>
+
+      <ul>
+      <% @associate_resume.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :resume %><br>
+      <%= f.file_field :resume %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

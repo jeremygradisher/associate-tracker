@@ -143,6 +143,15 @@
          </div>
        </div>
     <% end %>
+    
+    <%= f.fields_for :associate_resumes do |p| %>
+       <div class="form-group">
+         <%= p.label :resume, :class => 'control-label col-lg-2'  %>
+         <div class="col-lg-10">
+         <%= p.file_field :resume, :multiple => true, name: "associate_resumes[resume][]" %>
+         </div>
+       </div>
+     <% end %>
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">

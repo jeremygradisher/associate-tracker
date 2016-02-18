@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Associate:</strong>
+  <%= @associate_resume.associate_id %>
+</p>
+
+<p>
+  <strong>Resume:</strong>
+  <%= @associate_resume.resume %>
+</p>
+
+<%= link_to 'Edit', edit_associate_resume_path(@associate_resume) %> |
+<%= link_to 'Back', associate_resumes_path %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :associate_resumes
   resources :associate_attachments
   resources :associates
   devise_for :users, :controllers => { :registrations => 'devise/registrations' }

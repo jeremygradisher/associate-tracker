@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Associate Resumes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Associate</th>
+      <th>Resume</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @associate_resumes.each do |associate_resume| %>
+      <tr>
+        <td><%= associate_resume.associate_id %></td>
+        <td><%= associate_resume.resume %></td>
+        <td><%= link_to 'Show', associate_resume %></td>
+        <td><%= link_to 'Edit', edit_associate_resume_path(associate_resume) %></td>
+        <td><%= link_to 'Destroy', associate_resume, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Associate resume', new_associate_resume_path %>
