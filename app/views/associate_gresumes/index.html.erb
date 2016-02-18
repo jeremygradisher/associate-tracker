@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Associate Gresumes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Associate</th>
+      <th>Gresume</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @associate_gresumes.each do |associate_gresume| %>
+      <tr>
+        <td><%= associate_gresume.associate_id %></td>
+        <td><%= associate_gresume.gresume %></td>
+        <td><%= link_to 'Show', associate_gresume %></td>
+        <td><%= link_to 'Edit', edit_associate_gresume_path(associate_gresume) %></td>
+        <td><%= link_to 'Destroy', associate_gresume, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Associate gresume', new_associate_gresume_path %>

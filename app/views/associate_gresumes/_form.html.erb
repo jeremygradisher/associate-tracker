@@ -1,0 +1,21 @@
+<%= link_to @associate_gresume.gresume, @associate_gresume.gresume_url, :target => '_blank'  %>
+  <%= form_for(@associate_gresume) do |f| %>
+    <% if @associate_gresume.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@associate_gresume.errors.count, "error") %> prohibited this associate_gresume from being saved:</h2>
+
+      <ul>
+      <% @associate_gresume.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :gresume %><br>
+      <%= f.file_field :gresume %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

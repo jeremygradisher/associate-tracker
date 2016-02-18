@@ -3,6 +3,8 @@ class Associate < ActiveRecord::Base
     accepts_nested_attributes_for :associate_attachments
     has_many :associate_resumes, dependent: :destroy
     accepts_nested_attributes_for :associate_resumes
+    has_many :associate_gresumes, dependent: :destroy
+    accepts_nested_attributes_for :associate_gresumes
     validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 25 }
     validates :phone_primary, presence: true, length: { minimum: 10, maximum: 14 }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

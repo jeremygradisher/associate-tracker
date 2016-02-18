@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Associate:</strong>
+  <%= @associate_gresume.associate_id %>
+</p>
+
+<p>
+  <strong>Gresume:</strong>
+  <%= @associate_gresume.gresume %>
+</p>
+
+<%= link_to 'Edit', edit_associate_gresume_path(@associate_gresume) %> |
+<%= link_to 'Back', associate_gresumes_path %>

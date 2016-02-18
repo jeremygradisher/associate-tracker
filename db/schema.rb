@@ -11,11 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218141530) do
+ActiveRecord::Schema.define(version: 20160218144123) do
 
   create_table "associate_attachments", force: :cascade do |t|
     t.integer  "associate_id"
     t.string   "avatar"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "associate_gresumes", force: :cascade do |t|
+    t.integer  "associate_id"
+    t.string   "gresume"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

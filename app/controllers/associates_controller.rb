@@ -12,6 +12,7 @@ class AssociatesController < ApplicationController
   def show
     @associate_attachments = @associate.associate_attachments.all
     @associate_resumes = @associate.associate_resumes.all
+    @associate_gresumes = @associate.associate_gresumes.all
   end
 
   # GET /associates/new
@@ -19,12 +20,14 @@ class AssociatesController < ApplicationController
     @associate = Associate.new
     @associate_attachment = @associate.associate_attachments.build
     @associate_resume = @associate.associate_resumes.build
+    @associate_gresume = @associate.associate_gresumes.build
   end
 
   # GET /associates/1/edit
   def edit
     @associate_attachment = @associate.associate_attachments.build
     @associate_resume = @associate.associate_resumes.build
+    @associate_gresume = @associate.associate_gresumes.build
   end
 
   # POST /associates
@@ -42,6 +45,11 @@ class AssociatesController < ApplicationController
          if params.has_key?(:associate_resumes)
            params[:associate_resumes]['resume'].each do |a|
               @associate_resume = @associate.associate_resumes.create!(:resume => a)
+           end
+         end
+         if params.has_key?(:associate_gresumes)
+           params[:associate_gresumes]['gresume'].each do |a|
+              @associate_gresume = @associate.associate_gresumes.create!(:gresume => a)
            end
          end
          format.html { redirect_to @associate, notice: 'Associate was successfully created.' }
@@ -64,6 +72,11 @@ class AssociatesController < ApplicationController
         if params.has_key?(:associate_resumes)
            params[:associate_resumes]['resume'].each do |a|
               @associate_resume = @associate.associate_resumes.create!(:resume => a)
+           end
+        end
+        if params.has_key?(:associate_gresumes)
+           params[:associate_gresumes]['gresume'].each do |a|
+              @associate_gresume = @associate.associate_gresumes.create!(:gresume => a)
            end
         end
         format.html { redirect_to @associate, notice: 'Associate was successfully updated.' }
@@ -93,6 +106,6 @@ class AssociatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def associate_params
-      params.require(:associate).permit(:name, :phone_primary, :phone_cell, :email, :email_personal, :address_home, :address_business, :project_history, :position, :working_locations, :notes, :active, :ein_ss, :birthday, :family, associate_attachments_attributes: [:id, :associate_id, :avatar], associate_resumes_attributes: [:id, :associate_id, :resume])
+      params.require(:associate).permit(:name, :phone_primary, :phone_cell, :email, :email_personal, :address_home, :address_business, :project_history, :position, :working_locations, :notes, :active, :ein_ss, :birthday, :family, associate_attachments_attributes: [:id, :associate_id, :avatar], associate_resumes_attributes: [:id, :associate_id, :resume], associate_gresumes_attributes: [:id, :associate_id, :gresume])
     end
 end
