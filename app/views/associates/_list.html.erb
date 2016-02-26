@@ -30,15 +30,23 @@
       <tr>
         
         <td><%= link_to associate.name, associate_path(associate) %></td>
-        <td><%= associate.phone_primary %></td>
-        <td><%= associate.phone_cell %></td>
+        <td><%= number_to_phone(associate.phone_primary, area_code: true) %></td>
+        <td><%= number_to_phone(associate.phone_cell, area_code: true) %></td>
         <td><%= associate.email %></td>
         <td><%= associate.email_personal %></td>
         <td><%= associate.address_home %></td>
         <td><%= associate.address_business %></td>
         <td><%= associate.project_history %></td>
-        <td><%= associate.position %></td>
-        <td><%= associate.working_locations %></td>
+        
+        <td><% associate.positions.each do |p| %>
+            <%= p.pos_name %> 
+          <% end %>
+        </td>
+        
+        <td><% associate.wrklocs.each do |p| %>
+              <%= p.wrkstate %> 
+            <% end %>
+        </td>
         <td><%= associate.notes %></td>
         <td><%= associate.active %></td>
         <td><%= associate.ein_ss %></td>

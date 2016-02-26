@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Wrklocs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Wrkstate</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @wrklocs.each do |wrkloc| %>
+      <tr>
+        <td><%= wrkloc.wrkstate %></td>
+        <td><%= link_to 'Show', wrkloc %></td>
+        <td><%= link_to 'Edit', edit_wrkloc_path(wrkloc) %></td>
+        <td><%= link_to 'Destroy', wrkloc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Wrkloc', new_wrkloc_path %>

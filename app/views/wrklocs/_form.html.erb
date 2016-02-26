@@ -1,0 +1,21 @@
+<%= form_for(@wrkloc) do |f| %>
+  <% if @wrkloc.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@wrkloc.errors.count, "error") %> prohibited this wrkloc from being saved:</h2>
+
+      <ul>
+      <% @wrkloc.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :wrkstate %><br>
+    <%= f.text_field :wrkstate %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

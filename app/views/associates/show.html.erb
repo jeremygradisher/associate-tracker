@@ -6,24 +6,29 @@
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @associate.name %></dd>
+  
   <dt><strong><%= model_class.human_attribute_name(:phone_primary) %>:</strong></dt>
-  <dd><%= @associate.phone_primary %></dd>
+  <dd><%= number_to_phone(@associate.phone_primary, area_code: true) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:phone_cell) %>:</strong></dt>
-  <dd><%= @associate.phone_cell %></dd>
+  <dd><%= number_to_phone(@associate.phone_cell, area_code: true) %></dd>
+  
   <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
   <dd><%= @associate.email %></dd>
   <dt><strong><%= model_class.human_attribute_name(:email_personal) %>:</strong></dt>
   <dd><%= @associate.email_personal %></dd>
+  
   <dt><strong><%= model_class.human_attribute_name(:address_home) %>:</strong></dt>
-  <dd><%= @associate.address_home %></dd>
+  <dd><%= @associate.primary_street %> <%= @associate.primary_city %> <%= @associate.primary_state %> <%= @associate.primary_zip %></dd>
+  
   <dt><strong><%= model_class.human_attribute_name(:address_business) %>:</strong></dt>
-  <dd><%= @associate.address_business %></dd>
+  <dd><%= @associate.business_street %> <%= @associate.business_city %> <%= @associate.business_state %> <%= @associate.business_zip %></dd>
+  
   <dt><strong><%= model_class.human_attribute_name(:project_history) %>:</strong></dt>
   <dd><%= @associate.project_history %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:position) %>:</strong></dt>
-  <dd><%= @associate.position %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:working_locations) %>:</strong></dt>
-  <dd><%= @associate.working_locations %></dd>
+
+
+  
+  
   <dt><strong><%= model_class.human_attribute_name(:notes) %>:</strong></dt>
   <dd><%= @associate.notes %></dd>
   <dt><strong><%= model_class.human_attribute_name(:active) %>:</strong></dt>
@@ -34,9 +39,24 @@
   <dd><%= @associate.birthday %></dd>
   <dt><strong><%= model_class.human_attribute_name(:family) %>:</strong></dt>
   <dd><%= @associate.family %></dd>
+
+  <dt><strong>Positions:</strong></dt>
+  <dd>
+  <% @positions.each do |p| %>
+    <%= p.pos_name %> 
+  <% end %>
+  </dd>
+
+  
+  <dt><strong>Working Locations:</strong></dt>
+  <dd>
+  <% @wrklocs.each do |p| %>
+    <%= p.wrkstate %> 
+  <% end %>
+  </dd>
   
   <% @associate_attachments.each do |p| %>
-    <dt>Avatar:</dt>
+    <dt>Associate Image:</dt>
     <dd><%= image_tag p.avatar_url, :style => 'max-width:300px;padding:20px;' %><br>
         <%#= link_to "Edit Attachment", edit_associate_attachment_path(p) %><br>
         <%= link_to t('.edit', :default => t("Edit Attachment")),
@@ -79,6 +99,7 @@
               :class => 'btn btn-danger' %>
         </dd>
   <% end %>
+  
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :positions
+  resources :wrklocs
   resources :associate_gresumes
   resources :associate_resumes
   resources :associate_attachments

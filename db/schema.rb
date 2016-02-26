@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218144123) do
+ActiveRecord::Schema.define(version: 20160226033450) do
 
   create_table "associate_attachments", force: :cascade do |t|
     t.integer  "associate_id"
@@ -40,18 +40,40 @@ ActiveRecord::Schema.define(version: 20160218144123) do
     t.string   "phone_cell"
     t.string   "email"
     t.string   "email_personal"
-    t.string   "address_home"
-    t.string   "address_business"
     t.string   "project_history"
-    t.string   "position"
-    t.string   "working_locations"
     t.text     "notes"
     t.boolean  "active"
     t.string   "ein_ss"
     t.string   "birthday"
     t.string   "family"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "primary_street"
+    t.string   "primary_city"
+    t.string   "primary_state"
+    t.string   "primary_zip"
+    t.string   "business_street"
+    t.string   "business_city"
+    t.string   "business_state"
+    t.string   "business_zip"
+  end
+
+  create_table "associates_positions", id: false, force: :cascade do |t|
+    t.integer "associate_id", null: false
+    t.integer "position_id",  null: false
+  end
+
+  add_index "associates_positions", ["associate_id", "position_id"], name: "index_associates_positions_on_associate_id_and_position_id"
+
+  create_table "associates_wrklocs", id: false, force: :cascade do |t|
+    t.integer "associate_id", null: false
+    t.integer "wrkloc_id",    null: false
+  end
+
+  create_table "positions", force: :cascade do |t|
+    t.string   "pos_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -75,5 +97,11 @@ ActiveRecord::Schema.define(version: 20160218144123) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "wrklocs", force: :cascade do |t|
+    t.string   "wrkstate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

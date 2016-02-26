@@ -5,13 +5,15 @@ class AssociatesController < ApplicationController
   # GET /associates.json
   def index
     #@associates = Associate.all
+    #@wrklocs = @associate.wrklocs.all
     
     @filterrific = initialize_filterrific(
     Associate,
     params[:filterrific]
     ) or return
     @associates = @filterrific.find.order('id DESC')
-  
+    #@wrklocs = @associate.wrklocs.all
+    
     respond_to do |format|
       format.html
       format.js
@@ -24,6 +26,8 @@ class AssociatesController < ApplicationController
     @associate_attachments = @associate.associate_attachments.all
     @associate_resumes = @associate.associate_resumes.all
     @associate_gresumes = @associate.associate_gresumes.all
+    @wrklocs = @associate.wrklocs.all
+    @positions = @associate.positions.all
   end
 
   # GET /associates/new
@@ -117,6 +121,6 @@ class AssociatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def associate_params
-      params.require(:associate).permit(:name, :phone_primary, :phone_cell, :email, :email_personal, :address_home, :address_business, :project_history, :position, :working_locations, :notes, :active, :ein_ss, :birthday, :family, associate_attachments_attributes: [:id, :associate_id, :avatar], associate_resumes_attributes: [:id, :associate_id, :resume], associate_gresumes_attributes: [:id, :associate_id, :gresume])
+      params.require(:associate).permit(:name, :phone_primary, :phone_cell, :email, :email_personal, :primary_street, :primary_state, :primary_city, :primary_zip, :business_street, :business_city, :business_state, :business_zip, :project_history, :notes, :active, :ein_ss, :birthday, :family, :wrkstate, { wrkloc_ids:[] }, :pos_name, { position_ids:[] }, associate_attachments_attributes: [:id, :associate_id, :avatar], associate_resumes_attributes: [:id, :associate_id, :resume], associate_gresumes_attributes: [:id, :associate_id, :gresume])
     end
 end

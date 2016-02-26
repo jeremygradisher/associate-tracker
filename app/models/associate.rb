@@ -5,15 +5,17 @@ class Associate < ActiveRecord::Base
     accepts_nested_attributes_for :associate_resumes
     has_many :associate_gresumes, dependent: :destroy
     accepts_nested_attributes_for :associate_gresumes
+    has_and_belongs_to_many :positions, dependent: :destroy
+    has_and_belongs_to_many :wrklocs, dependent: :destroy
+    
     validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 25 }
-    validates :phone_primary, presence: true, length: { minimum: 10, maximum: 14 }
+    validates :phone_primary, presence: true, length: { minimum: 9, maximum: 10 }
+    validates :phone_cell, length: { minimum: 9, maximum: 10 }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     validates :email, presence: true, length: { maximum: 105 }, format: { with: VALID_EMAIL_REGEX }
     validates :email_personal, :presence => {:message => "Your email is used to save your greeting."}, :allow_blank => true, length: { maximum: 105 }, format: { with: VALID_EMAIL_REGEX }
-    validates :position, presence: true
-    validates :working_locations, presence: true
-    #validates :avatar, presence: true
-    
+
+   
     filterrific(
       default_filter_params: { sorted_by: 'created_at_desc' },
       available_filters: [
@@ -39,21 +41,24 @@ class Associate < ActiveRecord::Base
     # configure number of OR conditions for provision
     # of interpolation arguments. Adjust this if you
     # change the number of OR conditions.
-    num_or_conditions = 5
+    num_or_conditions = 4
     where(
       terms.map {
         or_clauses = [
           "LOWER(associates.name) LIKE ?",
           "LOWER(associates.email) LIKE ?",
           "LOWER(associates.email_personal) LIKE ?",
-          "LOWER(associates.working_locations) LIKE ?",
-          "LOWER(associates.position) LIKE ?",
+          "LOWER(associates.primary_state) LIKE ?"
+          #"LOWER(associates_wrklocs) LIKE ?",
+          #"LOWER(associates.position) LIKE ?"
         ].join(' OR ')
         "(#{ or_clauses })"
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conditions }.flatten
     )
   }
+  
+
   
 
   scope :sorted_by, lambda { |sort_option|
