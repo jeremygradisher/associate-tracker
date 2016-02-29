@@ -1,0 +1,21 @@
+<%= link_to @associate_contract.contract, @associate_contract.contract_url, :target => '_blank'  %>
+  <%= form_for(@associate_contract) do |f| %>
+    <% if @associate_contract.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@associate_contract.errors.count, "error") %> prohibited this associate_contract from being saved:</h2>
+
+      <ul>
+      <% @associate_contract.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :contract %><br>
+      <%= f.file_field :contract %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Associate:</strong>
+  <%= @associate_contract.associate_id %>
+</p>
+
+<p>
+  <strong>Contract:</strong>
+  <%= @associate_contract.contract %>
+</p>
+
+<%= link_to 'Edit', edit_associate_contract_path(@associate_contract) %> |
+<%= link_to 'Back', associate_contracts_path %>

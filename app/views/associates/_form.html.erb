@@ -199,6 +199,15 @@
          </div>
        </div>
     <% end %>
+    
+    <%= f.fields_for :associate_contracts do |p| %>
+       <div class="form-group">
+         <%= p.label :contract, :class => 'control-label col-lg-2'  %>
+         <div class="col-lg-10">
+         <%= p.file_field :contract, :multiple => true, name: "associate_contracts[contract][]" %>
+         </div>
+       </div>
+     <% end %>
   
 
   <div class="form-group">
