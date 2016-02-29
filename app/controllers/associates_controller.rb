@@ -28,6 +28,7 @@ class AssociatesController < ApplicationController
     @associate_contracts = @associate.associate_contracts.all
     @associate_w9s = @associate.associate_w9s.all
     @associate_direct_deposits = @associate.associate_direct_deposits.all
+    @associate_drivers_licenses = @associate.associate_drivers_licenses.all
     @wrklocs = @associate.wrklocs.all
     @positions = @associate.positions.all
   end
@@ -41,6 +42,7 @@ class AssociatesController < ApplicationController
     @associate_contract = @associate.associate_contracts.build
     @associate_w9 = @associate.associate_w9s.build
     @associate_direct_deposit = @associate.associate_direct_deposits.build
+    @associate_drivers_license = @associate.associate_drivers_licenses.build
   end
 
   # GET /associates/1/edit
@@ -51,6 +53,7 @@ class AssociatesController < ApplicationController
     @associate_contract = @associate.associate_contracts.build
     @associate_w9 = @associate.associate_w9s.build
     @associate_direct_deposit = @associate.associate_direct_deposits.build
+    @associate_drivers_license = @associate.associate_drivers_licenses.build
   end
 
   # POST /associates
@@ -88,6 +91,11 @@ class AssociatesController < ApplicationController
          if params.has_key?(:associate_direct_deposits)
            params[:associate_direct_deposits]['direct_deposit'].each do |a|
               @associate_direct_deposit = @associate.associate_direct_deposits.create!(:direct_deposit => a)
+           end
+         end
+         if params.has_key?(:associate_drivers_licenses)
+           params[:associate_drivers_licenses]['drivers_license'].each do |a|
+              @associate_drivers_license = @associate.associate_drivers_licenses.create!(:drivers_license => a)
            end
          end
          format.html { redirect_to @associate, notice: 'Associate was successfully created.' }
@@ -129,7 +137,12 @@ class AssociatesController < ApplicationController
         end
         if params.has_key?(:associate_direct_deposits)
            params[:associate_direct_deposits]['direct_deposit'].each do |a|
-              @associate_direct_deposit = @associate.associate_direct_deposits.create!(:direct_deposit => a)
+              @associate_direct_deposit = @associate.associate_direct_deposits.create!(:drivers_license => a)
+           end
+        end
+        if params.has_key?(:associate_drivers_licenses)
+           params[:associate_drivers_licenses]['drivers_license'].each do |a|
+              @associate_drivers_license = @associate.associate_drivers_licenses.create!(:drivers_license => a)
            end
         end
         format.html { redirect_to @associate, notice: 'Associate was successfully updated.' }

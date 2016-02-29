@@ -226,6 +226,15 @@
          </div>
        </div>
      <% end %>
+     
+    <%= f.fields_for :associate_drivers_licenses do |p| %>
+       <div class="form-group">
+         <%= p.label :drivers_license, :class => 'control-label col-lg-2'  %>
+         <div class="col-lg-10">
+         <%= p.file_field :drivers_license, :multiple => true, name: "associate_drivers_licenses[drivers_license][]" %>
+         </div>
+       </div>
+     <% end %>
   
 
   <div class="form-group">

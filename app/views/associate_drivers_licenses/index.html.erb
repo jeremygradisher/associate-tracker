@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Associate Drivers Licenses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Associate</th>
+      <th>Drivers license</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @associate_drivers_licenses.each do |associate_drivers_license| %>
+      <tr>
+        <td><%= associate_drivers_license.associate_id %></td>
+        <td><%= associate_drivers_license.drivers_license %></td>
+        <td><%= link_to 'Show', associate_drivers_license %></td>
+        <td><%= link_to 'Edit', edit_associate_drivers_license_path(associate_drivers_license) %></td>
+        <td><%= link_to 'Destroy', associate_drivers_license, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Associate drivers license', new_associate_drivers_license_path %>

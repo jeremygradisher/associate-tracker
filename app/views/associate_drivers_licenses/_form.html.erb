@@ -1,0 +1,21 @@
+<%= link_to @associate_drivers_license.drivers_license, @associate_drivers_license.drivers_license_url, :target => '_blank'  %>
+  <%= form_for(@associate_drivers_license) do |f| %>
+    <% if @associate_drivers_license.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@associate_drivers_license.errors.count, "error") %> prohibited this associate_drivers_license from being saved:</h2>
+
+      <ul>
+      <% @associate_drivers_license.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :drivers_license %><br>
+      <%= f.file_field :drivers_license %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

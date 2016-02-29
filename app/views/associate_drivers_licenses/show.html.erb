@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Associate:</strong>
+  <%= @associate_drivers_license.associate_id %>
+</p>
+
+<p>
+  <strong>Drivers license:</strong>
+  <%= @associate_drivers_license.drivers_license %>
+</p>
+
+<%= link_to 'Edit', edit_associate_drivers_license_path(@associate_drivers_license) %> |
+<%= link_to 'Back', associate_drivers_licenses_path %>
