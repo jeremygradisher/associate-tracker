@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :associate_direct_deposits
   resources :associate_w9s
   resources :associate_contracts
   resources :positions

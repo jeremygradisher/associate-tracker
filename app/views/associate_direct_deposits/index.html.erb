@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Associate Direct Deposits</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Associate</th>
+      <th>Direct deposit</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @associate_direct_deposits.each do |associate_direct_deposit| %>
+      <tr>
+        <td><%= associate_direct_deposit.associate_id %></td>
+        <td><%= associate_direct_deposit.direct_deposit %></td>
+        <td><%= link_to 'Show', associate_direct_deposit %></td>
+        <td><%= link_to 'Edit', edit_associate_direct_deposit_path(associate_direct_deposit) %></td>
+        <td><%= link_to 'Destroy', associate_direct_deposit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Associate direct deposit', new_associate_direct_deposit_path %>

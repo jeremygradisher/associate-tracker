@@ -217,6 +217,15 @@
          </div>
        </div>
      <% end %>
+     
+    <%= f.fields_for :associate_direct_deposits do |p| %>
+       <div class="form-group">
+         <%= p.label :direct_deposit, :class => 'control-label col-lg-2'  %>
+         <div class="col-lg-10">
+         <%= p.file_field :direct_deposit, :multiple => true, name: "associate_direct_deposits[direct_deposit][]" %>
+         </div>
+       </div>
+     <% end %>
   
 
   <div class="form-group">

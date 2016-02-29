@@ -11,6 +11,8 @@ class Associate < ActiveRecord::Base
     accepts_nested_attributes_for :associate_contracts
     has_many :associate_w9s, dependent: :destroy
     accepts_nested_attributes_for :associate_w9s
+    has_many :associate_direct_deposits, dependent: :destroy
+    accepts_nested_attributes_for :associate_direct_deposits
     
     validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 25 }
     validates :phone_primary, presence: true, length: { minimum: 9, maximum: 10 }

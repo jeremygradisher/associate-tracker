@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Associate:</strong>
+  <%= @associate_direct_deposit.associate_id %>
+</p>
+
+<p>
+  <strong>Direct deposit:</strong>
+  <%= @associate_direct_deposit.direct_deposit %>
+</p>
+
+<%= link_to 'Edit', edit_associate_direct_deposit_path(@associate_direct_deposit) %> |
+<%= link_to 'Back', associate_direct_deposits_path %>

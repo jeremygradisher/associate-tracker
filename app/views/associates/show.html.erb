@@ -126,6 +126,19 @@
         </dd>
   <% end %>
   
+  <% @associate_direct_deposits.each do |p| %>
+    <dt>Direct Deposits:</dt>
+    <dd><%= link_to p.direct_deposit_url, p.direct_deposit_url, :target => '_blank' %><br>
+        <%= link_to t('.edit', :default => t("Edit Attachment")),
+              edit_associate_direct_deposit_path(p), :class => 'btn btn-default' %>
+        <%= link_to t('.destroy', :default => t("Destroy Attachment")),
+              associate_direct_deposit_path(p),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+        </dd>
+  <% end %>
+  
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
