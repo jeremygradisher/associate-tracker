@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Associate W9s</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Associate</th>
+      <th>W9</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @associate_w9s.each do |associate_w9| %>
+      <tr>
+        <td><%= associate_w9.associate_id %></td>
+        <td><%= associate_w9.w9 %></td>
+        <td><%= link_to 'Show', associate_w9 %></td>
+        <td><%= link_to 'Edit', edit_associate_w9_path(associate_w9) %></td>
+        <td><%= link_to 'Destroy', associate_w9, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Associate w9', new_associate_w9_path %>

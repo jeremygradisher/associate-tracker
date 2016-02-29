@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Associate:</strong>
+  <%= @associate_w9.associate_id %>
+</p>
+
+<p>
+  <strong>W9:</strong>
+  <%= @associate_w9.w9 %>
+</p>
+
+<%#= link_to 'Show', @associate_direct_deposit %>
+<%#= link_to 'Back', associate_direct_deposits_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              associates_path, :class => 'btn btn-default'  %>

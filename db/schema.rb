@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229201218) do
+ActiveRecord::Schema.define(version: 20160229201859) do
 
   create_table "associate_attachments", force: :cascade do |t|
     t.integer  "associate_id"
@@ -37,6 +37,13 @@ ActiveRecord::Schema.define(version: 20160229201218) do
   create_table "associate_resumes", force: :cascade do |t|
     t.integer  "associate_id"
     t.string   "resume"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "associate_w9s", force: :cascade do |t|
+    t.integer  "associate_id"
+    t.string   "w9"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

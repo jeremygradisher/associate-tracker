@@ -26,6 +26,7 @@ class AssociatesController < ApplicationController
     @associate_resumes = @associate.associate_resumes.all
     @associate_gresumes = @associate.associate_gresumes.all
     @associate_contracts = @associate.associate_contracts.all
+    @associate_w9s = @associate.associate_w9s.all
     @wrklocs = @associate.wrklocs.all
     @positions = @associate.positions.all
   end
@@ -37,6 +38,7 @@ class AssociatesController < ApplicationController
     @associate_resume = @associate.associate_resumes.build
     @associate_gresume = @associate.associate_gresumes.build
     @associate_contract = @associate.associate_contracts.build
+    @associate_w9 = @associate.associate_w9s.build
   end
 
   # GET /associates/1/edit
@@ -45,6 +47,7 @@ class AssociatesController < ApplicationController
     @associate_resume = @associate.associate_resumes.build
     @associate_gresume = @associate.associate_gresumes.build
     @associate_contract = @associate.associate_contracts.build
+    @associate_w9 = @associate.associate_w9s.build
   end
 
   # POST /associates
@@ -72,6 +75,11 @@ class AssociatesController < ApplicationController
          if params.has_key?(:associate_contracts)
            params[:associate_contracts]['contract'].each do |a|
               @associate_contract = @associate.associate_contracts.create!(:contract => a)
+           end
+         end
+         if params.has_key?(:associate_contracts)
+           params[:associate_w9s]['w9'].each do |a|
+              @associate_w9 = @associate.associate_w9s.create!(:w9 => a)
            end
          end
          format.html { redirect_to @associate, notice: 'Associate was successfully created.' }
@@ -106,6 +114,11 @@ class AssociatesController < ApplicationController
               @associate_contract = @associate.associate_contracts.create!(:contract => a)
            end
         end
+        if params.has_key?(:associate_w9s)
+           params[:associate_w9s]['w9'].each do |a|
+              @associate_w9 = @associate.associate_w9s.create!(:w9 => a)
+           end
+        end
         format.html { redirect_to @associate, notice: 'Associate was successfully updated.' }
         format.json { render :show, status: :ok, location: @associate }
       else
@@ -133,6 +146,6 @@ class AssociatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def associate_params
-      params.require(:associate).permit(:name, :phone_primary, :phone_cell, :email, :email_personal, :primary_street, :primary_state, :primary_city, :primary_zip, :business_street, :business_city, :business_state, :business_zip, :project_history, :notes, :active, :ein_ss, :birthday, :family, :wrkstate, { wrkloc_ids:[] }, :pos_name, { position_ids:[] }, associate_attachments_attributes: [:id, :associate_id, :avatar], associate_resumes_attributes: [:id, :associate_id, :resume], associate_gresumes_attributes: [:id, :associate_id, :gresume], associate_contracts_attributes: [:id, :associate_id, :contract])
+      params.require(:associate).permit(:name, :phone_primary, :phone_cell, :email, :email_personal, :primary_street, :primary_state, :primary_city, :primary_zip, :business_street, :business_city, :business_state, :business_zip, :project_history, :notes, :active, :ein_ss, :birthday, :family, :wrkstate, { wrkloc_ids:[] }, :pos_name, { position_ids:[] }, associate_attachments_attributes: [:id, :associate_id, :avatar], associate_resumes_attributes: [:id, :associate_id, :resume], associate_gresumes_attributes: [:id, :associate_id, :gresume], associate_contracts_attributes: [:id, :associate_id, :contract], associate_w9s_attributes: [:id, :associate_id, :w9])
     end
 end

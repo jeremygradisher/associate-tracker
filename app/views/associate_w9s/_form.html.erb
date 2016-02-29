@@ -1,0 +1,21 @@
+<%= link_to @associate_w9.w9, @associate_w9.w9_url, :target => '_blank'  %>
+  <%= form_for(@associate_w9) do |f| %>
+    <% if @associate_w9.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@associate_w9.errors.count, "error") %> prohibited this associate_w9 from being saved:</h2>
+
+      <ul>
+      <% @associate_w9.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :w9 %><br>
+      <%= f.file_field :w9 %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

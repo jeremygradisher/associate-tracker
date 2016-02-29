@@ -208,6 +208,15 @@
          </div>
        </div>
      <% end %>
+     
+    <%= f.fields_for :associate_w9s do |p| %>
+       <div class="form-group">
+         <%= p.label :w9, :class => 'control-label col-lg-2'  %>
+         <div class="col-lg-10">
+         <%= p.file_field :w9, :multiple => true, name: "associate_w9s[w9][]" %>
+         </div>
+       </div>
+     <% end %>
   
 
   <div class="form-group">

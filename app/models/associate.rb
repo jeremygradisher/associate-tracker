@@ -9,6 +9,8 @@ class Associate < ActiveRecord::Base
     has_and_belongs_to_many :wrklocs, dependent: :destroy
     has_many :associate_contracts, dependent: :destroy
     accepts_nested_attributes_for :associate_contracts
+    has_many :associate_w9s, dependent: :destroy
+    accepts_nested_attributes_for :associate_w9s
     
     validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 25 }
     validates :phone_primary, presence: true, length: { minimum: 9, maximum: 10 }

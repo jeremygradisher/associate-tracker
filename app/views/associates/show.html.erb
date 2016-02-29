@@ -113,6 +113,19 @@
         </dd>
   <% end %>
   
+  <% @associate_w9s.each do |p| %>
+    <dt>W9:</dt>
+    <dd><%= link_to p.w9_url, p.w9_url, :target => '_blank' %><br>
+        <%= link_to t('.edit', :default => t("Edit Attachment")),
+              edit_associate_w9_path(p), :class => 'btn btn-default' %>
+        <%= link_to t('.destroy', :default => t("Destroy Attachment")),
+              associate_w9_path(p),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+        </dd>
+  <% end %>
+  
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
