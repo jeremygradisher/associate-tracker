@@ -15,6 +15,8 @@ class Associate < ActiveRecord::Base
     accepts_nested_attributes_for :associate_direct_deposits
     has_many :associate_drivers_licenses, dependent: :destroy
     accepts_nested_attributes_for :associate_drivers_licenses
+    has_many :associate_drivers_insurances, dependent: :destroy
+    accepts_nested_attributes_for :associate_drivers_insurances
     
     validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 25 }
     validates :phone_primary, presence: true, length: { minimum: 9, maximum: 10 }

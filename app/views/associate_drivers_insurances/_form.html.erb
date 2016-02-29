@@ -1,0 +1,21 @@
+<%= link_to @associate_drivers_insurance.drivers_insurance, @associate_drivers_insurance.drivers_insurance_url, :target => '_blank'  %>
+  <%= form_for(@associate_drivers_insurance) do |f| %>
+    <% if @associate_drivers_insurance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@associate_drivers_insurance.errors.count, "error") %> prohibited this associate_drivers_insurance from being saved:</h2>
+
+      <ul>
+      <% @associate_drivers_insurance.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :drivers_insurance %><br>
+      <%= f.file_field :drivers_insurance %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

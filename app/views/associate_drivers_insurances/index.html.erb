@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Associate Drivers Insurances</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Associate</th>
+      <th>Drivers insurance</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @associate_drivers_insurances.each do |associate_drivers_insurance| %>
+      <tr>
+        <td><%= associate_drivers_insurance.associate_id %></td>
+        <td><%= associate_drivers_insurance.drivers_insurance %></td>
+        <td><%= link_to 'Show', associate_drivers_insurance %></td>
+        <td><%= link_to 'Edit', edit_associate_drivers_insurance_path(associate_drivers_insurance) %></td>
+        <td><%= link_to 'Destroy', associate_drivers_insurance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Associate drivers insurance', new_associate_drivers_insurance_path %>

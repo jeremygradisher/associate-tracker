@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Associate:</strong>
+  <%= @associate_drivers_insurance.associate_id %>
+</p>
+
+<p>
+  <strong>Drivers insurance:</strong>
+  <%= @associate_drivers_insurance.drivers_insurance %>
+</p>
+
+<%#= link_to 'Show', @associate_drivers_insurance %>
+<%#= link_to 'Back', associate_drivers_insurances_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              associates_path, :class => 'btn btn-default'  %>

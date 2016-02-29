@@ -152,6 +152,19 @@
         </dd>
   <% end %>
   
+  <% @associate_drivers_insurances.each do |p| %>
+    <dt>Proof of Insurance:</dt>
+    <dd><%= link_to p.drivers_insurance_url, p.drivers_insurance_url, :target => '_blank' %><br>
+        <%= link_to t('.edit', :default => t("Edit Attachment")),
+              edit_associate_drivers_insurance_path(p), :class => 'btn btn-default' %>
+        <%= link_to t('.destroy', :default => t("Destroy Attachment")),
+              associate_drivers_insurance_path(p),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+        </dd>
+  <% end %>
+  
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

@@ -29,6 +29,7 @@ class AssociatesController < ApplicationController
     @associate_w9s = @associate.associate_w9s.all
     @associate_direct_deposits = @associate.associate_direct_deposits.all
     @associate_drivers_licenses = @associate.associate_drivers_licenses.all
+    @associate_drivers_insurances = @associate.associate_drivers_insurances.all
     @wrklocs = @associate.wrklocs.all
     @positions = @associate.positions.all
   end
@@ -43,6 +44,7 @@ class AssociatesController < ApplicationController
     @associate_w9 = @associate.associate_w9s.build
     @associate_direct_deposit = @associate.associate_direct_deposits.build
     @associate_drivers_license = @associate.associate_drivers_licenses.build
+    @associate_drivers_insurance = @associate.associate_drivers_insurances.build
   end
 
   # GET /associates/1/edit
@@ -54,6 +56,7 @@ class AssociatesController < ApplicationController
     @associate_w9 = @associate.associate_w9s.build
     @associate_direct_deposit = @associate.associate_direct_deposits.build
     @associate_drivers_license = @associate.associate_drivers_licenses.build
+    @associate_drivers_insurance = @associate.associate_drivers_insurances.build
   end
 
   # POST /associates
@@ -98,6 +101,11 @@ class AssociatesController < ApplicationController
               @associate_drivers_license = @associate.associate_drivers_licenses.create!(:drivers_license => a)
            end
          end
+         if params.has_key?(:associate_drivers_insurances)
+           params[:associate_drivers_insurances]['drivers_insurance'].each do |a|
+              @associate_drivers_insurance = @associate.associate_drivers_insurances.create!(:drivers_insurance => a)
+           end
+         end
          format.html { redirect_to @associate, notice: 'Associate was successfully created.' }
        else
          format.html { render action: 'new' }
@@ -137,12 +145,17 @@ class AssociatesController < ApplicationController
         end
         if params.has_key?(:associate_direct_deposits)
            params[:associate_direct_deposits]['direct_deposit'].each do |a|
-              @associate_direct_deposit = @associate.associate_direct_deposits.create!(:drivers_license => a)
+              @associate_direct_deposit = @associate.associate_direct_deposits.create!(:direct_deposit => a)
            end
         end
         if params.has_key?(:associate_drivers_licenses)
            params[:associate_drivers_licenses]['drivers_license'].each do |a|
               @associate_drivers_license = @associate.associate_drivers_licenses.create!(:drivers_license => a)
+           end
+        end
+        if params.has_key?(:associate_drivers_insurances)
+           params[:associate_drivers_insurances]['drivers_insurance'].each do |a|
+              @associate_drivers_insurance = @associate.associate_drivers_insurances.create!(:drivers_insurance => a)
            end
         end
         format.html { redirect_to @associate, notice: 'Associate was successfully updated.' }
@@ -172,6 +185,6 @@ class AssociatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def associate_params
-      params.require(:associate).permit(:name, :phone_primary, :phone_cell, :email, :email_personal, :primary_street, :primary_state, :primary_city, :primary_zip, :business_street, :business_city, :business_state, :business_zip, :project_history, :notes, :active, :ein_ss, :birthday, :family, :wrkstate, { wrkloc_ids:[] }, :pos_name, { position_ids:[] }, associate_attachments_attributes: [:id, :associate_id, :avatar], associate_resumes_attributes: [:id, :associate_id, :resume], associate_gresumes_attributes: [:id, :associate_id, :gresume], associate_contracts_attributes: [:id, :associate_id, :contract], associate_w9s_attributes: [:id, :associate_id, :w9], associate_direct_deposits_attributes: [:id, :associate_id, :direct_deposit], associate_drivers_licenses_attributes: [:id, :associate_id, :drivers_license])
+      params.require(:associate).permit(:name, :phone_primary, :phone_cell, :email, :email_personal, :primary_street, :primary_state, :primary_city, :primary_zip, :business_street, :business_city, :business_state, :business_zip, :project_history, :notes, :active, :ein_ss, :birthday, :family, :wrkstate, { wrkloc_ids:[] }, :pos_name, { position_ids:[] }, associate_attachments_attributes: [:id, :associate_id, :avatar], associate_resumes_attributes: [:id, :associate_id, :resume], associate_gresumes_attributes: [:id, :associate_id, :gresume], associate_contracts_attributes: [:id, :associate_id, :contract], associate_w9s_attributes: [:id, :associate_id, :w9], associate_direct_deposits_attributes: [:id, :associate_id, :direct_deposit], associate_drivers_licenses_attributes: [:id, :associate_id, :drivers_license], associate_drivers_insurances_attributes: [:id, :associate_id, :drivers_insurance])
     end
 end

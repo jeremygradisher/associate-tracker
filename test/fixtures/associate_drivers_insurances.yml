@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  associate_id: 1
+  drivers_insurance: MyString
+
+two:
+  associate_id: 1
+  drivers_insurance: MyString
