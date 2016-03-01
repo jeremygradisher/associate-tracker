@@ -4,7 +4,7 @@ padding-left: 5px;
 padding-top: 15px !important;
 text-align: center;
 a {
-color: black !important;
+color: #428bca !important;
 margin: 0 !important;
 padding: 5px!important;
 }
@@ -77,19 +77,10 @@ text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
 min-height: 664px;
 }
 
-.jumbotron h1 {
-    text-align: center;
-}
-
-.btn {
-    margin-bottom: 10px;
-}
-
-.collection-check-box-altered {
-    float:left;
-    margin-right:20px;
-}
-
-.collection-check-box-altered label {
-    width:40px;
-}
+.jumbotron h1 {text-align: center;}
+.btn {margin-bottom: 10px;}
+.collection-check-box-altered {float: left;margin-right: 20px;}
+.collection-check-box-altered label {width: 40px;}
+.show1 {font-size:20pt;font-weight: bold;margin-bottom:10px;}
+.show2 {font-size:16pt;margin-bottom:10px}
+.show3 {font-size:12pt;margin-bottom:10px}

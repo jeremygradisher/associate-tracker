@@ -3,62 +3,12 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @associate.name %></dd>
-  
-  <dt><strong><%= model_class.human_attribute_name(:phone_primary) %>:</strong></dt>
-  <dd><%= number_to_phone(@associate.phone_primary, area_code: true) %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:phone_cell) %>:</strong></dt>
-  <dd><%= number_to_phone(@associate.phone_cell, area_code: true) %></dd>
-  
-  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
-  <dd><%= @associate.email %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:email_personal) %>:</strong></dt>
-  <dd><%= @associate.email_personal %></dd>
-  
-  <dt><strong><%= model_class.human_attribute_name(:address_home) %>:</strong></dt>
-  <dd><%= @associate.primary_street %> <%= @associate.primary_city %> <%= @associate.primary_state %> <%= @associate.primary_zip %></dd>
-  
-  <dt><strong><%= model_class.human_attribute_name(:address_business) %>:</strong></dt>
-  <dd><%= @associate.business_street %> <%= @associate.business_city %> <%= @associate.business_state %> <%= @associate.business_zip %></dd>
-  
-  <dt><strong><%= model_class.human_attribute_name(:project_history) %>:</strong></dt>
-  <dd><%= @associate.project_history %></dd>
 
 
-  
-  
-  <dt><strong><%= model_class.human_attribute_name(:notes) %>:</strong></dt>
-  <dd><%= @associate.notes %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:active) %>:</strong></dt>
-  <dd><%= @associate.active %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:ein_ss) %>:</strong></dt>
-  <dd><%= @associate.ein_ss %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:birthday) %>:</strong></dt>
-  <dd><%= @associate.birthday %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:family) %>:</strong></dt>
-  <dd><%= @associate.family %></dd>
-
-  <dt><strong>Positions:</strong></dt>
-  <dd>
-  <% @positions.each do |p| %>
-    <%= p.pos_name %> 
-  <% end %>
-  </dd>
-
-  
-  <dt><strong>Working Locations:</strong></dt>
-  <dd>
-  <% @wrklocs.each do |p| %>
-    <%= p.wrkstate %> 
-  <% end %>
-  </dd>
-  
+<div class="col-lg-4">
   <% @associate_attachments.each do |p| %>
-    <dt>Associate Image:</dt>
-    <dd><%= image_tag p.avatar_url, :style => 'max-width:300px;padding:20px;' %><br>
-        <%#= link_to "Edit Attachment", edit_associate_attachment_path(p) %><br>
+        <%= image_tag p.avatar_url, :style => 'max-width:90%;padding:5%;' %><br>
+        
         <%= link_to t('.edit', :default => t("Edit Attachment")),
               edit_associate_attachment_path(p), :class => 'btn btn-default' %>
         <%#= link_to "Destroy Attachment", destroy_associate_attachment_path(p) %>
@@ -67,112 +17,274 @@
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
-        </dd>
+        
   <% end %>
-  
-  <% @associate_resumes.each do |p| %>
-    <dt>Resume:</dt>
-    <dd><%= link_to p.resume_url, p.resume_url, :target => '_blank' %><br>
-        <%#= link_to "Edit Attachment", edit_associate_attachment_path(p) %><br>
-        <%= link_to t('.edit', :default => t("Edit Attachment")),
-              edit_associate_resume_path(p), :class => 'btn btn-default' %>
-        <%#= link_to "Destroy Attachment", destroy_associate_attachment_path(p) %>
-        <%= link_to t('.destroy', :default => t("Destroy Attachment")),
-              associate_resume_path(p),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
-        </dd>
-  <% end %>
-  
-  <% @associate_gresumes.each do |p| %>
-    <dt>Greeby Resume:</dt>
-    <dd><%= link_to p.gresume_url, p.gresume_url, :target => '_blank' %><br>
-        <%#= link_to "Edit Attachment", edit_associate_attachment_path(p) %><br>
-        <%= link_to t('.edit', :default => t("Edit Attachment")),
-              edit_associate_gresume_path(p), :class => 'btn btn-default' %>
-        <%#= link_to "Destroy Attachment", destroy_associate_attachment_path(p) %>
-        <%= link_to t('.destroy', :default => t("Destroy Attachment")),
-              associate_gresume_path(p),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
-        </dd>
-  <% end %>
-  
-  <% @associate_contracts.each do |p| %>
-    <dt>Associate Contract:</dt>
-    <dd><%= link_to p.contract_url, p.contract_url, :target => '_blank' %><br>
-        <%= link_to t('.edit', :default => t("Edit Attachment")),
-              edit_associate_contract_path(p), :class => 'btn btn-default' %>
-        <%= link_to t('.destroy', :default => t("Destroy Attachment")),
-              associate_contract_path(p),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
-        </dd>
-  <% end %>
-  
-  <% @associate_w9s.each do |p| %>
-    <dt>W9:</dt>
-    <dd><%= link_to p.w9_url, p.w9_url, :target => '_blank' %><br>
-        <%= link_to t('.edit', :default => t("Edit Attachment")),
-              edit_associate_w9_path(p), :class => 'btn btn-default' %>
-        <%= link_to t('.destroy', :default => t("Destroy Attachment")),
-              associate_w9_path(p),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
-        </dd>
-  <% end %>
-  
-  <% @associate_direct_deposits.each do |p| %>
-    <dt>Direct Deposits:</dt>
-    <dd><%= link_to p.direct_deposit_url, p.direct_deposit_url, :target => '_blank' %><br>
-        <%= link_to t('.edit', :default => t("Edit Attachment")),
-              edit_associate_direct_deposit_path(p), :class => 'btn btn-default' %>
-        <%= link_to t('.destroy', :default => t("Destroy Attachment")),
-              associate_direct_deposit_path(p),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
-        </dd>
-  <% end %>
-  
-  <% @associate_drivers_licenses.each do |p| %>
-    <dt>Drivers License:</dt>
-    <dd><%= link_to p.drivers_license_url, p.drivers_license_url, :target => '_blank' %><br>
-        <%= link_to t('.edit', :default => t("Edit Attachment")),
-              edit_associate_drivers_license_path(p), :class => 'btn btn-default' %>
-        <%= link_to t('.destroy', :default => t("Destroy Attachment")),
-              associate_drivers_license_path(p),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
-        </dd>
-  <% end %>
-  
-  <% @associate_drivers_insurances.each do |p| %>
-    <dt>Proof of Insurance:</dt>
-    <dd><%= link_to p.drivers_insurance_url, p.drivers_insurance_url, :target => '_blank' %><br>
-        <%= link_to t('.edit', :default => t("Edit Attachment")),
-              edit_associate_drivers_insurance_path(p), :class => 'btn btn-default' %>
-        <%= link_to t('.destroy', :default => t("Destroy Attachment")),
-              associate_drivers_insurance_path(p),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
-        </dd>
-  <% end %>
-  
-</dl>
+</div>
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              associates_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_associate_path(@associate), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              associate_path(@associate),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+<div class="col-lg-8">
+  <div class="show1">
+    <%= @associate.name %>, 
+    <% @positions.each do |p| %>
+      <%= p.pos_name %> 
+    <% end %>
+    <% if @associate.active == true %>
+    <i class="fa fa-check" style="color:#00aa00" title="Associate is Active"></i>
+    <% else %>
+    <i class="fa fa-close" style="color:#aa0000" title="Associate is not currently Active"></i>
+    <% end %>
+  </div>
+  <div class="show2">
+    Home State: <strong><%= @associate.primary_state %></strong>&nbsp;&nbsp;&nbsp;&nbsp;
+    Working Locations: 
+    <strong>
+    <% @wrklocs.each do |p| %>
+      <%= p.wrkstate %> 
+    <% end %>
+    </strong>
+  </div>
+  <div class="show3">
+    <%= model_class.human_attribute_name(:project_history) %>:
+    <%= @associate.project_history %>
+  </div>
+  <hr>
+  <div class="show3">
+    <%= model_class.human_attribute_name(:notes) %>:
+    <%= @associate.notes %>
+  </div>
+  <hr>
+  <div class="show3">
+    <%= model_class.human_attribute_name(:phone_primary) %>: 
+    <%= number_to_phone(@associate.phone_primary, area_code: true) %>&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= model_class.human_attribute_name(:phone_cell) %>:
+    <%= number_to_phone(@associate.phone_cell, area_code: true) %>
+  </div>
+  <div class="show3">
+    <%= model_class.human_attribute_name(:email) %>: 
+    <a href="mailto:<%= @associate.email %>">
+      <%= @associate.email %>
+    </a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <%= model_class.human_attribute_name(:email_personal) %>: 
+    <a href="mailto:<%= @associate.email_personal %>">
+      <%= @associate.email_personal %>
+    </a>
+  </div>
+  <div class="show3">
+  <%= model_class.human_attribute_name(:address_home) %>:
+  <%= @associate.primary_street %> <%= @associate.primary_city %> <%= @associate.primary_state %> <%= @associate.primary_zip %>
+  </div>
+  
+  <div class="show3">
+  <%= model_class.human_attribute_name(:address_business) %>:
+  <%= @associate.business_street %> <%= @associate.business_city %> <%= @associate.business_state %> <%= @associate.business_zip %>
+  </div>
+  
+  <div class="show3">
+    <%= model_class.human_attribute_name(:ein_ss) %>:
+    <%= @associate.ein_ss %>&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= model_class.human_attribute_name(:birthday) %>:
+    <%= @associate.birthday %>
+  </div>
+  
+  <div class="show3">
+    <%= model_class.human_attribute_name(:family) %>:
+    <%= @associate.family %>
+  </div>
+</div>
+
+
+
+<div class="col-lg-12" style="text-align:center;">
+  <hr>
+    <%= link_to t('.back', :default => t("<= Back To Associates")),
+                  associates_path, :class => 'btn btn-default'  %>
+    <%= link_to t('.edit', :default => t("Edit Associate")),
+                  edit_associate_path(@associate), :class => 'btn btn-default' %>
+    <%= link_to t('.destroy', :default => t("Delete Associate")),
+                  associate_path(@associate),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-danger' %>
+  <hr>
+</div>
+
+<div class="col-lg-12">
+  
+  <div class="well" style="text-align:center;float:left;width:47%;margin-right:3%;">
+    <strong>Resume:</strong><br>
+    <% if @associate_resumes.exists? %>
+      <% @associate_resumes.each do |p| %>
+          <%#= link_to p.resume_url, p.resume_url, :target => '_blank' %>
+          <br><br>
+          <%= link_to t('.view', :default => t("View Attachment")),
+                p.resume_url, :class => 'btn btn-default', :target => '_blank' %>
+          <%= link_to t('.edit', :default => t("Edit Attachment")),
+                edit_associate_resume_path(p), :class => 'btn btn-default', :target => '_blank' %>
+          <%= link_to t('.destroy', :default => t("Destroy Attachment")),
+                associate_resume_path(p),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger' %>
+      <% end %>
+    <% else %>
+    <br><br>
+     <%= link_to t('.edit', :default => t("Edit Associate to add Resume")),
+                  edit_associate_path(@associate), :class => 'btn btn-default' %>
+    <% end %>
+  </div>
+
+  <div class="well" style="text-align:center;float:left;width:47%;margin-right:3%;">  
+  <strong>Greeby Resume:</strong><br>
+    <% if @associate_gresumes.exists? %>
+      <% @associate_gresumes.each do |p| %>
+          <%#= link_to p.gresume_url, p.gresume_url, :target => '_blank' %>
+          <br><br>
+          <%= link_to t('.view', :default => t("View Attachment")),
+                p.gresume_url, :class => 'btn btn-default', :target => '_blank' %>
+            <%= link_to t('.edit', :default => t("Edit Attachment")),
+                  edit_associate_gresume_path(p), :class => 'btn btn-default' %>
+            <%= link_to t('.destroy', :default => t("Destroy Attachment")),
+                  associate_gresume_path(p),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-danger' %>
+      <% end %>
+    <% else %>
+      <br><br>
+       <%= link_to t('.edit', :default => t("Edit Associate to add Greeby Resume")),
+                    edit_associate_path(@associate), :class => 'btn btn-default' %>
+    <% end %>
+  </div>
+
+  <div class="well" style="text-align:center;float:left;width:47%;margin-right:3%;">  
+  <strong>Associate Contract:</strong><br>
+  <% if @associate_contracts.exists? %>
+      <% @associate_contracts.each do |p| %>
+        
+        <%#= link_to p.contract_url, p.contract_url, :target => '_blank' %>
+        <br><br>
+        <%= link_to t('.view', :default => t("View Attachment")),
+                p.contract_url, :class => 'btn btn-default', :target => '_blank' %>
+            <%= link_to t('.edit', :default => t("Edit Attachment")),
+                  edit_associate_contract_path(p), :class => 'btn btn-default' %>
+            <%= link_to t('.destroy', :default => t("Destroy Attachment")),
+                  associate_contract_path(p),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-danger' %>
+      <% end %>
+  <% else %>
+    <br><br>
+     <%= link_to t('.edit', :default => t("Edit Associate to add Associate Contract")),
+                  edit_associate_path(@associate), :class => 'btn btn-default' %>
+  <% end %>
+  </div>
+  
+  <div class="well" style="text-align:center;float:left;width:47%;margin-right:3%;">  
+  <strong>W9:</strong><br>
+    <% if @associate_w9s.exists? %>
+      <% @associate_w9s.each do |p| %>
+        <%#= link_to p.w9_url, p.w9_url, :target => '_blank' %>
+        <br><br>
+        <%= link_to t('.view', :default => t("View Attachment")),
+                p.w9_url, :class => 'btn btn-default', :target => '_blank' %>
+            <%= link_to t('.edit', :default => t("Edit Attachment")),
+                  edit_associate_w9_path(p), :class => 'btn btn-default' %>
+            <%= link_to t('.destroy', :default => t("Destroy Attachment")),
+                  associate_w9_path(p),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-danger' %>
+            
+        <% end %>
+    <% else %>
+      <br><br>
+       <%= link_to t('.edit', :default => t("Edit Associate to add W9")),
+                    edit_associate_path(@associate), :class => 'btn btn-default' %>
+    <% end %>
+  </div>
+  
+  <div class="well" style="text-align:center;float:left;width:47%;margin-right:3%;">  
+  <strong>Direct Deposit:</strong><br>
+    <% if @associate_direct_deposits.exists? %>
+      <% @associate_direct_deposits.each do |p| %>
+        <%#= link_to p.direct_deposit_url, p.direct_deposit_url, :target => '_blank' %>
+        <br><br>
+        <%= link_to t('.view', :default => t("View Attachment")),
+                p.direct_deposit_url, :class => 'btn btn-default', :target => '_blank' %>
+            <%= link_to t('.edit', :default => t("Edit Attachment")),
+                  edit_associate_direct_deposit_path(p), :class => 'btn btn-default' %>
+            <%= link_to t('.destroy', :default => t("Destroy Attachment")),
+                  associate_direct_deposit_path(p),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-danger' %>
+      <% end %>
+    <% else %>
+  <br><br>
+     <%= link_to t('.edit', :default => t("Edit Associate to add Direct Deposit Form")),
+                  edit_associate_path(@associate), :class => 'btn btn-default' %>
+  <% end %>
+  </div>
+  
+  <div class="well" style="text-align:center;float:left;width:47%;margin-right:3%;">  
+  <strong>Drivers License:</strong><br>
+  <% if @associate_drivers_licenses.exists? %>
+      <% @associate_drivers_licenses.each do |p| %>
+        <%#= link_to p.drivers_license_url, p.drivers_license_url, :target => '_blank' %>
+        <br><br>
+        <%= link_to t('.view', :default => t("View Attachment")),
+                p.drivers_license_url, :class => 'btn btn-default', :target => '_blank' %>
+            <%= link_to t('.edit', :default => t("Edit Attachment")),
+                  edit_associate_drivers_license_path(p), :class => 'btn btn-default' %>
+            <%= link_to t('.destroy', :default => t("Destroy Attachment")),
+                  associate_drivers_license_path(p),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-danger' %>
+      <% end %>
+  <% else %>
+    <br><br>
+     <%= link_to t('.edit', :default => t("Edit Associate to add Driver's License")),
+                  edit_associate_path(@associate), :class => 'btn btn-default' %>
+  <% end %>
+  </div>
+  
+  <div class="well" style="text-align:center;float:left;width:47%;margin-right:3%;">  
+  <strong>Proof of Insurance:</strong><br>
+    <% if @associate_drivers_insurances.exists? %>
+      <% @associate_drivers_insurances.each do |p| %>
+        <%#= link_to p.drivers_insurance_url, p.drivers_insurance_url, :target => '_blank' %>
+        <br><br>
+        <%= link_to t('.view', :default => t("View Attachment")),
+                p.drivers_insurance_url, :class => 'btn btn-default', :target => '_blank' %>
+            <%= link_to t('.edit', :default => t("Edit Attachment")),
+                  edit_associate_drivers_insurance_path(p), :class => 'btn btn-default' %>
+            <%= link_to t('.destroy', :default => t("Destroy Attachment")),
+                  associate_drivers_insurance_path(p),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-danger' %>
+            
+      <% end %>
+    <% else %>
+        <br><br>
+         <%= link_to t('.edit', :default => t("Edit Associate to add Proof of Insurance")),
+                      edit_associate_path(@associate), :class => 'btn btn-default' %>
+    <% end %>
+  </div>
+</div>
+
+<div class="col-lg-12" style="text-align:center;">
+  <hr>
+    <%= link_to t('.back', :default => t("<= Back To Associates")),
+                  associates_path, :class => 'btn btn-default'  %>
+    <%= link_to t('.edit', :default => t("Edit Associate")),
+                  edit_associate_path(@associate), :class => 'btn btn-default' %>
+    <%= link_to t('.destroy', :default => t("Delete Associate")),
+                  associate_path(@associate),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-danger' %>
+  <hr>
+</div>
