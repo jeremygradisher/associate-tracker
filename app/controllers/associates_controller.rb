@@ -4,19 +4,8 @@ class AssociatesController < ApplicationController
   # GET /associates
   # GET /associates.json
   def index
-    #@associates = Associate.all
-    
-    @filterrific = initialize_filterrific(
-    Associate,
-    params[:filterrific]
-    ) or return
-    @associates = @filterrific.find.order('id DESC')
-
-    
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    @search = Associate.search(params[:q])
+    @associates = @search.result(distinct: true)
   end
 
   # GET /associates/1

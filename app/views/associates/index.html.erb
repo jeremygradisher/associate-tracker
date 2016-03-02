@@ -1,36 +1,65 @@
 <%- model_class = Associate -%>
+
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><strong>Search Our Database</strong></div>
+  <div class="panel-body">
+
+  <fieldset class="search-field">
+    <!--<legend>Search Our Database</legend>-->
+    <%= search_form_for @search do |f| %>
+      <div class="col-lg-3">
+        <%= f.label :name_cont, "Name contains:" %>
+        <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Search for..." %>
+      </div>
+  
+      <div class="col-lg-4">
+        <%= f.label "Positon:" %><br />
+        <%= f.collection_check_boxes :positions_id_in_any, Position.all, :id, :pos_name do |b| %>
+          <div class="collection-check-box-altered form-control-altered">
+            <%= b.check_box %>
+            <%= b.label %>
+          </div>
+        <% end %>
+      </div>
+      
+      <div class="col-lg-4">
+        <%= f.label "Work Location:" %><br />
+
+        <%= f.select :wrklocs_id_in_any, 
+        options_from_collection_for_select(Wrkloc.all, "id", "wrkstate", @search.wrklocs_id_in_any), 
+        include_blank: true %>
+
+        <div class="actions"><%= f.submit "Search", :class => "btn btn-primary jicon" %></div>
+      </div>
+    <% end %>
+  </fieldset>
+
+
+
+  </div>
+</div>
+
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-
-
-
-
-
-<%= form_for_filterrific @filterrific do |f| %>
-  <div class="input-group col-lg-4">
-    <%= f.text_field( :search_query, class: 'filterrific-periodically-observed form-control' ) %>
-    <span class="input-group-btn"><%= f.submit 'Search', class: 'btn btn-default' %></span>
-  </div>
- 
-  <div style="margin-top:10px;margin-bottom:10px;">
-    <%= link_to( 'Reset filters', reset_filterrific_url, :class => 'btn btn-default btn-xs' )  %>
-  </div>
-<% end %>
-
-
 
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:profile_image) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
+      <!--<th><%#= model_class.human_attribute_name(:name) %></th>-->
+      <th><%= sort_link @search, :name, "Name" %></th>
       <th><%= model_class.human_attribute_name(:phone_primary) %></th>
       <!--<th><%#= model_class.human_attribute_name(:phone_cell) %></th>-->
       <th><%= model_class.human_attribute_name(:email) %></th>
-      <th><%= model_class.human_attribute_name(:postition) %></th>
-      <th><%= model_class.human_attribute_name(:home_state) %></th>
-      <th><%= model_class.human_attribute_name(:working_locations) %></th>
+      <!--<th><%#= model_class.human_attribute_name(:postition) %></th>-->
+      <th><%= sort_link @search, :postition, "Position" %></th>
+      <!--<th><%#= model_class.human_attribute_name(:home_state) %></th>-->
+      <th><%= sort_link @search, :home_state, "Home State" %></th>
+      <!--<th><%#= model_class.human_attribute_name(:working_locations) %></th>-->
+      <th><%= sort_link @search, :working_locations, "Working Locations" %></th>
       
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -84,3 +113,4 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_associate_path,
             :class => 'btn btn-primary' %>
+           

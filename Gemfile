@@ -17,8 +17,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
-gem 'filterrific'
 gem "font-awesome-rails"
+gem 'ransack'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
