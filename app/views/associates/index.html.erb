@@ -23,10 +23,10 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      
+      <th><%= model_class.human_attribute_name(:profile_image) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:phone_primary) %></th>
-      <th><%= model_class.human_attribute_name(:phone_cell) %></th>
+      <!--<th><%#= model_class.human_attribute_name(:phone_cell) %></th>-->
       <th><%= model_class.human_attribute_name(:email) %></th>
       <th><%= model_class.human_attribute_name(:postition) %></th>
       <th><%= model_class.human_attribute_name(:home_state) %></th>
@@ -39,10 +39,17 @@
     <% @associates.each do |associate| %>
       <tr>
         
+       <td>
+          <% associate.associate_attachments.each do |p| %>
+            <%= image_tag p.avatar_url, :style => 'max-width:50px;padding:2px;' %>
+          <% end %>
+        </td>
+        
+        
         <td><%= link_to associate.name, associate_path(associate), style: "color:#428bca;"  %></td>
         
         <td><%= number_to_phone(associate.phone_primary, area_code: true) %></td>
-        <td><%= number_to_phone(associate.phone_cell, area_code: true) %></td>
+        <!--<td><%#= number_to_phone(associate.phone_cell, area_code: true) %></td>-->
         
         <td><%= associate.email %></td>
         
@@ -77,4 +84,3 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_associate_path,
             :class => 'btn btn-primary' %>
-           
