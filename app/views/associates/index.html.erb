@@ -41,7 +41,7 @@
         
        <td>
           <% associate.associate_attachments.each do |p| %>
-            <%= image_tag p.avatar_url, :style => 'max-width:50px;padding:2px;' %>
+            <%= link_to image_tag(p.avatar_url, :style => 'max-width:50px;padding:2px;'), associate_path(associate) %>
           <% end %>
         </td>
         
