@@ -42,7 +42,7 @@ class AssociateContractsController < ApplicationController
   def update
     respond_to do |format|
       if @associate_contract.update(associate_contract_params)
-        format.html { redirect_to @associate_contract, notice: 'Associate contract was successfully updated.' }
+        format.html { redirect_to @associate_contract.associate, notice: 'Associate contract was successfully updated.' }
         format.json { render :show, status: :ok, location: @associate_contract }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class AssociateContractsController < ApplicationController
   def destroy
     @associate_contract.destroy
     respond_to do |format|
-      format.html { redirect_to associate_contracts_url, notice: 'Associate contract was successfully destroyed.' }
+      format.html { redirect_to @associate_contract.associate, notice: 'Associate contract was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

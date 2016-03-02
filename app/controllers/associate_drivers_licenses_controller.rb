@@ -42,7 +42,7 @@ class AssociateDriversLicensesController < ApplicationController
   def update
     respond_to do |format|
       if @associate_drivers_license.update(associate_drivers_license_params)
-        format.html { redirect_to @associate_drivers_license, notice: 'Associate drivers license was successfully updated.' }
+        format.html { redirect_to @associate_drivers_license.associate, notice: 'Associate drivers license was successfully updated.' }
         format.json { render :show, status: :ok, location: @associate_drivers_license }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class AssociateDriversLicensesController < ApplicationController
   def destroy
     @associate_drivers_license.destroy
     respond_to do |format|
-      format.html { redirect_to associate_drivers_licenses_url, notice: 'Associate drivers license was successfully destroyed.' }
+      format.html { redirect_to @associate_drivers_license.associate, notice: 'Associate drivers license was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

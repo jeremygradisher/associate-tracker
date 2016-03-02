@@ -42,7 +42,7 @@ class AssociateResumesController < ApplicationController
   def update
     respond_to do |format|
       if @associate_resume.update(associate_resume_params)
-        format.html { redirect_to @associate_resume, notice: 'Associate resume was successfully updated.' }
+        format.html { redirect_to @associate_resume.associate, notice: 'Associate resume was successfully updated.' }
         format.json { render :show, status: :ok, location: @associate_resume }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class AssociateResumesController < ApplicationController
   def destroy
     @associate_resume.destroy
     respond_to do |format|
-      format.html { redirect_to associate_resumes_url, notice: 'Associate resume was successfully destroyed.' }
+      format.html { redirect_to @associate_resume.associate, notice: 'Associate resume was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -42,7 +42,7 @@ class AssociateDriversInsurancesController < ApplicationController
   def update
     respond_to do |format|
       if @associate_drivers_insurance.update(associate_drivers_insurance_params)
-        format.html { redirect_to @associate_drivers_insurance, notice: 'Associate drivers insurance was successfully updated.' }
+        format.html { redirect_to @associate_drivers_insurance.associate, notice: 'Associate drivers insurance was successfully updated.' }
         format.json { render :show, status: :ok, location: @associate_drivers_insurance }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class AssociateDriversInsurancesController < ApplicationController
   def destroy
     @associate_drivers_insurance.destroy
     respond_to do |format|
-      format.html { redirect_to associate_drivers_insurances_url, notice: 'Associate drivers insurance was successfully destroyed.' }
+      format.html { redirect_to @associate_drivers_insurance.associate, notice: 'Associate drivers insurance was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

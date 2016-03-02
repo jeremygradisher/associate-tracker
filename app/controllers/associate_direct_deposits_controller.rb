@@ -42,7 +42,7 @@ class AssociateDirectDepositsController < ApplicationController
   def update
     respond_to do |format|
       if @associate_direct_deposit.update(associate_direct_deposit_params)
-        format.html { redirect_to @associate_direct_deposit, notice: 'Associate direct deposit was successfully updated.' }
+        format.html { redirect_to @associate_direct_deposit.associate, notice: 'Associate direct deposit was successfully updated.' }
         format.json { render :show, status: :ok, location: @associate_direct_deposit }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class AssociateDirectDepositsController < ApplicationController
   def destroy
     @associate_direct_deposit.destroy
     respond_to do |format|
-      format.html { redirect_to associate_direct_deposits_url, notice: 'Associate direct deposit was successfully destroyed.' }
+      format.html { redirect_to @associate_direct_deposit.associate, notice: 'Associate direct deposit was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -42,7 +42,7 @@ class AssociateW9sController < ApplicationController
   def update
     respond_to do |format|
       if @associate_w9.update(associate_w9_params)
-        format.html { redirect_to @associate_w9, notice: 'Associate w9 was successfully updated.' }
+        format.html { redirect_to @associate_w9.associate, notice: 'Associate w9 was successfully updated.' }
         format.json { render :show, status: :ok, location: @associate_w9 }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class AssociateW9sController < ApplicationController
   def destroy
     @associate_w9.destroy
     respond_to do |format|
-      format.html { redirect_to associate_w9s_url, notice: 'Associate w9 was successfully destroyed.' }
+      format.html { redirect_to @associate_w9.associate, notice: 'Associate w9 was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

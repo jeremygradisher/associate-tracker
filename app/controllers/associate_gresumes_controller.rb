@@ -42,7 +42,7 @@ class AssociateGresumesController < ApplicationController
   def update
     respond_to do |format|
       if @associate_gresume.update(associate_gresume_params)
-        format.html { redirect_to @associate_gresume, notice: 'Associate gresume was successfully updated.' }
+        format.html { redirect_to @associate_gresume.associate, notice: 'Associate gresume was successfully updated.' }
         format.json { render :show, status: :ok, location: @associate_gresume }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class AssociateGresumesController < ApplicationController
   def destroy
     @associate_gresume.destroy
     respond_to do |format|
-      format.html { redirect_to associate_gresumes_url, notice: 'Associate gresume was successfully destroyed.' }
+      format.html { redirect_to @associate_gresume.associate, notice: 'Associate gresume was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
