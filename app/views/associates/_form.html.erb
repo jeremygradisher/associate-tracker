@@ -68,7 +68,8 @@
     </div>
     <%= f.label :state, :class => 'control-label col-lg-1' %>
     <div class="col-lg-2">
-      <%= f.text_field :primary_state, :class => 'form-control' %>
+      <%#= f.text_field :primary_state, :class => 'form-control' %>
+      <%= f.select :primary_state, ['AL', 'AK', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'], {include_blank: true}, :class => 'form-control' %>
     </div>
     <%= f.label :zip, :class => 'control-label col-lg-1' %>
     <div class="col-lg-2">
@@ -89,7 +90,8 @@
     </div>
     <%= f.label :state, :class => 'control-label col-lg-1' %>
     <div class="col-lg-2">
-      <%= f.text_field :business_state, :class => 'form-control' %>
+      <%#= f.text_field :business_state, :class => 'form-control' %>
+      <%= f.select :business_state, ['AL', 'AK', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'], {include_blank: true}, :class => 'form-control' %>
     </div>
     <%= f.label :zip, :class => 'control-label col-lg-1' %>
     <div class="col-lg-2">
@@ -143,7 +145,7 @@
   <div class="form-group">
     <%= f.label :active, :class => 'control-label col-lg-2' %>
     <div class="col-lg-1">
-      <%= f.check_box :active, checked: true, :class => 'form-control check-align-left' %>
+      <%= f.check_box :active, :class => 'form-control check-align-left' %>
       <%=f.error_span(:active) %>
     </div>
   </div>
@@ -200,7 +202,7 @@
        </div>
     <% end %>
     
-    <%= f.fields_for :associate_contracts do |p| %>
+     <%= f.fields_for :associate_contracts do |p| %>
        <div class="form-group">
          <%= p.label :contract, :class => 'control-label col-lg-2'  %>
          <div class="col-lg-10">
@@ -209,7 +211,7 @@
        </div>
      <% end %>
      
-    <%= f.fields_for :associate_w9s do |p| %>
+     <%= f.fields_for :associate_w9s do |p| %>
        <div class="form-group">
          <%= p.label :w9, :class => 'control-label col-lg-2'  %>
          <div class="col-lg-10">
