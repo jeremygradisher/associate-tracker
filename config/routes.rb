@@ -6,11 +6,13 @@ Rails.application.routes.draw do
   resources :associate_contracts
   resources :positions
   resources :wrklocs
+  resources :worklocations
   resources :associate_gresumes
   resources :associate_resumes
   resources :associate_attachments
   resources :associates
   devise_for :users, :controllers => { :registrations => 'devise/registrations' }
+  resources :users, :only => [:index, :show]
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
