@@ -19,6 +19,8 @@ gem 'mini_magick'
 gem 'fog'
 gem "font-awesome-rails"
 gem 'ransack'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

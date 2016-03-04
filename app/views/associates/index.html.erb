@@ -110,6 +110,11 @@
   </tbody>
 </table>
 
+<div class="row" style="text-align:center;">
+  <%= will_paginate @associates, renderer: BootstrapPagination::Rails %>
+</div>
+
+<hr>
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_associate_path,
             :class => 'btn btn-primary' %>
