@@ -5,7 +5,7 @@ class AssociatesController < ApplicationController
   # GET /associates.json
   def index
     @search = Associate.search(params[:q])
-    @associates = @search.result(distinct: true).paginate(:page => params[:page], :per_page => 15)
+    @associates = @search.result(distinct: true).paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /associates/1
