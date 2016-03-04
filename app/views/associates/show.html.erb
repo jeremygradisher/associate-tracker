@@ -116,20 +116,34 @@
       <% @associate_resumes.each do |p| %>
           <%#= link_to p.resume_url, p.resume_url, :target => '_blank' %>
           <br><br>
-          <%= link_to t('.view', :default => t("View Attachment")),
+          <%#= link_to t('.view', :default => t("View Attachment")),
                 p.resume_url, :class => 'btn btn-default', :target => '_blank' %>
-          <%= link_to t('.edit', :default => t("Edit Attachment")),
+          <%= link_to '<i class="fa fa-eye"></i>'.html_safe,
+                   p.resume_url, :class => 'btn btn-default', 
+                   :title => 'View Attachment', :target => '_blank'  %>
+          <%#= link_to t('.edit', :default => t("Edit Attachment")),
                 edit_associate_resume_path(p), :class => 'btn btn-default', :target => '_blank' %>
-          <%= link_to t('.destroy', :default => t("Destroy Attachment")),
+          <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+                   edit_associate_resume_path(p), :class => 'btn btn-primary', 
+                   :title => 'Edit Attachment' %>
+          <%#= link_to t('.destroy', :default => t("Destroy Attachment")),
                 associate_resume_path(p),
                 :method => 'delete',
                 :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                 :class => 'btn btn-danger' %>
+          <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+                associate_resume_path(p),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger', :title => 'Destroy Attachment' %>
       <% end %>
     <% else %>
     <br><br>
-     <%= link_to t('.edit', :default => t("Edit Associate to add Resume")),
+     <%#= link_to t('.edit', :default => t("Edit Associate to add Resume")),
                   edit_associate_path(@associate), :class => 'btn btn-default' %>
+    <%= link_to '<i class="fa fa-upload"></i>'.html_safe,
+                   edit_associate_path(@associate), :class => 'btn btn-primary', 
+                   :title => 'Upload' %>
     <% end %>
   </div>
 
@@ -139,20 +153,34 @@
       <% @associate_gresumes.each do |p| %>
           <%#= link_to p.gresume_url, p.gresume_url, :target => '_blank' %>
           <br><br>
-          <%= link_to t('.view', :default => t("View Attachment")),
+          <%#= link_to t('.view', :default => t("View Attachment")),
                 p.gresume_url, :class => 'btn btn-default', :target => '_blank' %>
-            <%= link_to t('.edit', :default => t("Edit Attachment")),
+          <%= link_to '<i class="fa fa-eye"></i>'.html_safe,
+                   p.gresume_url, :class => 'btn btn-default', 
+                   :title => 'View Attachment', :target => '_blank'  %>
+            <%#= link_to t('.edit', :default => t("Edit Attachment")),
                   edit_associate_gresume_path(p), :class => 'btn btn-default' %>
-            <%= link_to t('.destroy', :default => t("Destroy Attachment")),
+            <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+                   edit_associate_gresume_path(p), :class => 'btn btn-primary', 
+                   :title => 'Edit Attachment' %>
+            <%#= link_to t('.destroy', :default => t("Destroy Attachment")),
                   associate_gresume_path(p),
                   :method => 'delete',
                   :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                   :class => 'btn btn-danger' %>
+            <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+                associate_gresume_path(p),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger', :title => 'Destroy Attachment' %>
       <% end %>
     <% else %>
       <br><br>
-       <%= link_to t('.edit', :default => t("Edit Associate to add Greeby Resume")),
+       <%#= link_to t('.edit', :default => t("Edit Associate to add Greeby Resume")),
                     edit_associate_path(@associate), :class => 'btn btn-default' %>
+       <%= link_to '<i class="fa fa-upload"></i>'.html_safe,
+                   edit_associate_path(@associate), :class => 'btn btn-primary', 
+                   :title => 'Upload' %>
     <% end %>
   </div>
 
@@ -163,20 +191,34 @@
         
         <%#= link_to p.contract_url, p.contract_url, :target => '_blank' %>
         <br><br>
-        <%= link_to t('.view', :default => t("View Attachment")),
+        <%#= link_to t('.view', :default => t("View Attachment")),
                 p.contract_url, :class => 'btn btn-default', :target => '_blank' %>
-            <%= link_to t('.edit', :default => t("Edit Attachment")),
+        <%= link_to '<i class="fa fa-eye"></i>'.html_safe,
+                   p.contract_url, :class => 'btn btn-default', 
+                   :title => 'View Attachment', :target => '_blank'  %>
+            <%#= link_to t('.edit', :default => t("Edit Attachment")),
                   edit_associate_contract_path(p), :class => 'btn btn-default' %>
-            <%= link_to t('.destroy', :default => t("Destroy Attachment")),
+            <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+                   edit_associate_contract_path(p), :class => 'btn btn-primary', 
+                   :title => 'Edit Attachment' %>
+            <%#= link_to t('.destroy', :default => t("Destroy Attachment")),
                   associate_contract_path(p),
                   :method => 'delete',
                   :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                   :class => 'btn btn-danger' %>
+            <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+                associate_contract_path(p),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger', :title => 'Destroy Attachment' %>
       <% end %>
   <% else %>
     <br><br>
-     <%= link_to t('.edit', :default => t("Edit Associate to add Associate Contract")),
+     <%#= link_to t('.edit', :default => t("Edit Associate to add Associate Contract")),
                   edit_associate_path(@associate), :class => 'btn btn-default' %>
+    <%= link_to '<i class="fa fa-upload"></i>'.html_safe,
+                   edit_associate_path(@associate), :class => 'btn btn-primary', 
+                   :title => 'Upload' %>
   <% end %>
   </div>
   
@@ -186,21 +228,35 @@
       <% @associate_w9s.each do |p| %>
         <%#= link_to p.w9_url, p.w9_url, :target => '_blank' %>
         <br><br>
-        <%= link_to t('.view', :default => t("View Attachment")),
+        <%#= link_to t('.view', :default => t("View Attachment")),
                 p.w9_url, :class => 'btn btn-default', :target => '_blank' %>
-            <%= link_to t('.edit', :default => t("Edit Attachment")),
+        <%= link_to '<i class="fa fa-eye"></i>'.html_safe,
+                   p.w9_url, :class => 'btn btn-default', 
+                   :title => 'View Attachment', :target => '_blank'  %>
+            <%#= link_to t('.edit', :default => t("Edit Attachment")),
                   edit_associate_w9_path(p), :class => 'btn btn-default' %>
-            <%= link_to t('.destroy', :default => t("Destroy Attachment")),
+            <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+                   edit_associate_w9_path(p), :class => 'btn btn-primary', 
+                   :title => 'Edit Attachment' %>
+            <%#= link_to t('.destroy', :default => t("Destroy Attachment")),
                   associate_w9_path(p),
                   :method => 'delete',
                   :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                   :class => 'btn btn-danger' %>
+            <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+                associate_w9_path(p),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger', :title => 'Destroy Attachment' %>
             
         <% end %>
     <% else %>
       <br><br>
-       <%= link_to t('.edit', :default => t("Edit Associate to add W9")),
+       <%#= link_to t('.edit', :default => t("Edit Associate to add W9")),
                     edit_associate_path(@associate), :class => 'btn btn-default' %>
+      <%= link_to '<i class="fa fa-upload"></i>'.html_safe,
+                   edit_associate_path(@associate), :class => 'btn btn-primary', 
+                   :title => 'Upload' %>
     <% end %>
   </div>
   
@@ -210,20 +266,34 @@
       <% @associate_direct_deposits.each do |p| %>
         <%#= link_to p.direct_deposit_url, p.direct_deposit_url, :target => '_blank' %>
         <br><br>
-        <%= link_to t('.view', :default => t("View Attachment")),
+        <%#= link_to t('.view', :default => t("View Attachment")),
                 p.direct_deposit_url, :class => 'btn btn-default', :target => '_blank' %>
-            <%= link_to t('.edit', :default => t("Edit Attachment")),
+        <%= link_to '<i class="fa fa-eye"></i>'.html_safe,
+                   p.direct_deposit_url, :class => 'btn btn-default', 
+                   :title => 'View Attachment', :target => '_blank'  %>
+            <%#= link_to t('.edit', :default => t("Edit Attachment")),
                   edit_associate_direct_deposit_path(p), :class => 'btn btn-default' %>
-            <%= link_to t('.destroy', :default => t("Destroy Attachment")),
+            <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+                   edit_associate_direct_deposit_path(p), :class => 'btn btn-primary', 
+                   :title => 'Edit Attachment' %>
+            <%#= link_to t('.destroy', :default => t("Destroy Attachment")),
                   associate_direct_deposit_path(p),
                   :method => 'delete',
                   :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                   :class => 'btn btn-danger' %>
+            <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+                associate_direct_deposit_path(p),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger', :title => 'Destroy Attachment' %>
       <% end %>
     <% else %>
   <br><br>
-     <%= link_to t('.edit', :default => t("Edit Associate to add Direct Deposit Form")),
+     <%#= link_to t('.edit', :default => t("Edit Associate to add Direct Deposit Form")),
                   edit_associate_path(@associate), :class => 'btn btn-default' %>
+    <%= link_to '<i class="fa fa-upload"></i>'.html_safe,
+                   edit_associate_path(@associate), :class => 'btn btn-primary', 
+                   :title => 'Upload' %>
   <% end %>
   </div>
   
@@ -233,20 +303,34 @@
       <% @associate_drivers_licenses.each do |p| %>
         <%#= link_to p.drivers_license_url, p.drivers_license_url, :target => '_blank' %>
         <br><br>
-        <%= link_to t('.view', :default => t("View Attachment")),
+        <%#= link_to t('.view', :default => t("View Attachment")),
                 p.drivers_license_url, :class => 'btn btn-default', :target => '_blank' %>
-            <%= link_to t('.edit', :default => t("Edit Attachment")),
+        <%= link_to '<i class="fa fa-eye"></i>'.html_safe,
+                   p.drivers_license_url, :class => 'btn btn-default', 
+                   :title => 'View Attachment', :target => '_blank'  %>
+            <%#= link_to t('.edit', :default => t("Edit Attachment")),
                   edit_associate_drivers_license_path(p), :class => 'btn btn-default' %>
-            <%= link_to t('.destroy', :default => t("Destroy Attachment")),
+            <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+                   edit_associate_drivers_license_path(p), :class => 'btn btn-primary', 
+                   :title => 'Edit Attachment' %>
+            <%#= link_to t('.destroy', :default => t("Destroy Attachment")),
                   associate_drivers_license_path(p),
                   :method => 'delete',
                   :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                   :class => 'btn btn-danger' %>
+            <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+                associate_drivers_license_path(p),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger', :title => 'Destroy Attachment' %>
       <% end %>
   <% else %>
     <br><br>
-     <%= link_to t('.edit', :default => t("Edit Associate to add Driver's License")),
+     <%#= link_to t('.edit', :default => t("Edit Associate to add Driver's License")),
                   edit_associate_path(@associate), :class => 'btn btn-default' %>
+    <%= link_to '<i class="fa fa-upload"></i>'.html_safe,
+                   edit_associate_path(@associate), :class => 'btn btn-primary', 
+                   :title => 'Upload' %>
   <% end %>
   </div>
   
@@ -256,21 +340,35 @@
       <% @associate_drivers_insurances.each do |p| %>
         <%#= link_to p.drivers_insurance_url, p.drivers_insurance_url, :target => '_blank' %>
         <br><br>
-        <%= link_to t('.view', :default => t("View Attachment")),
+        <%#= link_to t('.view', :default => t("View Attachment")),
                 p.drivers_insurance_url, :class => 'btn btn-default', :target => '_blank' %>
-            <%= link_to t('.edit', :default => t("Edit Attachment")),
+        <%= link_to '<i class="fa fa-eye"></i>'.html_safe,
+                   p.drivers_insurance_url, :class => 'btn btn-default', 
+                   :title => 'View Attachment', :target => '_blank'  %>
+            <%#= link_to t('.edit', :default => t("Edit Attachment")),
                   edit_associate_drivers_insurance_path(p), :class => 'btn btn-default' %>
-            <%= link_to t('.destroy', :default => t("Destroy Attachment")),
+            <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+                   edit_associate_drivers_insurance_path(p), :class => 'btn btn-primary', 
+                   :title => 'Edit Attachment' %>
+            <%#= link_to t('.destroy', :default => t("Destroy Attachment")),
                   associate_drivers_insurance_path(p),
                   :method => 'delete',
                   :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                   :class => 'btn btn-danger' %>
+            <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+                associate_drivers_insurance_path(p),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger', :title => 'Destroy Attachment' %>
             
       <% end %>
     <% else %>
         <br><br>
-         <%= link_to t('.edit', :default => t("Edit Associate to add Proof of Insurance")),
+         <%#= link_to t('.edit', :default => t("Edit Associate to add Proof of Insurance")),
                       edit_associate_path(@associate), :class => 'btn btn-default' %>
+        <%= link_to '<i class="fa fa-upload"></i>'.html_safe,
+                   edit_associate_path(@associate), :class => 'btn btn-primary', 
+                   :title => 'Upload' %>
     <% end %>
   </div>
 </div>
