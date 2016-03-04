@@ -2,5 +2,7 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @associate_w9 %> |
-<%= link_to 'Back', associate_w9s_path %>
+<%#= link_to 'Show', @associate_contract %>
+<%#= link_to 'Back', associate_contracts_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              associate_path(@associate_w9.associate_id), :class => 'btn btn-primary'  %>

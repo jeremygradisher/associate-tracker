@@ -2,7 +2,7 @@
 
 <%= render 'form' %>
 
-<%#= link_to 'Show', @associate_drivers_license %>
-<%#= link_to 'Back', associate_drivers_license_path %>
+<%#= link_to 'Show', @associate_direct_deposit %>
+<%#= link_to 'Back', associate_direct_deposits_path %>
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              associates_path, :class => 'btn btn-default'  %>
+              associate_path(@associate_direct_deposit.associate_id), :class => 'btn btn-primary'  %>

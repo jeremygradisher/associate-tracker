@@ -2,5 +2,7 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @associate_drivers_insurance %> |
-<%= link_to 'Back', associate_drivers_insurances_path %>
+<%#= link_to 'Show', @associate_drivers_insurance %>
+<%#= link_to 'Back', associate_drivers_insurances_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              associate_path(@associate_drivers_insurance.associate_id), :class => 'btn btn-primary'  %>

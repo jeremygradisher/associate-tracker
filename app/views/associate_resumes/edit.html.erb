@@ -5,4 +5,4 @@
 <%#= link_to 'Show', @associate_resume %>
 <%#= link_to 'Back', associate_resumes_path %>
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              associates_path, :class => 'btn btn-default'  %>
+              associate_path(@associate_resume.associate_id), :class => 'btn btn-primary'  %>

@@ -5,4 +5,4 @@
 <%#= link_to 'Show', @associate_drivers_license %>
 <%#= link_to 'Back', associate_drivers_licenses_path %>
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              associates_path, :class => 'btn btn-default'  %>
+              associate_path(@associate_drivers_license.associate_id), :class => 'btn btn-primary'  %>

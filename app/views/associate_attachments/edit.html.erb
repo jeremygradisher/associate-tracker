@@ -5,5 +5,4 @@
 <%#= link_to 'Show', @associate_attachment %>
 <%#= link_to 'Back', associate_attachments_path %>
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              associates_path, :class => 'btn btn-default'  %>
-
+              associate_path(@associate_attachment.associate_id), :class => 'btn btn-primary'  %>
