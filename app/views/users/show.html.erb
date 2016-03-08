@@ -1,0 +1,29 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Users:</th>
+      <th>Last Signed in at:</th>
+      
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        
+        <td><%= @user.email %></td>
+        
+        <td><%= @user.last_sign_in_at %></td>
+        
+        <td>
+          <%#= link_to t('.view', :default => t("helpers.links.view")),
+                      associate_path(associate), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      user_path(@user),
+                      :method => 'delete',
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-danger btn-xs' %> 
+        <%#= button_to 'Delete', users_path, :method => 'delete',  :confirm => 'Are you sure?' %>
+        </td>
+      </tr>
+  </tbody>
+</table>
