@@ -42,7 +42,7 @@ class ResumeUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-   %w(pdf doc jpg jpeg gif png)
+   %w(pdf doc docx jpg jpeg gif png tif)
   end
 
   # Override the filename of the uploaded files:
