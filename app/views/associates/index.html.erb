@@ -94,7 +94,7 @@
         
         <td><%= link_to associate.name, associate_path(associate), style: "color:#428bca;"  %></td>
         
-        <td><%= number_to_phone(associate.phone_primary, area_code: true) %></td>
+        <td><%= associate.phone_primary %></td>
         <!--<td><%#= number_to_phone(associate.phone_cell, area_code: true) %></td>-->
         
         <td><%= associate.email %></td>

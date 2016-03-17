@@ -18,10 +18,27 @@
 
   <div class="form-group">
     <%= f.label :name, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <div class="col-lg-4">
       <%= f.text_field :name, :class => 'form-control' %>
       <%=f.error_span(:name) %>
     </div>
+    <%= f.label :active, :class => 'control-label col-lg-1' %>
+    <div class="col-lg-1 collection-check-box-alt">
+      <%= f.check_box :active, :class => 'check-align-left', :style => 'margin:6px 0 0 0;' %>
+      <%=f.error_span(:active) %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label "Positions", :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.collection_check_boxes :position_ids, Position.all, :id, :pos_name do |b| %>
+          <div class="collection-check-box-alt">
+            <%= b.check_box %>
+            <%= b.label %>
+          </div>
+        <% end %>
+      </div>
   </div>
   
   <div class="form-group">
@@ -35,7 +52,8 @@
   <div class="form-group">
     <%= f.label :phone_primary, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :phone_primary, :class => 'form-control' %>
+      <%= f.text_field :phone_primary, :class => 'form-control',
+      :onkeydown => 'javascript:backspacerDOWN(this,event);', :onkeyup => 'javascript:backspacerUP(this,event);' %>
       <%=f.error_span(:phone_primary) %>
     </div>
   </div>
@@ -43,7 +61,8 @@
   <div class="form-group">
     <%= f.label :phone_cell, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :phone_cell, :class => 'form-control' %>
+      <%= f.text_field :phone_cell, :class => 'form-control',
+      :onkeydown => 'javascript:backspacerDOWN(this,event);', :onkeyup => 'javascript:backspacerUP(this,event);' %>
       <%=f.error_span(:phone_cell) %>
     </div>
   </div>
@@ -66,70 +85,44 @@
   
   <div class="form-group">
     <%= f.label :primary_address, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <div class="col-lg-2">
       <%= f.text_field :primary_street, :class => 'form-control' %>
     </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :city, :class => 'control-label col-lg-2' %>
+    <%= f.label :city, :class => 'control-label col-lg-1' %>
     <div class="col-lg-2">
       <%= f.text_field :primary_city, :class => 'form-control' %>
     </div>
     <%= f.label :state, :class => 'control-label col-lg-1' %>
-    <div class="col-lg-2">
+    <div class="col-lg-1">
       <%#= f.text_field :primary_state, :class => 'form-control' %>
       <%= f.select :primary_state, ['AL', 'AK', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'], {include_blank: true}, :class => 'form-control' %>
     </div>
     <%= f.label :zip, :class => 'control-label col-lg-1' %>
-    <div class="col-lg-2">
+    <div class="col-lg-1">
       <%= f.text_field :primary_zip, :class => 'form-control' %>
     </div>
   </div>
+
   
   <div class="form-group">
     <%= f.label :business_address, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <div class="col-lg-2">
       <%= f.text_field :business_street, :class => 'form-control' %>
     </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :city, :class => 'control-label col-lg-2' %>
+    <%= f.label :city, :class => 'control-label col-lg-1' %>
     <div class="col-lg-2">
       <%= f.text_field :business_city, :class => 'form-control' %>
     </div>
     <%= f.label :state, :class => 'control-label col-lg-1' %>
-    <div class="col-lg-2">
+    <div class="col-lg-1">
       <%#= f.text_field :business_state, :class => 'form-control' %>
       <%= f.select :business_state, ['AL', 'AK', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'], {include_blank: true}, :class => 'form-control' %>
     </div>
     <%= f.label :zip, :class => 'control-label col-lg-1' %>
-    <div class="col-lg-2">
+    <div class="col-lg-1">
       <%= f.text_field :business_zip, :class => 'form-control' %>
     </div>
   </div>
-  
-  <div class="form-group">
-    <%= f.label :project_history, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :project_history, :class => 'form-control' %>
-      <%=f.error_span(:project_history) %>
-    </div>
-  </div>
-  
-      <div class="form-group">
-        <%= f.label "Positions", :class => 'control-label col-lg-2' %>
-          <div class="col-lg-10">
-            <%= f.collection_check_boxes :position_ids, Position.all, :id, :pos_name do |b| %>
-              <div class="collection-check-box-altered">
-                <%= b.check_box %>
-                <%= b.label %>
-              </div>
-            <% end %>
-          </div>
-      </div>
-  
-
-
   
   <div class="form-group">
     <%= f.label "Working Locations", :class => 'control-label col-lg-2' %>
@@ -144,18 +137,10 @@
   </div>
   
   <div class="form-group">
-    <%= f.label :notes, :class => 'control-label col-lg-2' %>
+    <%= f.label :project_history, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_area :notes, :rows => 4, :class => 'form-control' %>
-      <%=f.error_span(:notes) %>
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :active, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-1">
-      <%= f.check_box :active, :class => 'form-control check-align-left' %>
-      <%=f.error_span(:active) %>
+      <%= f.text_field :project_history, :class => 'form-control' %>
+      <%=f.error_span(:project_history) %>
     </div>
   </div>
   
@@ -183,6 +168,13 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <%= f.label :notes, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :notes, :rows => 4, :class => 'form-control' %>
+      <%=f.error_span(:notes) %>
+    </div>
+  </div>
     
      <%= f.fields_for :associate_attachments do |p| %>
        <div class="form-group">
@@ -255,7 +247,7 @@
          </div>
        </div>
      <% end %>
-  
+           
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">

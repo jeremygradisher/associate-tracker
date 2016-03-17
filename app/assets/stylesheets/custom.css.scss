@@ -81,6 +81,11 @@ min-height: 664px;
 .btn {margin-bottom: 10px;}
 .collection-check-box-altered {float: left;margin-right: 20px;}
 .collection-check-box-altered label {width: 40px;}
+
+.collection-check-box-alt {float: left;margin-right: 20px;}
+.collection-check-box-alt label {width: 40px; height: 100%; margin: 10px 0 10px 0;}
+.collection-check-box-alt input[type="checkbox"] { margin: 0; height: 20px; width: 20px; }
+
 .show1 {font-size:20pt;font-weight: bold;margin-bottom:10px;}
 .show2 {font-size:16pt;margin-bottom:10px}
 .show3 {font-size:12pt;margin-bottom:10px}

@@ -19,8 +19,10 @@ class Associate < ActiveRecord::Base
     accepts_nested_attributes_for :associate_drivers_insurances
     
     validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 25 }
-    validates :phone_primary, presence: true, length: { minimum: 9, maximum: 10 }
-    validates :phone_cell, length: { minimum: 9, maximum: 10 }
+    #validates :phone_primary, presence: true, length: { minimum: 9, maximum: 10 }
+    #validates :phone_cell, length: { minimum: 9, maximum: 10 }
+    validates :phone_primary, presence: true
+    
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     validates :email, presence: true, length: { maximum: 105 }, format: { with: VALID_EMAIL_REGEX }
     validates :email_personal, :presence => {:message => "Your email is used to save your greeting."}, :allow_blank => true, length: { maximum: 105 }, format: { with: VALID_EMAIL_REGEX }
