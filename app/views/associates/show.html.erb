@@ -57,13 +57,11 @@
             <% end %>
           </span>
   </div>
-  
   <div class="show2">
           <span>
             Certification: <%= @associate.certifications %>
           </span>
   </div>
-  
   <div class="show2">
     Home State: <strong><%= @associate.primary_state %></strong>&nbsp;&nbsp;&nbsp;&nbsp;
     Working Locations: 
@@ -115,7 +113,8 @@
         <td style="width:50%">
           <u><%= model_class.human_attribute_name(:address_home) %>:</u><br>
           <%= @associate.primary_street %><br>
-          <%= @associate.primary_city %> <%= @associate.primary_state %> <%= @associate.primary_zip %>
+          <%= @associate.primary_city %> <%= @associate.primary_state %> <%= @associate.primary_zip %><br>
+
         </td>
       
         <td>        
@@ -125,6 +124,12 @@
         </td>
       </tr>
     </table>
+  </div>
+
+  <hr>
+  <div class="show3">
+          <p><strong>Latitude:</strong><%= @associate.latitude %></p>
+          <p><strong>Longitude:</strong><%= @associate.longitude %></p>
   </div>
 
   <hr>

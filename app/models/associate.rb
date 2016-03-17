@@ -24,4 +24,12 @@ class Associate < ActiveRecord::Base
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     validates :email, presence: true, length: { maximum: 105 }, format: { with: VALID_EMAIL_REGEX }
     validates :email_personal, :presence => {:message => "Your email is used to save your greeting."}, :allow_blank => true, length: { maximum: 105 }, format: { with: VALID_EMAIL_REGEX }
+
+    # adding for the geocode stuff, creating a method
+    geocoded_by :compiledaddress
+    after_validation :geocode, :if => :primary_street_changed?
+    
+    def compiledaddress
+      [primary_street, primary_city, primary_state, primary_zip].compact.join(', ')
+    end
 end

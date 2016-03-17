@@ -38,11 +38,23 @@
       </div>
     <% end %>
   </fieldset>
-
-
-
   </div>
 </div>
+
+
+<div style='width: 1137px; height: 400px; margin-top:40px;margin-bottom:40px;'>
+  <div id="map" style='width: 1137px; height: 400px;'></div>
+</div>
+
+<script>
+  var handler = Gmaps.build('Google');
+  handler.buildMap({ internal: {id: 'map'}}, function(){
+  var markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
+</script>
 
 <!--
 <div class="page-header">
@@ -59,12 +71,12 @@
       <th><%= model_class.human_attribute_name(:phone_primary) %></th>
       <!--<th><%#= model_class.human_attribute_name(:phone_cell) %></th>-->
       <th><%= model_class.human_attribute_name(:email) %></th>
-      <!--<th><%#= model_class.human_attribute_name(:postition) %></th>-->
-      <th><%= sort_link @search, :postition, "Position" %></th>
+      <th><%= model_class.human_attribute_name(:postition) %></th>
+      <!--<th><%#= sort_link @searchpos, :pos_name, "Position" %></th>-->
       <!--<th><%#= model_class.human_attribute_name(:home_state) %></th>-->
-      <th><%= sort_link @search, :home_state, "Home State" %></th>
-      <!--<th><%#= model_class.human_attribute_name(:working_locations) %></th>-->
-      <th><%= sort_link @search, :working_locations, "Working Locations" %></th>
+      <th><%= sort_link @search, :primary_state, "Home State" %></th>
+      <th><%= model_class.human_attribute_name(:working_locations) %></th>
+      <!--<%#= sort_link @searchlocs, :wrkstate, "Working Locations" %></th>-->
       
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>

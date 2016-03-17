@@ -5,7 +5,19 @@ class AssociatesController < ApplicationController
   # GET /associates.json
   def index
     @search = Associate.search(params[:q])
+    @searchlocs = Wrkloc.search(params[:q])
+    @searchpos = Position.search(params[:q])
     @associates = @search.result(distinct: true).order(:name, :id).paginate(:page => params[:page], :per_page => 25)
+
+    @hash = Gmaps4rails.build_markers(@associates) do |associate, marker|
+      marker.lat associate.latitude
+      marker.lng associate.longitude
+      #marker.title associate.name
+      #marker.json({ :id => associate.id, :foo => "bar" })
+      #marker.infowindow render_to_string(:partial => "/associates/pop_template", :locals => { :object => associate}).gsub(/\n/, '').gsub(/"/, '\"')
+      marker.infowindow "<b><a href='#{associate_path(associate)}'>#{associate.name}</a></b>"
+    end
+
   end
 
   # GET /associates/1
@@ -143,7 +155,7 @@ class AssociatesController < ApplicationController
            end
         end
         if params.has_key?(:associate_drivers_insurances)
-          params[:associate_drivers_insurances]['drivers_insurance'].each do |a|
+           params[:associate_drivers_insurances]['drivers_insurance'].each do |a|
               @associate_drivers_insurance = @associate.associate_drivers_insurances.create!(:drivers_insurance => a)
            end
         end
@@ -166,6 +178,7 @@ class AssociatesController < ApplicationController
     end
   end
   
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_associate
