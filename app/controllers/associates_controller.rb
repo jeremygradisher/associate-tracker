@@ -14,8 +14,9 @@ class AssociatesController < ApplicationController
       marker.lng associate.longitude
       #marker.title associate.name
       #marker.json({ :id => associate.id, :foo => "bar" })
-      #marker.infowindow render_to_string(:partial => "/associates/pop_template", :locals => { :object => associate}).gsub(/\n/, '').gsub(/"/, '\"')
-      marker.infowindow "<b><a href='#{associate_path(associate)}'>#{associate.name}</a></b>"
+      marker.infowindow render_to_string(:partial => "/associates/pop_template", :locals => { :associate => associate})
+
+      #marker.infowindow "<b><a href='#{associate_path(associate)}'>#{associate.name}</a></b>"
     end
 
   end

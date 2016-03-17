@@ -1,0 +1,12 @@
+<p><%= link_to associate.name, associate_path(associate) %>
+
+    <% if associate.active == true %>
+      <i class="fa fa-check" style="color:#00aa00" title="Associate is Active"></i>
+      <% else %>
+      <i class="fa fa-close" style="color:#aa0000" title="Associate is not currently Active"></i>
+    <% end %>
+
+    <% associate.positions.each do |p| %>
+        <%= p.pos_name %>
+    <% end %>
+</p>

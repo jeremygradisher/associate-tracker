@@ -34,4 +34,5 @@ class Associate < ActiveRecord::Base
     def compiledaddress
       [primary_street, primary_city, primary_state, primary_zip].compact.join(', ')
     end
+    
 end
