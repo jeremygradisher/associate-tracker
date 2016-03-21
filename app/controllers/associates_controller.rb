@@ -4,10 +4,23 @@ class AssociatesController < ApplicationController
   # GET /associates
   # GET /associates.json
   def index
+    
+
+    
     @search = Associate.search(params[:q])
     @searchlocs = Wrkloc.search(params[:q])
     @searchpos = Position.search(params[:q])
-    @associates = @search.result(distinct: true).order(:name, :id).paginate(:page => params[:page], :per_page => 25)
+    #@associates = @search.result(distinct: true).order(:name, :id).paginate(:page => params[:page], :per_page => 25)
+
+    if params[:searchnear].present?
+      #@associates = Associate.near(params[:searchnear], 50).paginate(:page => params[:page], :per_page => 25)
+      @associates = @search.result(distinct: true).near(params[:searchnear], 150).paginate(:page => params[:page], :per_page => 25)
+    
+    else
+      #@locations = Location.all
+      @associates = @search.result(distinct: true).order(:name, :id).paginate(:page => params[:page], :per_page => 25)
+    end
+
 
     @hash = Gmaps4rails.build_markers(@associates) do |associate, marker|
       marker.lat associate.latitude

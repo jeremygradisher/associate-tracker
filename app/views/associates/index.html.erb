@@ -9,9 +9,17 @@
   <fieldset class="search-field">
     <!--<legend>Search Our Database</legend>-->
     <%= search_form_for @search do |f| %>
+    <!--
       <div class="col-lg-3">
-        <%= f.label :name_cont, "Name contains:" %>
-        <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Search for..." %>
+        <%#= f.label :name_cont, "Name contains:" %>
+        <%#= f.text_field :name_cont, :class => "form-control", :placeholder => "Search for..." %>
+      </div>
+    -->
+      
+      <div class="col-lg-3">
+        <%= f.label :name_cont, "Search Near:" %>
+        <%= f.text_field_tag :searchnear, params[:searchnear], :class => "form-control", :placeholder => "Search Near..."  %>
+        
       </div>
   
       <div class="col-lg-4">
@@ -40,6 +48,15 @@
   </fieldset>
   </div>
 </div>
+
+<!--
+<%#= form_tag associates_path, :method => :get do %>
+  <p>
+    <%#= text_field_tag :searchnear, params[:searchnear] %>
+    <%#= submit_tag "Search Near", :name => nil %>
+  </p>
+<%# end %>
+-->
 
 
 <div style='width: 1137px; height: 400px; margin-top:40px;margin-bottom:40px;'>
@@ -72,6 +89,7 @@
       <!--<th><%#= model_class.human_attribute_name(:phone_cell) %></th>-->
       <th><%= model_class.human_attribute_name(:email) %></th>
       <th><%= model_class.human_attribute_name(:postition) %></th>
+      <th><%= model_class.human_attribute_name(:distance) %></th>
       <!--<th><%#= sort_link @searchpos, :pos_name, "Position" %></th>-->
       <!--<th><%#= model_class.human_attribute_name(:home_state) %></th>-->
       <th><%= sort_link @search, :primary_state, "Home State" %></th>
@@ -102,6 +120,13 @@
         <td><% associate.positions.each do |p| %>
           <%= p.pos_name %> 
           <% end %>
+        </td> 
+        
+        <td>
+            <% if params[:searchnear].present? %>
+              (<%=  associate.distance.round(2) %> miles) 
+            <% end %>
+          
         </td> 
         
         <td><%= associate.primary_state %></td>
