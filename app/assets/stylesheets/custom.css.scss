@@ -64,7 +64,8 @@ color: #fff;
 
 .jumbotron {
 background-image: asset-url('associatesmain.png');
-background-size: cover;
+background-size: 100% auto;
+background-repeat: no-repeat;
 background-color: #fff !important;
 color: #fff;
 font-family: 'Helvetica Neue' !important;
