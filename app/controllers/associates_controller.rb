@@ -4,9 +4,7 @@ class AssociatesController < ApplicationController
   # GET /associates
   # GET /associates.json
   def index
-    
 
-    
     @search = Associate.search(params[:q])
     @searchlocs = Wrkloc.search(params[:q])
     @searchpos = Position.search(params[:q])
@@ -15,21 +13,26 @@ class AssociatesController < ApplicationController
     if params[:searchnear].present?
       #@associates = Associate.near(params[:searchnear], 50).paginate(:page => params[:page], :per_page => 25)
       @associates = @search.result(distinct: true).near(params[:searchnear], 150).paginate(:page => params[:page], :per_page => 25)
-    
     else
       #@locations = Location.all
       @associates = @search.result(distinct: true).order(:name, :id).paginate(:page => params[:page], :per_page => 25)
     end
 
-
+    @associatescount = @associates.count
+    @associatescount2 = @associates.joins(:positions).group(Position.arel_table[:pos_name]).count
+    
+    
+    
+    @pm_count = @associates.joins(:positions).where(:positions => { pos_name: 'PM'}).count
+    @tc_count = @associates.joins(:positions).where(:positions => { pos_name: 'TC'}).count
+    @dm_count = @associates.joins(:positions).where(:positions => { pos_name: 'DM'}).count
+    #Post.where(:article_id => self.id).count
+    #Trader.includes(:locations, :services).where(:locations => { name: 'Location name'}).order('COUNT(services.id) DESC')
+    
     @hash = Gmaps4rails.build_markers(@associates) do |associate, marker|
       marker.lat associate.latitude
       marker.lng associate.longitude
-      #marker.title associate.name
-      #marker.json({ :id => associate.id, :foo => "bar" })
       marker.infowindow render_to_string(:partial => "/associates/pop_template", :locals => { :associate => associate})
-
-      #marker.infowindow "<b><a href='#{associate_path(associate)}'>#{associate.name}</a></b>"
     end
 
   end

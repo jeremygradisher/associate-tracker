@@ -1,5 +1,5 @@
 <%- model_class = Associate -%>
-
+    <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
 
 <div class="panel panel-default">
   <!-- Default panel contents -->
@@ -49,20 +49,32 @@
   </div>
 </div>
 
-<!--
-<%#= form_tag associates_path, :method => :get do %>
-  <p>
-    <%#= text_field_tag :searchnear, params[:searchnear] %>
-    <%#= submit_tag "Search Near", :name => nil %>
-  </p>
-<%# end %>
--->
 
-
-<div style='width: 1137px; height: 400px; margin-top:40px;margin-bottom:40px;'>
-  <div id="map" style='width: 1137px; height: 400px;'></div>
+<div class="col-lg-9">
+  <div id="map" style='width: 800px; height: 400px;'></div>
 </div>
 
+<div class="col-lg-3 counts">
+
+  <h1>Associates: <%= @associatescount %></h1>
+  <!--<p>Associates Positions Counted: <%#= @associatescount2 %></p>-->
+  
+  <% if @pm_count != 0 %>
+    <h1>PM Count: <%= @pm_count %></h1>
+  <% end %>
+  
+  <% if @tc_count != 0 %>
+    <h1>TC Count: <%= @tc_count %></h1>
+  <% end %>
+   
+  <% if @dm_count != 0 %>
+    <h1>DM Count: <%= @dm_count %></h1>
+  <% end %>
+  <hr>
+  <div>
+    <%= pie_chart @associates.joins(:positions).group(Position.arel_table[:pos_name]).count, library: {backgroundColor: "#FFF", height: 200}  %>
+  </div>
+</div>
 <script>
   var handler = Gmaps.build('Google');
   handler.buildMap({ internal: {id: 'map'}}, function(){
