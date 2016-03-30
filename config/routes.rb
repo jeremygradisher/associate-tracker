@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :projects
   resources :associate_drivers_insurances
   resources :associate_drivers_licenses
   resources :associate_direct_deposits

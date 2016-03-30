@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317003257) do
+ActiveRecord::Schema.define(version: 20160330233812) do
 
   create_table "associate_attachments", force: :cascade do |t|
     t.integer  "associate_id"
@@ -112,6 +112,25 @@ ActiveRecord::Schema.define(version: 20160317003257) do
     t.string   "pos_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "name"
+    t.string   "project_street"
+    t.string   "project_city"
+    t.string   "project_state"
+    t.string   "project_zip"
+    t.string   "project_duration"
+    t.text     "brief_description"
+    t.string   "services"
+    t.text     "staffing_notes"
+    t.string   "deal_terms"
+    t.string   "rate"
+    t.string   "additional_terms"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "users", force: :cascade do |t|
