@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331144003) do
+ActiveRecord::Schema.define(version: 20160331201132) do
 
   create_table "associate_attachments", force: :cascade do |t|
     t.integer  "associate_id"
@@ -102,6 +102,13 @@ ActiveRecord::Schema.define(version: 20160331144003) do
   end
 
   add_index "associates_positions", ["associate_id", "position_id"], name: "index_associates_positions_on_associate_id_and_position_id"
+
+  create_table "associates_projects", id: false, force: :cascade do |t|
+    t.integer "associate_id", null: false
+    t.integer "project_id",   null: false
+  end
+
+  add_index "associates_projects", ["associate_id", "project_id"], name: "index_associates_projects_on_associate_id_and_project_id"
 
   create_table "associates_wrklocs", id: false, force: :cascade do |t|
     t.integer "associate_id", null: false

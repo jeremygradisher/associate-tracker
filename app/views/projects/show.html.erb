@@ -38,7 +38,16 @@
   <dd><%= @project.latitude %></dd>
   <dt><strong><%= model_class.human_attribute_name(:longitude) %>:</strong></dt>
   <dd><%= @project.longitude %></dd>
+  
+  <dt><strong><%= model_class.human_attribute_name(:associates) %>:</strong></dt>  
+    <% @associates.each do |p| %>
+      <dd><%= p.name %></dd>
+    <% end %> 
+  
+  
 </dl>
+
+
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               projects_path, :class => 'btn btn-default'  %>

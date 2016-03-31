@@ -18,6 +18,8 @@ class Associate < ActiveRecord::Base
     has_many :associate_drivers_insurances, dependent: :destroy
     accepts_nested_attributes_for :associate_drivers_insurances
     
+    has_and_belongs_to_many :projects
+    
     validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 25 }
     #validates :phone_primary, presence: true, length: { minimum: 9, maximum: 10 }
     #validates :phone_cell, length: { minimum: 9, maximum: 10 }

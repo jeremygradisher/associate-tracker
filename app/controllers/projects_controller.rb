@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @associates = @project.associates.all
   end
 
   # GET /projects/new
@@ -75,6 +76,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :project_street, :project_city, :project_state, :project_zip, :project_start, :project_finish, :brief_description, :services, :staffing_notes, :deal_terms, :rate, :additional_terms, :latitude, :longitude)
+      params.require(:project).permit(:name, :project_street, :project_city, :project_state, :project_zip, :project_start, :project_finish, :brief_description, :services, :staffing_notes, :deal_terms, :rate, :additional_terms, :latitude, :longitude, { associate_ids:[] })
     end
 end

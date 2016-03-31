@@ -1,6 +1,8 @@
 class Project < ActiveRecord::Base
   
-  validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 50 }
+    has_and_belongs_to_many :associates
+  
+    validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 50 }
   
     # adding for the geocode stuff, creating a method
     geocoded_by :pcompiledaddress
