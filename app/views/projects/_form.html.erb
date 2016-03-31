@@ -52,12 +52,21 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :project_duration, :class => 'control-label col-lg-2' %>
+    <%= f.label :project_start, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :project_duration, :class => 'form-control' %>
+      <%= f.text_field :project_start, 'data-provide' => 'datepicker', :class => 'form-control' %>
     </div>
-    <%=f.error_span(:project_duration) %>
+    <%=f.error_span(:project_start) %>
   </div>
+  
+  <div class="form-group">
+    <%= f.label :project_finish, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :project_finish, 'data-provide' => 'datepicker', :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:project_finish) %>
+  </div>
+  
   <div class="form-group">
     <%= f.label :brief_description, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">

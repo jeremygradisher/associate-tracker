@@ -29,7 +29,8 @@
       <th><%= model_class.human_attribute_name(:project_city) %></th>
       <th><%= model_class.human_attribute_name(:project_state) %></th>
       <th><%= model_class.human_attribute_name(:project_zip) %></th>
-      <th><%= model_class.human_attribute_name(:project_duration) %></th>
+      <th><%= model_class.human_attribute_name(:project_start) %></th>
+      <th><%= model_class.human_attribute_name(:project_finish) %></th>
       <!--<th><%#= model_class.human_attribute_name(:brief_description) %></th>-->
       <th><%= model_class.human_attribute_name(:services) %></th>
       <!--<th><%#= model_class.human_attribute_name(:staffing_notes) %></th>-->
@@ -51,7 +52,8 @@
         <td><%= project.project_city %></td>
         <td><%= project.project_state %></td>
         <td><%= project.project_zip %></td>
-        <td><%= project.project_duration %></td>
+        <td><%= project.project_start %></td>
+        <td><%= project.project_finish %></td>
         <!--<td><%#= project.brief_description %></td>-->
         <td><%= project.services %></td>
         <!--<td><%#= project.staffing_notes %></td>-->

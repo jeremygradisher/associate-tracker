@@ -14,8 +14,14 @@
   <dd><%= @project.project_state %></dd>
   <dt><strong><%= model_class.human_attribute_name(:project_zip) %>:</strong></dt>
   <dd><%= @project.project_zip %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:project_duration) %>:</strong></dt>
-  <dd><%= @project.project_duration %></dd>
+  
+  <dt><strong><%= model_class.human_attribute_name(:project_start) %>:</strong></dt>
+  <dd><%= @project.project_start %></dd>
+  
+  <dt><strong><%= model_class.human_attribute_name(:project_finish) %>:</strong></dt>
+  <dd><%= @project.project_finish %></dd>
+  
+  
   <dt><strong><%= model_class.human_attribute_name(:brief_description) %>:</strong></dt>
   <dd><%= @project.brief_description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:services) %>:</strong></dt>
