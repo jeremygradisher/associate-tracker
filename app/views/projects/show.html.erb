@@ -40,9 +40,13 @@
   <dd><%= @project.longitude %></dd>
   
   <dt><strong><%= model_class.human_attribute_name(:associates) %>:</strong></dt>  
-    <% @associates.each do |p| %>
-      <dd><%= p.name %></dd>
-    <% end %> 
+    <%# @associates.each do |p| %>
+      <!--<dd><%#= p.name %></dd>-->
+    <%# end %> 
+    
+    <% @associates.each do |associate| %>
+      <dd><%= link_to associate.name, associate_path(associate) %></dd>
+    <% end %>
   
   
 </dl>

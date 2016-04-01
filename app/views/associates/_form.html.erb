@@ -148,7 +148,7 @@
     <%= f.label "Projects", :class => 'control-label col-lg-2' %>
       <div class="col-lg-10">
         <%= f.collection_check_boxes :project_ids, Project.all, :id, :name do |b| %>
-          <div class="collection-check-box-alt">
+          <div class="collection-check-box-projects">
             <%= b.check_box %>
             <%= b.label %>
           </div>

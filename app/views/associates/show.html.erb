@@ -145,10 +145,15 @@
   </div>
   
   <div class="show3">
-    <% @projects.each do |p| %>
-      <%= p.name %><br>
-    <% end %> 
+    <%# @projects.each do |p| %>
+      <%#= p.name %>
+    <%# end %> 
+    <%= model_class.human_attribute_name(:projects) %>:<br>
+    <% @projects.each do |project| %>
+      <%= link_to project.name, project_path(project) %><br>
+    <% end %>
   </div>
+
 
  
    <hr> 
