@@ -12,7 +12,7 @@ class AssociatesController < ApplicationController
 
     if params[:searchnear].present?
       #@associates = Associate.near(params[:searchnear], 50).paginate(:page => params[:page], :per_page => 25)
-      @associates = @search.result(distinct: true).near(params[:searchnear], 150).paginate(:page => params[:page], :per_page => 25)
+      @associates = @search.result(distinct: true).near(params[:searchnear], 500).paginate(:page => params[:page], :per_page => 25)
     else
       #@locations = Location.all
       @associates = @search.result(distinct: true).order(:name, :id).paginate(:page => params[:page], :per_page => 25)

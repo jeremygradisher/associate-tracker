@@ -144,17 +144,19 @@
     </div>
   </div>
   
+  <!--
   <div class="form-group">
-    <%= f.label "Projects", :class => 'control-label col-lg-2' %>
+    <%#= f.label "Projects", :class => 'control-label col-lg-2' %>
       <div class="col-lg-10">
-        <%= f.collection_check_boxes :project_ids, Project.all, :id, :name do |b| %>
+        <%#= f.collection_check_boxes :project_ids, Project.all, :id, :name do |b| %>
           <div class="collection-check-box-projects">
-            <%= b.check_box %>
-            <%= b.label %>
+            <%#= b.check_box %>
+            <%#= b.label %>
           </div>
-        <% end %>
+        <%# end %>
       </div>
   </div>
+  -->
   
   <div class="form-group">
     <%= f.label :ein_ss, :class => 'control-label col-lg-2' %>
