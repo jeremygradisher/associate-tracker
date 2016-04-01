@@ -143,6 +143,12 @@
     <%= model_class.human_attribute_name(:project_history) %>:
     <%= @associate.project_history %>
   </div>
+  
+  <div class="show3">
+    <% @projects.each do |p| %>
+      <%= p.name %><br>
+    <% end %> 
+  </div>
 
  
    <hr> 

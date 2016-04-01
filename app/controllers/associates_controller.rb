@@ -50,6 +50,7 @@ class AssociatesController < ApplicationController
     @associate_drivers_insurances = @associate.associate_drivers_insurances.all
     @wrklocs = @associate.wrklocs.all
     @positions = @associate.positions.all
+    @projects = @associate.projects.all
   end
 
   # GET /associates/new
@@ -204,6 +205,6 @@ class AssociatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def associate_params
-      params.require(:associate).permit(:name, :certifications, :phone_primary, :phone_cell, :email, :email_personal, :primary_street, :primary_state, :primary_city, :primary_zip, :business_street, :business_city, :business_state, :business_zip, :project_history, :notes, :active, :ein_ss, :birthday, :family, :wrkstate, { wrkloc_ids:[] }, :pos_name, { position_ids:[] }, associate_attachments_attributes: [:id, :associate_id, :avatar], associate_resumes_attributes: [:id, :associate_id, :resume], associate_gresumes_attributes: [:id, :associate_id, :gresume], associate_contracts_attributes: [:id, :associate_id, :contract], associate_w9s_attributes: [:id, :associate_id, :w9], associate_direct_deposits_attributes: [:id, :associate_id, :direct_deposit], associate_drivers_licenses_attributes: [:id, :associate_id, :drivers_license], associate_drivers_insurances_attributes: [:id, :associate_id, :drivers_insurance])
+      params.require(:associate).permit(:name, :certifications, :phone_primary, :phone_cell, :email, :email_personal, :primary_street, :primary_state, :primary_city, :primary_zip, :business_street, :business_city, :business_state, :business_zip, :project_history, :notes, :active, :ein_ss, :birthday, :family, :wrkstate, { wrkloc_ids:[] }, { project_ids:[] }, :pos_name, { position_ids:[] }, associate_attachments_attributes: [:id, :associate_id, :avatar], associate_resumes_attributes: [:id, :associate_id, :resume], associate_gresumes_attributes: [:id, :associate_id, :gresume], associate_contracts_attributes: [:id, :associate_id, :contract], associate_w9s_attributes: [:id, :associate_id, :w9], associate_direct_deposits_attributes: [:id, :associate_id, :direct_deposit], associate_drivers_licenses_attributes: [:id, :associate_id, :drivers_license], associate_drivers_insurances_attributes: [:id, :associate_id, :drivers_insurance])
     end
 end
