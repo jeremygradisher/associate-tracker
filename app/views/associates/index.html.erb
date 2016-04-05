@@ -79,9 +79,16 @@
   var handler = Gmaps.build('Google');
   handler.buildMap({ internal: {id: 'map'}}, function(){
   var markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  //var markers2 = handler.addMarkers(<%=raw @phash.to_json %>);
   
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
+  if (_.isEmpty(markers)){
+    handler.getMap().setZoom(4);
+    handler.getMap().setCenter({lat: 39, lng: -100});
+  }
+  else{
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();        
+  }
 });
 </script>
 
