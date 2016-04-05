@@ -70,6 +70,11 @@
   <% if @dm_count != 0 %>
     <h1>DM Count: <%= @dm_count %></h1>
   <% end %>
+  
+  <% if (@pm_count == 0 && @tc_count == 0 && @dm_count == 0) %>
+    <h1>There are no associates available within a 250 mile radius.</h1>
+  <% end %>
+  
   <hr>
   <div>
     <%= pie_chart @associates.joins(:positions).group(Position.arel_table[:pos_name]).count, library: {backgroundColor: "#FFF", height: 200}  %>
