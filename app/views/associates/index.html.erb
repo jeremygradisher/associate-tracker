@@ -81,7 +81,7 @@
   var handler = Gmaps.build('Google');
   handler.buildMap({ internal: {id: 'map'}}, function(){
   var markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  var markers2 = handler.addMarkers(<%=raw @phash.to_json %>);
+  //var markers2 = handler.addMarkers(<%=raw @phash.to_json %>);
   
   var searchmarker = handler.addMarkers(<%=raw @searchhash.to_json %>);
   
