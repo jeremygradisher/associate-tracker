@@ -84,8 +84,23 @@
   var handler = Gmaps.build('Google');
   handler.buildMap({ internal: {id: 'map'}}, function(){
   var markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  //var markers2 = handler.addMarkers(<%=raw @phash.to_json %>);
+  //var markers2 = handler.addMarkers(<%#=raw @phash.to_json %>);
   
+  var searchmarker = handler.addMarkers(<%=raw @searchhash.to_json %>);
+  
+  //handler.getMap().setZoom(6);
+  //handler.map.centerOn(searchmarker[0]);
+  
+  if (_.isEmpty(searchmarker)){
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();   
+  }
+  else{
+    handler.getMap().setZoom(8);
+    handler.map.centerOn(searchmarker[0]);        
+  }
+  
+  /*
   if (_.isEmpty(markers)){
     handler.getMap().setZoom(4);
     handler.getMap().setCenter({lat: 39, lng: -100});
@@ -93,7 +108,8 @@
   else{
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();        
-  }
+  }*/
+  
 });
 </script>
 

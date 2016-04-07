@@ -8,6 +8,7 @@ class AssociatesController < ApplicationController
     @search = Associate.search(params[:q])
     @searchlocs = Wrkloc.search(params[:q])
     @searchpos = Position.search(params[:q])
+    
     #@associates = @search.result(distinct: true).order(:name, :id).paginate(:page => params[:page], :per_page => 25)
 
     if params[:searchnear].present?
@@ -21,8 +22,6 @@ class AssociatesController < ApplicationController
     @associatescount = @associates.count
     @associatescount2 = @associates.joins(:positions).group(Position.arel_table[:pos_name]).count
     
-    
-    
     @pm_count = @associates.joins(:positions).where(:positions => { pos_name: 'PM'}).count
     @tc_count = @associates.joins(:positions).where(:positions => { pos_name: 'TC'}).count
     @dm_count = @associates.joins(:positions).where(:positions => { pos_name: 'DM'}).count
@@ -33,6 +32,39 @@ class AssociatesController < ApplicationController
       marker.lat associate.latitude
       marker.lng associate.longitude
       marker.infowindow render_to_string(:partial => "/associates/pop_template", :locals => { :associate => associate})
+      marker.picture({
+          "url": "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+          "width":  32,
+          "height": 32
+        })
+    end
+  
+    #I only need these (@projects and @phash) if I am displaying the projects on the map as well.
+    @projects = Project.all
+    @phash = Gmaps4rails.build_markers(@projects) do |project, marker|
+      marker.lat project.latitude
+      marker.lng project.longitude
+      marker.infowindow render_to_string(:partial => "/projects/pop_template", :locals => { :project => project})
+      marker.picture({
+          "url": "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+          "width":  32,
+          "height": 32
+        })
+    end
+    
+    @searchbefore = params[:searchnear]
+    @searchbox = Geocoder.search(params[:searchnear])
+    
+    @searchhash = Gmaps4rails.build_markers(@searchbox) do |searchbox, marker|
+      marker.lat searchbox.latitude
+      marker.lng searchbox.longitude
+      marker.picture({
+          "url": "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
+          "width":  32,
+          "height": 32
+      
+        })
+      marker.infowindow @searchbefore
     end
 
   end
