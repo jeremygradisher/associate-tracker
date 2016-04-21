@@ -48,10 +48,6 @@
   </div>
 </div>
 
-<div class="col-lg-9">
-  <div id="map" style='width: 100%; height: 400px;'></div>
-</div>
-
 <div class="col-lg-3 counts">
   <h1>Associates: <%= @associatescount %></h1>
   <!--<p>Associates Positions Counted: <%#= @associatescount2 %></p>-->
@@ -77,6 +73,11 @@
     library: {backgroundColor: "#FFF", height: 200, padding: 0}, padding: ["0"] %>
   </div>
 </div>
+
+<div class="col-lg-9">
+  <div id="map" style='width: 100%; height: 400px;'></div>
+</div>
+
 <script>
   var handler = Gmaps.build('Google');
   handler.buildMap({ internal: {id: 'map'}}, function(){
@@ -98,6 +99,8 @@
   }
 });
 </script>
+
+
 
 <!--
 <div class="page-header">
