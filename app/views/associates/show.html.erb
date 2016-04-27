@@ -143,7 +143,7 @@
   </div>
   <div class="show3">
     <%= model_class.human_attribute_name(:project_history) %>:
-    <%= @associate.project_history %>
+    <%= simple_format(@associate.project_history) %>
   </div>
   
   <!--
