@@ -17,5 +17,4 @@
 //= require underscore
 //= require gmaps/google
 //= require javascript-phone-format
-//= require markerclusterer_compiled
 //= require_tree .
