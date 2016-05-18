@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :services
+  resources :project_picons
+  resources :services
+  resources :project_picons
   resources :projects
   resources :associate_drivers_insurances
   resources :associate_drivers_licenses
@@ -14,7 +18,8 @@ Rails.application.routes.draw do
   resources :associates
   devise_for :users, :controllers => { :registrations => 'devise/registrations' }
   resources :users, :only => [:index, :show, :destroy]
-  root 'associates#index'
+  #root 'associates#index'
+  root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

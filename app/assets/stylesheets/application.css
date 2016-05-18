@@ -12,6 +12,8 @@
  *
  *= require devise_bootstrap_views
  *= require bootstrap-datepicker
+ *= require jquery-ui
+ *= require jquerytagit
  *= require font-awesome
  *= require_tree .
  *= require_self

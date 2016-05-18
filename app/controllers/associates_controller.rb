@@ -32,11 +32,20 @@ class AssociatesController < ApplicationController
       marker.lat associate.latitude
       marker.lng associate.longitude
       marker.infowindow render_to_string(:partial => "/associates/pop_template", :locals => { :associate => associate})
-      marker.picture({
-          "url": "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+      
+      if associate.active == true
+        marker.picture({
+          "url": "https://maps.google.com/mapfiles/ms/icons/green-dot.png",
           "width":  32,
           "height": 32
         })
+      else
+        marker.picture({
+          "url": "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+          "width":  32,
+          "height": 32
+        })
+      end
     end
   
     #I only need these (@projects and @phash) if I am displaying the projects on the map as well.
@@ -45,11 +54,25 @@ class AssociatesController < ApplicationController
       marker.lat project.latitude
       marker.lng project.longitude
       marker.infowindow render_to_string(:partial => "/projects/pop_template", :locals => { :project => project})
-      marker.picture({
-          "url": "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+      if project.status == 'Prospect'
+        marker.picture({
+          "url": "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",
           "width":  32,
           "height": 32
         })
+      elsif project.status == 'In Process'
+        marker.picture({
+          "url": "https://maps.google.com/mapfiles/ms/icons/orange-dot.png",
+          "width":  32,
+          "height": 32
+        })
+      else
+        marker.picture({
+          "url": "https://maps.google.com/mapfiles/ms/icons/pink-dot.png",
+          "width":  32,
+          "height": 32
+        })
+      end
     end
     
     @searchbefore = params[:searchnear]
@@ -59,7 +82,7 @@ class AssociatesController < ApplicationController
       marker.lat searchbox.latitude
       marker.lng searchbox.longitude
       marker.picture({
-          "url": "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
+          "url": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png",
           "width":  32,
           "height": 32
       

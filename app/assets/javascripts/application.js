@@ -12,9 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require twitter/bootstrap
 //= require bootstrap-datepicker
 //= require underscore
 //= require gmaps/google
 //= require javascript-phone-format
+//= require tag-it
 //= require_tree .

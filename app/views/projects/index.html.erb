@@ -1,34 +1,109 @@
 <%- model_class = Project -%>
 
 
-<div class="col-lg-12" style="margin-bottom:40px;">
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><strong>Search Associate Database</strong></div>
+  <div class="panel-body">
+
+  <fieldset class="search-field">
+    <!--<legend>Search Our Database</legend>-->
+    <%= search_form_for @search do |f| %>
+      
+      <div class="col-lg-3">
+        <%= f.label :name_cont, "Search Near:" %>
+        <%= f.text_field_tag :searchnear, params[:searchnear], :class => "form-control", :placeholder => "Search Near..."  %>
+      </div>
+      
+      <div class="col-lg-3">
+          <%= f.label :name_cont, "Project Name Contains:" %><br>
+          <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Search for..." %>
+      </div>
+      
+      <div class="col-lg-3">
+          <%= f.label :status_cont, "Project Status:" %><br>
+          <%= f.select :status_cont, options_for_select([['Prospect'], ['In Process'], ['Complete']], :selected => @search.status_cont), include_blank: true %>
+      </div>
+      
+      <div class="col-lg-2">
+        <div class="actions" style="text-align:right;margin-top:23px;">
+          <%= f.submit "Search", :class => "btn btn-primary jicon" %>
+          <%= link_to "Clear", request.path, :class => "btn btn-default jicon" %>
+        </div>
+      </div>
+    <% end %>
+  </fieldset>
+  </div>
+</div>
+
+<div class="col-lg-3 counts">
+  <h1>Projects: <%= @projectscount %></h1>
+  <!--<p>Associates Positions Counted: <%#= @associatescount2 %></p>-->
+  
+  <% if @prospect_count != 0 %>
+    <h1>Prospects: <%= @prospect_count %></h1>
+  <% end %>
+  
+  <% if @in_process_count != 0 %>
+    <h1>In Process: <%= @in_process_count %></h1>
+  <% end %>
+  
+  <% if @complete_count != 0 %>
+    <h1>Complete: <%= @complete_count %></h1>
+  <% end %>
+  
+  <% if (@prospect_count == 0 && @in_process_count == 0 && @complete_count == 0) %>
+    <h1>There are no projects matching given criteria.</h1>
+  <% end %>
+  
+</div>
+
+<div class="col-lg-9" style="margin-bottom:40px;">
   <div id="map" style='width: 100%; height: 400px;'></div>
 </div>
 
 <script>
   var handler = Gmaps.build('Google');
   handler.buildMap({ internal: {id: 'map'}}, function(){
-  var markers = handler.addMarkers(<%=raw @phash.to_json %>);
+  //var markers = handler.addMarkers(<%#=raw @hash.to_json %>);
+  var markers2 = handler.addMarkers(<%=raw @phash.to_json %>);
   
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
+  var searchmarker = handler.addMarkers(<%=raw @searchhash.to_json %>);
+  
+  //handler.getMap().setZoom(6);
+  //handler.map.centerOn(searchmarker[0]);
+  
+  if (_.isEmpty(searchmarker)){
+    handler.bounds.extendWith(markers2);
+    handler.fitMapToBounds();   
+  }
+  else{
+    handler.getMap().setZoom(8);
+    handler.map.centerOn(searchmarker[0]);
+  }
 });
 </script>
 
 
 
+
+
+<!--
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1><%#=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+-->
 <table class="table table-striped">
   <thead>
     <tr>
       <!--<th><%#= model_class.human_attribute_name(:id) %></th>-->
+      <th><%= model_class.human_attribute_name(:project_image) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:project_street) %></th>
+      <th><%= model_class.human_attribute_name(:status) %></th>
+      <!--<th><%#= model_class.human_attribute_name(:project_street) %></th>-->
       <th><%= model_class.human_attribute_name(:project_city) %></th>
       <th><%= model_class.human_attribute_name(:project_state) %></th>
-      <th><%= model_class.human_attribute_name(:project_zip) %></th>
+      <!--<th><%#= model_class.human_attribute_name(:project_zip) %></th>-->
       <th><%= model_class.human_attribute_name(:project_start) %></th>
       <th><%= model_class.human_attribute_name(:project_finish) %></th>
       <!--<th><%#= model_class.human_attribute_name(:brief_description) %></th>-->
@@ -47,15 +122,24 @@
     <% @projects.each do |project| %>
       <tr>
         <!--<td><%#= link_to project.id, project_path(project) %></td>-->
+        <td>
+          <% project.project_picons.each do |p| %>
+            <%= link_to image_tag(p.picon_url, :style => 'max-width:50px;padding:2px;'), project_path(project) %>
+          <% end %>
+        </td>
         <td><%= link_to project.name, project_path(project) %></td>
-        <td><%= project.project_street %></td>
+        <td><%= project.status %></td>
+        <!--<td><%#= project.project_street %></td>-->
         <td><%= project.project_city %></td>
         <td><%= project.project_state %></td>
-        <td><%= project.project_zip %></td>
+        <!--<td><%#= project.project_zip %></td>-->
         <td><%= project.project_start %></td>
         <td><%= project.project_finish %></td>
         <!--<td><%#= project.brief_description %></td>-->
-        <td><%= project.services %></td>
+        <td><% project.services.each do |p| %>
+          <%= p.name %> 
+          <% end %>
+        </td>
         <!--<td><%#= project.staffing_notes %></td>-->
         <!--<td><%#= project.deal_terms %></td>-->
         <!--<td><%#= project.rate %></td>-->

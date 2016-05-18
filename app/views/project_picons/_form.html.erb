@@ -1,0 +1,25 @@
+<%= form_for(@project_picon) do |f| %>
+  <% if @project_picon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project_picon.errors.count, "error") %> prohibited this project_picon from being saved:</h2>
+
+      <ul>
+      <% @project_picon.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :project_id %><br>
+    <%= f.number_field :project_id %>
+  </div>
+  <div class="field">
+    <%= f.label :picon %><br>
+    <%= f.text_field :picon %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

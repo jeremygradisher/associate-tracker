@@ -50,6 +50,14 @@
     <%=f.error_span(:project_zip) %>
 
   </div>
+  
+  <div class="form-group">
+    <%= f.label :status, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.select :status, ['Prospect', 'In Process', 'Complete'], {include_blank: true}, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:status) %>
+  </div>
 
   <div class="form-group">
     <%= f.label :project_start, :class => 'control-label col-lg-2' %>
@@ -75,13 +83,21 @@
     </div>
     <%=f.error_span(:brief_description) %>
   </div>
+  
+  
   <div class="form-group">
-    <%= f.label :services, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :services, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:services) %>
+    <%= f.label "Services", :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.collection_check_boxes :service_ids, Service.all, :id, :name do |b| %>
+          <div class="collection-check-box-altered">
+            <%= b.check_box %>
+            <%= b.label %>
+          </div>
+        <% end %>
+      </div>
   </div>
+
+  
   <div class="form-group">
     <%= f.label :staffing_notes, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -90,6 +106,8 @@
     </div>
     <%=f.error_span(:staffing_notes) %>
   </div>
+  
+  
   <div class="form-group">
     <%= f.label :deal_terms, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -112,6 +130,71 @@
     <%=f.error_span(:additional_terms) %>
   </div>
   
+  <div class="form-group">
+    <%= f.label :link, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :link, :class => 'form-control tag-test' %>
+    </div>
+    <%=f.error_span(:link) %>
+  </div>
+  
+  <!-- This is what I was using to link the links before tagit
+  <script> 
+    $('.linkto').each(function(){
+     $(this).html( $(this).html().replace(/((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g, '<a href="$1" target="_blank" class="tag-test">$1</a> ') );
+    });
+  </script> 
+  -->
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $(".tag-test").tagit({
+        
+            // Options
+            fieldName: "skills",
+            availableTags: ["c++", "java", "php", "javascript", "ruby", "python", "c"],
+            autocomplete: {delay: 0, minLength: 2},
+            showAutocompleteOnFocus: false,
+            removeConfirmation: false,
+            caseSensitive: true,
+            allowDuplicates: false,
+            allowSpaces: false,
+            readOnly: false,
+            tagLimit: null,
+            singleField: false,
+            singleFieldDelimiter: ',',
+            singleFieldNode: null,
+            tabIndex: null,
+            placeholderText: null,
+        
+            // Events
+            beforeTagAdded: function(event, ui) {
+                console.log(ui.tag);
+            },
+            afterTagAdded: function(event, ui) {
+                console.log(ui.tag);
+            },
+            beforeTagRemoved: function(event, ui) {
+                console.log(ui.tag);
+            },
+            onTagExists: function(event, ui) {
+                console.log(ui.tag);
+            },
+            onTagClicked: function(event, ui) {
+                console.log(ui.tag);
+                console.log(ui.tagLabel);
+                //window.location = ui.tag;
+                window.open(ui.tagLabel);
+            },
+            onTagLimitExceeded: function(event, ui) {
+                console.log(ui.tag);
+            }
+        
+        });
+
+    });
+  </script>
+  
   <!--
   <div class="form-group">
     <%#= f.label :latitude, :class => 'control-label col-lg-2' %>
@@ -129,7 +212,8 @@
   </div>
   -->
   
-<!--  
+  
+  <!-- Commented out, client no longer wanted the associations
   <div class="form-group">
     <%#= f.label "Associates", :class => 'control-label col-lg-2' %>
       <div class="col-lg-10">
@@ -141,7 +225,17 @@
         <%# end %>
       </div>
   </div>
--->
+  -->
+  
+  
+    <%= f.fields_for :project_picons do |p| %>
+       <div class="form-group">
+         <%= p.label :project_Icon, :class => 'control-label col-lg-2'  %>
+         <div class="col-lg-10">
+         <%= p.file_field :picon, :multiple => true, name: "project_picons[picon][]" %>
+         </div>
+       </div>
+     <% end %>
   
   
 

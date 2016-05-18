@@ -1,65 +1,196 @@
 <%- model_class = Project -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+
+<div class="col-lg-12" style="text-align:center;">
+  
+    <%= link_to '<i class="fa fa-chevron-left"></i>'.html_safe,
+                  projects_path, :class => 'btn btn-default',
+                  :title => 'Back to Projects' %>
+    <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+                  edit_project_path(@project), :class => 'btn btn-primary', 
+                  :title => 'Edit Project'  %>
+    <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+                  project_path(@project),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-danger', :title => 'Delete Project' %>
+  <hr>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @project.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:project_street) %>:</strong></dt>
-  <dd><%= @project.project_street %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:project_city) %>:</strong></dt>
-  <dd><%= @project.project_city %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:project_state) %>:</strong></dt>
-  <dd><%= @project.project_state %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:project_zip) %>:</strong></dt>
-  <dd><%= @project.project_zip %></dd>
+<!--
+<div class="page-header">
+  <h1><%#=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+-->
+
+<div class="col-lg-4">
+  <% @project_picons.each do |p| %>
+        <%= image_tag p.picon_url, :style => 'max-width:90%;padding:5%;' %><br>
+        
+        <div style="margin-left:auto;margin-right:auto;text-align:center;">
+        <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+              edit_project_picon_path(p), :class => 'btn btn-primary', 
+              :title => 'Edit Attachment'  %>
+        <%#= link_to "Destroy Attachment", destroy_associate_attachment_path(p) %>
+        <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+              project_picon_path(p),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger', :title => 'Delete Attachment'  %>
+        </div>
+        
+  <% end %>
+</div>
+
+
+<div class="col-lg-8">
+  <div class="show1">
+          <%= @project.name %>
+          
+          <span style="margin-left:40px;">
+            <% if @project.status == 'Prospect' %>
+              <i class="fa fa-check" style="color:#6991fd" title="Prospect"></i> Prospect
+            <% elsif @project.status == 'Complete' %>
+              <i class="fa fa-check" style="color:#e661ac" title="Complete"></i> Complete
+            <% else %>
+              <i class="fa fa-check" style="color:#e78b23" title="In Process"></i> In Process
+            <% end %>
+            
+          </span>
+  </div>
+  <div class="show2">
+          <span>
+            Services Provided:
+            <% @services.each do |p| %>
+              <%= p.name %> 
+            <% end %>
+          </span>
+  </div>
+  <hr>
+  <div class="show2">
+    <%= @project.project_street %>
+  </div>
+  <div class="show2">
+    <%= @project.project_city %>, <%= @project.project_state %> <%= @project.project_zip %>
+  </div>
+  <hr>
+  <div class="show3">
+    Project Start: <%= @project.project_start %>
+  </div>
+  <div class="show3">
+    Project Finish: <%= @project.project_finish %>
+  </div>
+  <hr>
+  <div class="show3">
+  Description:  <%#= @project.brief_description %>
+  <%= simple_format(@project.brief_description) %>
+  </div>
+  <div class="show3">
+      <%= model_class.human_attribute_name(:staffing_notes) %>:
+      <%#= @project.staffing_notes %>
+      <%= simple_format(@project.staffing_notes) %>
+  </div>
+  <div class="show3">      
+      <%= model_class.human_attribute_name(:deal_terms) %>:
+      <%#= @project.deal_terms %>
+      <%= simple_format(@project.deal_terms) %>
+  </div>
+  <div class="show3">      
+      <%= model_class.human_attribute_name(:rate) %>:
+      <%= @project.rate %>
+  </div>
+  <div class="show3">      
+      <%= model_class.human_attribute_name(:additional_terms) %>:
+      <%#= @project.additional_terms %>
+      <%= simple_format(@project.additional_terms) %>
+  </div>
+
+
+   <script type="text/javascript">
+    $(document).ready(function() {
+        $(".tag-test").tagit({
+        
+            // Options
+            readOnly: true,
+ 
+            // Events
+            onTagClicked: function(event, ui) {
+                console.log(ui.tag);
+                console.log(ui.tagLabel);
+                //window.location = ui.tag;
+                window.open(ui.tagLabel);
+            },
+            onTagLimitExceeded: function(event, ui) {
+                console.log(ui.tag);
+            }
+        
+        });
+
+    });
+  </script> 
   
-  <dt><strong><%= model_class.human_attribute_name(:project_start) %>:</strong></dt>
-  <dd><%= @project.project_start %></dd>
+  <%= form_for @project, :html => { :class => "form-horizontal project" } do |f| %>
+      <div class="show3">
+        <%= model_class.human_attribute_name(:document_links) %>:
+        <%= f.text_field :link, :class => 'form-control tag-test' %>
+      </div>
+  <% end %>
   
-  <dt><strong><%= model_class.human_attribute_name(:project_finish) %>:</strong></dt>
-  <dd><%= @project.project_finish %></dd>
+  <!-- where I am using this with the tags it is no longer working -->
+   <script> 
+    $('.linkto').each(function(){
+     $(this).html( $(this).html().replace(/((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g, '<a href="$1" target="_blank">$1</a>') );
+    });
+  </script> 
   
   
-  <dt><strong><%= model_class.human_attribute_name(:brief_description) %>:</strong></dt>
-  <dd><%= @project.brief_description %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:services) %>:</strong></dt>
-  <dd><%= @project.services %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:staffing_notes) %>:</strong></dt>
-  <dd><%= @project.staffing_notes %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:deal_terms) %>:</strong></dt>
-  <dd><%= @project.deal_terms %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:rate) %>:</strong></dt>
-  <dd><%= @project.rate %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:additional_terms) %>:</strong></dt>
-  <dd><%= @project.additional_terms %></dd>
-  
-  <!--
-  <dt><strong><%#= model_class.human_attribute_name(:latitude) %>:</strong></dt>
-  <dd><%#= @project.latitude %></dd>
-  <dt><strong><%#= model_class.human_attribute_name(:longitude) %>:</strong></dt>
-  <dd><%#= @project.longitude %></dd>
+      <!-- Lat and long stuff - will potentially need for checking geocoder creations -->
+      <!--
+      <%#= model_class.human_attribute_name(:latitude) %>:
+      <%#= @project.latitude %><br>
+      <%#= model_class.human_attribute_name(:longitude) %>:
+      <%#= @project.longitude %><br><br>
+      -->
+      <!-- END Lat and long stuff - will potentially need for checking geocoder creations -->
+      
+      
+  <!-- commented out associations between projects and associates
+  <div class="show3">    
+      <%#= model_class.human_attribute_name(:associates) %>:  
+        <%# @associates.each do |associate| %>
+          <dd><%#= link_to associate.name, associate_path(associate) %></dd>
+        <%# end %>
+  </div>
   -->
   
-  <!--
-  <dt><strong><%#= model_class.human_attribute_name(:associates) %>:</strong></dt>  
-    <%# @associates.each do |associate| %>
-      <dd><%#= link_to associate.name, associate_path(associate) %></dd>
-    <%# end %>
-  -->
-  
-  
-</dl>
+</div>
 
 
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
+<div class="col-lg-12" style="text-align:center;">
+  <hr>
+    <%= link_to '<i class="fa fa-chevron-left"></i>'.html_safe,
+                  projects_path, :class => 'btn btn-default',
+                  :title => 'Back to Projects' %>
+    <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+                  edit_project_path(@project), :class => 'btn btn-primary', 
+                  :title => 'Edit Project'  %>
+    <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+                  project_path(@project),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-danger', :title => 'Delete Project' %>
+  <hr>
+</div>
+
+
+<!-- originals -->
+<%#= link_to t('.back', :default => t("helpers.links.back")),
               projects_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
+<%#= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_project_path(@project), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+<%#= link_to t('.destroy', :default => t("helpers.links.destroy")),
               project_path(@project),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
+<!-- originals -->

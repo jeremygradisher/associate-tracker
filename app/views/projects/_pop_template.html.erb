@@ -1,1 +1,25 @@
-<p><%= link_to project.name, project_path(project) %></p>
+<div style="min-width:300px;">
+  <% project.project_picons.each do |p| %>
+    <%= link_to image_tag(p.picon_url, :style => 'max-width:100px;padding-right:12px;float:left;'), project_path(project) %>
+  <% end %>
+  
+  <p style="min-width:100px;"><%= link_to project.name, project_path(project) %>
+  
+    <% if project.status == 'Prospect' %>
+      <i class="fa fa-check" style="color:#6991fd" title="Prospect"></i>
+    <% elsif project.status == 'Complete' %>
+      <i class="fa fa-check" style="color:#e661ac" title="Complete"></i>
+    <% else %>
+      <i class="fa fa-check" style="color:#e78b23" title="In Process"></i>
+    <% end %>
+  
+  </p>
+  
+      <% if project.status == 'Prospect' %>
+        <p>Project is currently a Prospect</p>
+      <% elsif project.status == 'In Process' %>
+        <p>Project is currently In Process</p>
+      <% else %>
+        <p>Greeby Completed Project</p>
+      <% end %>
+</div>

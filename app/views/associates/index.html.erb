@@ -10,7 +10,7 @@
     <!--<legend>Search Our Database</legend>-->
     <%= search_form_for @search do |f| %>
       
-      <div class="col-lg-3">
+      <div class="col-lg-2">
         <%= f.label :name_cont, "Search Near:" %>
         <%= f.text_field_tag :searchnear, params[:searchnear], :class => "form-control", :placeholder => "Search Near..."  %>
       </div>
@@ -30,11 +30,16 @@
           <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Search for..." %>
       </div>
       
-      <div class="col-lg-2">
-        <%= f.label "Work Location:" %><br />
+      <div class="col-lg-1">
+        <%= f.label "Locations:" %><br />
         <%= f.select :wrklocs_id_in_any, 
         options_from_collection_for_select(Wrkloc.all, "id", "wrkstate", @search.wrklocs_id_in_any), 
         include_blank: true %>
+      </div>
+      
+      <div class="col-lg-2">
+          <%= f.label :active_cont, "Active:" %><br>
+          <%= f.select :active_eq, options_for_select([['Active', true], ['Inactive', false]], :selected => @search.active_eq), include_blank: true %>
       </div>
       
       <div class="col-lg-2">
@@ -47,6 +52,8 @@
   </fieldset>
   </div>
 </div>
+
+
 
 <div class="col-lg-3 counts">
   <h1>Associates: <%= @associatescount %></h1>
@@ -82,7 +89,7 @@
   var handler = Gmaps.build('Google');
   handler.buildMap({ internal: {id: 'map'}}, function(){
   var markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  //var markers2 = handler.addMarkers(<%=raw @phash.to_json %>);
+  //var markers2 = handler.addMarkers(<%#=raw @phash.to_json %>);
   
   var searchmarker = handler.addMarkers(<%=raw @searchhash.to_json %>);
   
@@ -95,12 +102,10 @@
   }
   else{
     handler.getMap().setZoom(8);
-    handler.map.centerOn(searchmarker[0]);        
+    handler.map.centerOn(searchmarker[0]);
   }
 });
 </script>
-
-
 
 <!--
 <div class="page-header">

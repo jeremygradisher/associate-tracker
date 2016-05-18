@@ -1,12 +1,25 @@
+    <% associate.associate_attachments.each do |p| %>
+      <%= link_to image_tag(p.avatar_url, :style => 'max-width:100px;padding-right:12px;float:left;'), associate_path(associate) %>
+    <% end %>
+
 <p><%= link_to associate.name, associate_path(associate) %>
 
     <% if associate.active == true %>
       <i class="fa fa-check" style="color:#00aa00" title="Associate is Active"></i>
-      <% else %>
+    <% else %>
       <i class="fa fa-close" style="color:#aa0000" title="Associate is not currently Active"></i>
     <% end %>
+
 
     <% associate.positions.each do |p| %>
         <%= p.pos_name %>
     <% end %>
 </p>
+
+
+    <% if associate.active == true %>
+      <p>This associate is active on a Greeby Project.</p>
+    <% else %>
+      <p>This Associate is Available to be assigned a project.</p>
+    <% end %>
+    

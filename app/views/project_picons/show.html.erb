@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @project_picon.project_id %>
+</p>
+
+<p>
+  <strong>Picon:</strong>
+  <%= @project_picon.picon %>
+</p>
+
+<%= link_to 'Edit', edit_project_picon_path(@project_picon) %> |
+<%= link_to 'Back', project_picons_path %>
