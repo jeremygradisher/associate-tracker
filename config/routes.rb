@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :project_cicons
   resources :services
   resources :project_picons
   resources :services

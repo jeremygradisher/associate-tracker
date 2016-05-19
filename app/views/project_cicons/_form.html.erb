@@ -1,0 +1,21 @@
+<%= image_tag @project_cicon.cicon, :style => 'max-width:300px;padding:20px;' %>
+  <%= form_for(@project_cicon) do |f| %>
+    <% if @project_cicon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project_cicon.errors.count, "error") %> prohibited this project_cicon from being saved:</h2>
+
+      <ul>
+      <% @project_cicon.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :cicon %><br>
+      <%= f.file_field :cicon, :id => "image_picture" %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

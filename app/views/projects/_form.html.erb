@@ -16,17 +16,24 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :name, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+    <%= f.label :project_name, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-4">
       <%= f.text_field :name, :class => 'form-control' %>
     </div>
     <%=f.error_span(:name) %>
+    
+     <%#= f.fields_for :project_picons do |p| %>
+         <%= f.label :project_Icon, :class => 'control-label col-lg-2'  %>
+         <div class="col-lg-4">
+         <%= f.file_field :picon, :multiple => true, name: "project_picons[picon][]", :class => 'form-control' %>
+         </div>
+     <%# end %>
   </div>
 
   <div class="form-group">
     
     <%= f.label :street, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-2">
+    <div class="col-lg-3">
       <%= f.text_field :project_street, :class => 'form-control' %>
     </div>
     <%=f.error_span(:project_street) %>    
@@ -44,11 +51,26 @@
     <%=f.error_span(:project_state) %>
 
     <%= f.label :zip, :class => 'control-label col-lg-1' %>
-    <div class="col-lg-2">
+    <div class="col-lg-1">
       <%= f.text_field :project_zip, :class => 'form-control' %>
     </div>
     <%=f.error_span(:project_zip) %>
 
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :client_name, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-4">
+      <%= f.text_field :client_name, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:client_name) %>
+    
+     <%#= f.fields_for :project_picons do |p| %>
+         <%= f.label :client_icon, :class => 'control-label col-lg-2'  %>
+         <div class="col-lg-4">
+         <%= f.file_field :cicon, :multiple => true, name: "project_cicons[cicon][]", :class => 'form-control' %>
+         </div>
+     <%# end %>
   </div>
   
   <div class="form-group">
@@ -111,10 +133,11 @@
   <div class="form-group">
     <%= f.label :deal_terms, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :deal_terms, :class => 'form-control' %>
+      <%= f.text_field :deal_terms, :class => 'form-control', :placeholder => "Monthly or Hourly..." %>
     </div>
     <%=f.error_span(:deal_terms) %>
   </div>
+  
   <div class="form-group">
     <%= f.label :rate, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -131,7 +154,7 @@
   </div>
   
   <div class="form-group">
-    <%= f.label :link, :class => 'control-label col-lg-2' %>
+    <%= f.label :document_links, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :link, :class => 'form-control tag-test' %>
     </div>
@@ -151,10 +174,10 @@
         $(".tag-test").tagit({
         
             // Options
-            fieldName: "skills",
-            availableTags: ["c++", "java", "php", "javascript", "ruby", "python", "c"],
-            autocomplete: {delay: 0, minLength: 2},
-            showAutocompleteOnFocus: false,
+            fieldName: "link",
+            //availableTags: ["c++", "java", "php", "javascript", "ruby", "python", "c"],
+            //autocomplete: {delay: 0, minLength: 2},
+            //showAutocompleteOnFocus: false,
             removeConfirmation: false,
             caseSensitive: true,
             allowDuplicates: false,
@@ -168,18 +191,6 @@
             placeholderText: null,
         
             // Events
-            beforeTagAdded: function(event, ui) {
-                console.log(ui.tag);
-            },
-            afterTagAdded: function(event, ui) {
-                console.log(ui.tag);
-            },
-            beforeTagRemoved: function(event, ui) {
-                console.log(ui.tag);
-            },
-            onTagExists: function(event, ui) {
-                console.log(ui.tag);
-            },
             onTagClicked: function(event, ui) {
                 console.log(ui.tag);
                 console.log(ui.tagLabel);
@@ -227,15 +238,25 @@
   </div>
   -->
   
-  
-    <%= f.fields_for :project_picons do |p| %>
+  <!--
+     <%#= f.fields_for :project_picons do |p| %>
        <div class="form-group">
-         <%= p.label :project_Icon, :class => 'control-label col-lg-2'  %>
+         <%#= p.label :project_Icon, :class => 'control-label col-lg-2'  %>
          <div class="col-lg-10">
-         <%= p.file_field :picon, :multiple => true, name: "project_picons[picon][]" %>
+         <%#= p.file_field :picon, :multiple => true, name: "project_picons[picon][]" %>
          </div>
        </div>
-     <% end %>
+     <%# end %>
+     
+    <%#= f.fields_for :project_cicons do |p| %>
+       <div class="form-group">
+         <%#= p.label :project_cicon, :class => 'control-label col-lg-2'  %>
+         <div class="col-lg-10">
+         <%#= p.file_field :cicon, :multiple => true, name: "project_cicons[cicon][]" %>
+         </div>
+       </div>
+     <%# end %>
+  -->
   
   
 

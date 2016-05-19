@@ -93,6 +93,7 @@ class ProjectsController < ApplicationController
   def show
     @associates = @project.associates.all
     @project_picons = @project.project_picons.all
+    @project_cicons = @project.project_cicons.all
     @services = @project.services.all
   end
 
@@ -100,11 +101,13 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
     @project_picon = @project.project_picons.build
+    @project_cicon = @project.project_cicons.build
   end
 
   # GET /projects/1/edit
   def edit
     @project_picon = @project.project_picons.build
+    @project_cicon = @project.project_cicons.build
   end
 
   # POST /projects
@@ -117,6 +120,11 @@ class ProjectsController < ApplicationController
          if params.has_key?(:project_picons)
            params[:project_picons]['picon'].each do |a|
               @project_picon = @project.project_picons.create!(:picon => a)
+           end
+         end
+         if params.has_key?(:project_cicons)
+           params[:project_cicons]['cicon'].each do |a|
+              @project_cicon = @project.project_cicons.create!(:cicon => a)
            end
          end
          format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -134,6 +142,11 @@ class ProjectsController < ApplicationController
         if params.has_key?(:project_picons)
            params[:project_picons]['picon'].each do |a|
               @project_picon = @project.project_picons.create!(:picon => a)
+           end
+        end
+        if params.has_key?(:project_cicons)
+           params[:project_cicons]['cicon'].each do |a|
+              @project_cicon = @project.project_cicons.create!(:cicon => a)
            end
         end
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -163,6 +176,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :link, :project_street, :project_city, :project_state, :project_zip, :status, :project_start, :project_finish, :brief_description, :services, :staffing_notes, :deal_terms, :rate, :additional_terms, :latitude, :longitude, { associate_ids:[] }, { service_ids:[] }, project_picons_attributes: [:id, :project_id, :picon])
+      params.require(:project).permit(:name, :client_name, :link, :project_street, :project_city, :project_state, :project_zip, :status, :project_start, :project_finish, :brief_description, :services, :staffing_notes, :deal_terms, :rate, :additional_terms, :latitude, :longitude, { associate_ids:[] }, { service_ids:[] }, project_picons_attributes: [:id, :project_id, :picon])
     end
 end

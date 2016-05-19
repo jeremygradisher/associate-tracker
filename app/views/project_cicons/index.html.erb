@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Project Cicons</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Project</th>
+      <th>Cicon</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @project_cicons.each do |project_cicon| %>
+      <tr>
+        <td><%= project_cicon.project_id %></td>
+        <td><%= project_cicon.cicon %></td>
+        <td><%= link_to 'Show', project_cicon %></td>
+        <td><%= link_to 'Edit', edit_project_cicon_path(project_cicon) %></td>
+        <td><%= link_to 'Destroy', project_cicon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project cicon', new_project_cicon_path %>

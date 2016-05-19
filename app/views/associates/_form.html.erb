@@ -14,7 +14,6 @@
       </div>
     </div>
   <% end %>
-  
 
   <div class="form-group">
     <%= f.label :name, :class => 'control-label col-lg-2' %>
@@ -22,7 +21,15 @@
       <%= f.text_field :name, :class => 'form-control' %>
       <%=f.error_span(:name) %>
     </div>
-    <%= f.label :active, :class => 'control-label col-lg-1' %>
+    
+     <%= f.label :associate_image, :class => 'control-label col-lg-2'  %>
+     <div class="col-lg-4">
+     <%= f.file_field :avatar, :multiple => true, name: "associate_attachments[avatar][]", :class => 'form-control' %>
+     </div>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :active, :class => 'control-label col-lg-2' %>
     <div class="col-lg-1 collection-check-box-alt">
       <%= f.check_box :active, :class => 'check-align-left', :style => 'margin:6px 0 0 0;' %>
       <%=f.error_span(:active) %>
@@ -31,7 +38,7 @@
   
   <div class="form-group">
     <%= f.label "Positions", :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
+      <div class="col-lg-4">
         <%= f.collection_check_boxes :position_ids, Position.all, :id, :pos_name do |b| %>
           <div class="collection-check-box-alt">
             <%= b.check_box %>
@@ -190,14 +197,17 @@
     </div>
   </div>
     
-     <%= f.fields_for :associate_attachments do |p| %>
+    <!-- Original - causing duplicates though which I did not like!
+     <%#= f.fields_for :associate_attachments do |p| %>
        <div class="form-group">
-         <%= p.label :associate_image, :class => 'control-label col-lg-2'  %>
+         <%#= p.label :associate_image, :class => 'control-label col-lg-2'  %>
          <div class="col-lg-10">
-         <%= p.file_field :avatar, :multiple => true, name: "associate_attachments[avatar][]" %>
+         <%#= p.file_field :avatar, :multiple => true, name: "associate_attachments[avatar][]" %>
          </div>
        </div>
-     <% end %>
+     <%# end %>
+     -->
+     
      
     <%= f.fields_for :associate_resumes do |p| %>
        <div class="form-group">
