@@ -208,69 +208,79 @@
      <%# end %>
      -->
      
-     
-    <%= f.fields_for :associate_resumes do |p| %>
+     <!-- How I had these at first:
+    <%#= f.fields_for :associate_resumes do |p| %>
        <div class="form-group">
-         <%= p.label :resume, :class => 'control-label col-lg-2'  %>
+         <%#= p.label :resume, :class => 'control-label col-lg-2'  %>
          <div class="col-lg-10">
-         <%= p.file_field :resume, :multiple => true, name: "associate_resumes[resume][]" %>
+         <%#= p.file_field :resume, :multiple => true, name: "associate_resumes[resume][]" %>
          </div>
        </div>
-     <% end %>
+     <%# end %>
+     -->
      
-    <%= f.fields_for :associate_gresumes do |p| %>
+     
        <div class="form-group">
-         <%= p.label :greeby_resume, :class => 'control-label col-lg-2'  %>
+         <%= f.label :resume, :class => 'control-label col-lg-2'  %>
          <div class="col-lg-10">
-         <%= p.file_field :gresume, :multiple => true, name: "associate_gresumes[gresume][]" %>
+         <%= f.file_field :resume, :multiple => true, name: "associate_resumes[resume][]", :class => 'form-control' %>
          </div>
        </div>
-    <% end %>
+     
+     
     
-     <%= f.fields_for :associate_contracts do |p| %>
        <div class="form-group">
-         <%= p.label :contract, :class => 'control-label col-lg-2'  %>
+         <%= f.label :greeby_resume, :class => 'control-label col-lg-2'  %>
          <div class="col-lg-10">
-         <%= p.file_field :contract, :multiple => true, name: "associate_contracts[contract][]" %>
+         <%= f.file_field :gresume, :multiple => true, name: "associate_gresumes[gresume][]", :class => 'form-control' %>
          </div>
        </div>
-     <% end %>
+    
+    
      
-     <%= f.fields_for :associate_w9s do |p| %>
        <div class="form-group">
-         <%= p.label :w9, :class => 'control-label col-lg-2'  %>
+         <%= f.label :contract, :class => 'control-label col-lg-2'  %>
          <div class="col-lg-10">
-         <%= p.file_field :w9, :multiple => true, name: "associate_w9s[w9][]" %>
+         <%= f.file_field :contract, :multiple => true, name: "associate_contracts[contract][]", :class => 'form-control' %>
          </div>
        </div>
-     <% end %>
      
-    <%= f.fields_for :associate_direct_deposits do |p| %>
-       <div class="form-group">
-         <%= p.label :direct_deposit, :class => 'control-label col-lg-2'  %>
-         <div class="col-lg-10">
-         <%= p.file_field :direct_deposit, :multiple => true, name: "associate_direct_deposits[direct_deposit][]" %>
-         </div>
-       </div>
-     <% end %>
      
-    <%= f.fields_for :associate_drivers_licenses do |p| %>
-       <div class="form-group">
-         <%= p.label :drivers_license, :class => 'control-label col-lg-2'  %>
-         <div class="col-lg-10">
-         <%= p.file_field :drivers_license, :multiple => true, name: "associate_drivers_licenses[drivers_license][]" %>
-         </div>
-       </div>
-     <% end %>
      
-    <%= f.fields_for :associate_drivers_insurances do |p| %>
        <div class="form-group">
-         <%= p.label :drivers_insurance, :class => 'control-label col-lg-2'  %>
+         <%= f.label :w9, :class => 'control-label col-lg-2'  %>
          <div class="col-lg-10">
-         <%= p.file_field :drivers_insurance, :multiple => true, name: "associate_drivers_insurances[drivers_insurance][]" %>
+         <%= f.file_field :w9, :multiple => true, name: "associate_w9s[w9][]", :class => 'form-control' %>
          </div>
        </div>
-     <% end %>
+     
+     
+    
+       <div class="form-group">
+         <%= f.label :direct_deposit, :class => 'control-label col-lg-2'  %>
+         <div class="col-lg-10">
+         <%= f.file_field :direct_deposit, :multiple => true, name: "associate_direct_deposits[direct_deposit][]", :class => 'form-control' %>
+         </div>
+       </div>
+     
+     
+    
+       <div class="form-group">
+         <%= f.label :drivers_license, :class => 'control-label col-lg-2'  %>
+         <div class="col-lg-10">
+         <%= f.file_field :drivers_license, :multiple => true, name: "associate_drivers_licenses[drivers_license][]", :class => 'form-control' %>
+         </div>
+       </div>
+     
+     
+    
+       <div class="form-group">
+         <%= f.label :drivers_insurance, :class => 'control-label col-lg-2'  %>
+         <div class="col-lg-10">
+         <%= f.file_field :drivers_insurance, :multiple => true, name: "associate_drivers_insurances[drivers_insurance][]", :class => 'form-control' %>
+         </div>
+       </div>
+     
            
 
   <div class="form-group">

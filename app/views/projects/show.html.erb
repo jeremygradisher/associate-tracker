@@ -107,7 +107,41 @@
       <% end %>
     </div>
   </div>
-<br><br>
+  
+  
+  <br>
+  <hr style="clear:both;">
+  <div class="show3">      
+      <%= model_class.human_attribute_name(:client_contact) %>:
+      <%= @project.client_contact %>
+  </div>
+  <div class="show3">      
+      <%= model_class.human_attribute_name(:client_meeting) %>:
+      <%= @project.client_meeting %>
+  </div>
+  <div class="show3">      
+      <%= model_class.human_attribute_name(:client_proposal) %>:
+      <%#= @project.additional_terms %>
+      <%= simple_format(@project.client_proposal) %>
+  </div>
+  <hr>
+  <div class="show3">      
+      <%= model_class.human_attribute_name(:client_billing) %>:
+  </div>
+  <div class="show3">      
+      <%= @project.client_billing %><br>
+      <%= @project.client_street %><br>
+      <%= @project.client_city %>,
+      <%= @project.client_state %>
+      <%= @project.client_zip %>
+  </div>
+  <hr>
+  
+  
+  
+  
+  
+
   <div class="show3">
   Description:  <%#= @project.brief_description %>
   <%= simple_format(@project.brief_description) %>
