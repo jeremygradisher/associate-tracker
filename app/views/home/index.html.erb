@@ -1,3 +1,68 @@
-<div class="jumbotron">
-  <h1>Associate Tracker</h1>
+<!--<div class="jumbotron"><h1>Associate Tracker</h1></div>-->
+    <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
+    
+<div class="col-lg-12">
+  <h1 style="text-align:center;margin-bottom:20px;">Greeby Associate Tracker</h1>
+  <hr>
+</div>
+
+<div class="col-lg-6">
+    <div class="countsleft">
+      
+      <h1><strong><%= link_to 'Associates', associates_path %>: <%= @associatescount %></strong></h1>
+      <!--<p>Associates Positions Counted: <%#= @associatescount2 %></p>-->
+      
+      <% if @pm_count != 0 %>
+        <h1>Project Managers: <%= @pm_count %></h1>
+      <% end %>
+      
+      <% if @tc_count != 0 %>
+        <h1>Tenant Coordinators: <%= @tc_count %></h1>
+      <% end %>
+       
+      <% if @dm_count != 0 %>
+        <h1>Development Managers: <%= @dm_count %></h1>
+      <% end %>
+      
+      <% if (@pm_count == 0 && @tc_count == 0 && @dm_count == 0) %>
+        <h1>There are no associates matching given criteria.</h1>
+      <% end %>
+      <hr>
+      <div>
+        <%= pie_chart @associates.joins(:positions).group(Position.arel_table[:pos_name]).count, 
+        library: {pieHole: 0.5, legend: {position: "right"},
+        chartArea:{left:0,top:0,width:'100%',height:300}} %>
+      </div>
+    </div>
+</div>
+
+<div class="col-lg-6">
+    <div class="countsleft">
+          <h1><strong><%= link_to 'Projects', projects_path  %>: <%= @associatescount %></strong></h1>
+          
+          
+          <% if @prospect_count != 0 %>
+            <h1>Prospects: <%= @prospect_count %></h1>
+          <% end %>
+          
+          <% if @inprocess_count != 0 %>
+            <h1>In Process: <%= @inprocess_count %></h1>
+          <% end %>
+           
+          <% if @complete_count != 0 %>
+            <h1>Completed: <%= @complete_count %></h1>
+          <% end %>
+          
+          
+      <hr>
+      <div>
+        <%= pie_chart Project.group(:status).count, library: {pieHole: 0.5,
+        legend: {position: "right"},
+        chartArea:{left:0,top:0,width:'100%',height:300}} %>
+        <%#= pie_chart @projects.group(Project.status).count, 
+        library: {backgroundColor: "#FFF", height: 200, padding: 0}, padding: ["0"] %>
+      </div>
+          
+          
+    </div>
 </div>

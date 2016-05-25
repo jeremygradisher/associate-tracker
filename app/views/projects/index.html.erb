@@ -1,9 +1,9 @@
 <%- model_class = Project -%>
-
+    <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
 
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading"><strong>Search Associate Database</strong></div>
+  <div class="panel-heading"><strong>Search Project Database</strong></div>
   <div class="panel-body">
 
   <fieldset class="search-field">
@@ -55,6 +55,15 @@
   <% if (@prospect_count == 0 && @in_process_count == 0 && @complete_count == 0) %>
     <h1>There are no projects matching given criteria.</h1>
   <% end %>
+  
+  <hr>
+      <div>
+        <%#= pie_chart Project.group(:status).count %>
+        <%= pie_chart Project.group(:status).count, 
+        library: {backgroundColor: "#FFF", pieHole: 0.5,
+        legend: {position: "none"},
+        chartArea:{left:0,top:0,width:'100%',height:200}} %>
+      </div>
   
 </div>
 

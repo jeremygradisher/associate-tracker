@@ -81,31 +81,95 @@
     <%=f.error_span(:status) %>
   </div>
   
-  <hr>
-  <div class="form-group">
-    <%= f.label :client_contact, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :client_contact, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:client_contact) %>
-  </div>
-  <div class="form-group">
-    <%= f.label :client_meeting, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :client_meeting, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:client_meeting) %>
-  </div>
-  <div class="form-group">
-    <%= f.label :client_proposal, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_area :client_proposal, :rows => 4, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:client_proposal) %>
-  </div>
+  <!--
+  <div class="prospect_form" style="display: none;">This is the Prospect form.</div>
+  <div class="in_process_form" style="display: none;">This is the In Process form.</div>
+  <div class="complete_form" style="display: none;">This is the Complete form.</div>
+  -->
+
   
-  <hr>
+ <script>
+    $(document).ready(function(){
+      //first checking to see what it is and changing
+     if ($('#project_status').val() == "Prospect"){
+        $(".prospect_form").show();
+     }
+     else {
+        $(".prospect_form").hide();
+     }
+     if ($('#project_status').val() == "In Process"){
+        $(".in_process_form").show();
+     }
+     else {
+        $(".in_process_form").hide();
+     }
+     if ($('#project_status').val() == "Complete"){
+        $(".complete_form").show();
+     }
+     else {
+        $(".complete_form").hide();
+     }
+      //end checking to see what it is and changing
+      
+      //then if the status changes
+      $("#project_status").change(function() {
+        if ($("#project_status").val()=="Prospect")
+          $(".prospect_form").show();
+        else
+          $(".prospect_form").hide();
+      });
+      
+      $("#project_status").change(function() {
+        if ($("#project_status").val()=="In Process")
+          $(".in_process_form").show();
+        else
+          $(".in_process_form").hide();
+      });
+      
+      $("#project_status").change(function() {
+        if ($("#project_status").val()=="Complete")
+          $(".complete_form").show();
+        else
+          $(".complete_form").hide();
+      });
+      //end if the status changes
+    });
+ </script>
+ 
   
+  
+  
+  
+<div class="prospect_form"> 
+    <hr>
+    <div class="form-group">
+      <%= f.label :client_contact, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.text_field :client_contact, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:client_contact) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :client_meeting, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.text_field :client_meeting, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:client_meeting) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :client_proposal, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.text_area :client_proposal, :rows => 4, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:client_proposal) %>
+    </div>
+</div>
+ 
+ 
+
+<div class="in_process_form">
+  <!-- not available during prospect -->
+  <hr>
   <div class="form-group">  
     <%= f.label :client_billing, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -139,7 +203,14 @@
     </div>
     <%=f.error_span(:client_zip) %>
   </div>
+  <!-- end not available during prospect -->
+</div>
 
+
+
+
+
+<div class="in_process_form">
   <hr>
   <div class="form-group">
     <%= f.label :project_start, :class => 'control-label col-lg-2' %>
@@ -156,16 +227,7 @@
     </div>
     <%=f.error_span(:project_finish) %>
   </div>
-  
-  <div class="form-group">
-    <%= f.label :brief_description, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_area :brief_description, :rows => 4, :class => 'form-control' %>
-
-    </div>
-    <%=f.error_span(:brief_description) %>
-  </div>
-  
+  <hr>
   
   <div class="form-group">
     <%= f.label "Services", :class => 'control-label col-lg-2' %>
@@ -178,19 +240,8 @@
         <% end %>
       </div>
   </div>
-
   
-  <div class="form-group">
-    <%= f.label :staffing_notes, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_area :staffing_notes, :rows => 4, :class => 'form-control' %>
-
-    </div>
-    <%=f.error_span(:staffing_notes) %>
-  </div>
-  
-  
-  <div class="form-group">
+    <div class="form-group">
     <%= f.label :deal_terms, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :deal_terms, :class => 'form-control', :placeholder => "Monthly or Hourly..." %>
@@ -205,6 +256,26 @@
     </div>
     <%=f.error_span(:rate) %>
   </div>
+  <hr>
+  
+  <div class="form-group">
+    <%= f.label :brief_description, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :brief_description, :rows => 4, :class => 'form-control' %>
+
+    </div>
+    <%=f.error_span(:brief_description) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :staffing_notes, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :staffing_notes, :rows => 4, :class => 'form-control' %>
+
+    </div>
+    <%=f.error_span(:staffing_notes) %>
+  </div>
+  
   <div class="form-group">
     <%= f.label :additional_terms, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -212,7 +283,9 @@
     </div>
     <%=f.error_span(:additional_terms) %>
   </div>
+</div>
   
+  <hr>
   <div class="form-group">
     <%= f.label :document_links, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -220,6 +293,7 @@
     </div>
     <%=f.error_span(:link) %>
   </div>
+  <hr>
   
   <!-- This is what I was using to link the links before tagit
   <script> 
