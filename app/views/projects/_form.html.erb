@@ -22,12 +22,40 @@
     </div>
     <%=f.error_span(:name) %>
     
-     <%#= f.fields_for :project_picons do |p| %>
+    <% if @project_picons.exists? %>
+    <%= f.label :project_Icon, :class => 'control-label col-lg-2'  %>
+      <div class="col-lg-4">
+        <% @project_picons.each do |p| %>
+              <div style="margin-left:auto;margin-right:auto;text-align:center;">
+                <%= image_tag p.picon_url, :style => 'max-width:90%;max-height:120px;padding:1%;' %>
+              </div><br>
+              
+              
+              <div style="margin-left:auto;margin-right:auto;text-align:center;">
+              <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+                    edit_project_picon_path(p), :class => 'btn btn-primary', 
+                    :title => 'Edit Attachment'  %>
+              <%#= link_to "Destroy Attachment", destroy_associate_attachment_path(p) %>
+              <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+                    project_picon_path(p),
+                    :method => 'delete',
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                    :class => 'btn btn-danger', :title => 'Delete Attachment'  %>
+              </div>
+              
+        <% end %>
+      </div>
+    
+    <% else %>  
+      <%#= f.fields_for :project_picons do |p| %>
          <%= f.label :project_Icon, :class => 'control-label col-lg-2'  %>
          <div class="col-lg-4">
          <%= f.file_field :picon, :multiple => true, name: "project_picons[picon][]", :class => 'form-control' %>
          </div>
      <%# end %>
+    <% end %>
+    
+     
   </div>
 
   <div class="form-group">
@@ -65,12 +93,38 @@
     </div>
     <%=f.error_span(:client_name) %>
     
+    <% if @project_cicons.exists? %>
+    <%= f.label :client_Icon, :class => 'control-label col-lg-2'  %>
+        <div class="col-lg-4">
+          <% @project_cicons.each do |p| %>
+          <div style="margin-left:auto;margin-right:auto;text-align:center;">
+                <%= image_tag p.cicon_url, :style => 'max-width:90%;max-height:120px;padding:1%;' %>
+          </div><br>
+                
+                <div style="margin-left:auto;margin-right:auto;text-align:center;">
+                <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+                      edit_project_cicon_path(p), :class => 'btn btn-primary', 
+                      :title => 'Edit Attachment'  %>
+                <%#= link_to "Destroy Attachment", destroy_associate_attachment_path(p) %>
+                <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+                      project_cicon_path(p),
+                      :method => 'delete',
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-danger', :title => 'Delete Attachment'  %>
+                </div>
+                
+          <% end %>
+        </div>
+    
+    <% else %>
+    
      <%#= f.fields_for :project_picons do |p| %>
          <%= f.label :client_icon, :class => 'control-label col-lg-2'  %>
          <div class="col-lg-4">
          <%= f.file_field :cicon, :multiple => true, name: "project_cicons[cicon][]", :class => 'form-control' %>
          </div>
      <%# end %>
+    <% end %>
   </div>
   
   <div class="form-group">

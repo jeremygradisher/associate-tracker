@@ -8,9 +8,7 @@ class ProjectsController < ApplicationController
     @search = Project.search(params[:q])
     
     #@projects = Project.all
-    
 
-    
     if params[:searchnear].present?
       #@projects = @search.result(distinct: true).near(params[:searchnear], 100).paginate(:page => params[:page], :per_page => 25)
       @projects = @search.result(distinct: true).near(params[:searchnear], 60).paginate(:page => params[:page], :per_page => 25)
@@ -101,13 +99,17 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
     @project_picon = @project.project_picons.build
+    @project_picons = @project.project_picons.all
     @project_cicon = @project.project_cicons.build
+    @project_cicons = @project.project_cicons.all
   end
 
   # GET /projects/1/edit
   def edit
     @project_picon = @project.project_picons.build
+    @project_picons = @project.project_picons.all
     @project_cicon = @project.project_cicons.build
+    @project_cicons = @project.project_cicons.all
   end
 
   # POST /projects
