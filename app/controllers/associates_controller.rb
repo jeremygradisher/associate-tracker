@@ -139,6 +139,8 @@ class AssociatesController < ApplicationController
   # POST /associates.json
   def create
      @associate = Associate.new(associate_params)
+     
+     @associate_attachments = @associate.associate_attachments.all
 
      respond_to do |format|
        if @associate.save
@@ -192,6 +194,8 @@ class AssociatesController < ApplicationController
   # PATCH/PUT /associates/1
   # PATCH/PUT /associates/1.json
   def update
+    @associate_attachments = @associate.associate_attachments.all
+    
     respond_to do |format|
       if @associate.update(associate_params)
         if params.has_key?(:associate_attachments)
