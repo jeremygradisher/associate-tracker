@@ -27,7 +27,9 @@
        <%= f.label :associate_image, :class => 'control-label col-lg-2'  %>
         <div class="col-lg-4">
           <% @associate_attachments.each do |p| %>
-                <%= image_tag p.avatar_url, :style => 'max-width:90%;padding:5%;' %><br>
+              <div style="margin-left:auto;margin-right:auto;text-align:center;">
+                <%= image_tag p.avatar_url, :style => 'max-width:90%;max-height:120px;padding:1%;' %>
+              </div><br>
                 
                 <div style="margin-left:auto;margin-right:auto;text-align:center;">
                 <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
