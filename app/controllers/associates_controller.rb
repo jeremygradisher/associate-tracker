@@ -112,6 +112,7 @@ class AssociatesController < ApplicationController
   def new
     @associate = Associate.new
     @associate_attachment = @associate.associate_attachments.build
+    @associate_attachments = @associate.associate_attachments.all
     @associate_resume = @associate.associate_resumes.build
     @associate_gresume = @associate.associate_gresumes.build
     @associate_contract = @associate.associate_contracts.build
@@ -124,6 +125,7 @@ class AssociatesController < ApplicationController
   # GET /associates/1/edit
   def edit
     @associate_attachment = @associate.associate_attachments.build
+    @associate_attachments = @associate.associate_attachments.all
     @associate_resume = @associate.associate_resumes.build
     @associate_gresume = @associate.associate_gresumes.build
     @associate_contract = @associate.associate_contracts.build
