@@ -28,7 +28,7 @@
         <div class="col-lg-4">
           <% @associate_attachments.each do |p| %>
               <div style="margin-left:auto;margin-right:auto;text-align:center;">
-                <%= image_tag p.avatar_url, :style => 'max-width:90%;max-height:120px;padding:1%;' %>
+                <%= image_tag p.avatar_url, :style => 'max-width:90%;max-height:60px;padding:1%;' %>
               </div><br>
                 
                 <div style="margin-left:auto;margin-right:auto;text-align:center;">
@@ -320,6 +320,9 @@
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 associates_path, :class => 'btn btn-default' %>
+      <!-- The following does not work with new - needs some additional logic -->
+      <%#= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                associate_path(@associate), :class => 'btn btn-default' %>
     </div>
   </div>
 

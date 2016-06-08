@@ -94,8 +94,19 @@
       </div>
     <% end %>
     <% if @project.project_start.length >= 1 || @project.project_finish.length >= 1 %>
+    
+    
+    <% finish_parsed_time = Time.strptime(@project.project_finish,"%m/%d/%Y") %>
+    <% start_parsed_time = Time.strptime(@project.project_start,"%m/%d/%Y") %>
+
+    <div class="show3">
+      Project Duration:
+    <%= (finish_parsed_time.to_date - start_parsed_time.to_date).to_i %> days
+    </div>
+    
     <hr>
     <% end %>
+    
   
     <% if @project.client_name.length >= 1 %>
       <div class="show2">
