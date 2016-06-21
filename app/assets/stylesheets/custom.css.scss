@@ -158,3 +158,28 @@ a:hover {
 }
 
 
+.navbar-brand {
+    float: left;
+    padding: 8px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    height: 50px;
+}
+
+.form-control-image {
+    vertical-align: top;
+    height:18pt;
+    margin-top:0;
+    margin-bottom:0;    
+    border-radius:4px;
+    margin-right:4px;
+}
+
+.form-control-button {
+    vertical-align: top;
+    font-size:20pt;
+    line-height:18pt;
+    margin-top:0;
+    margin-bottom:0;
+    margin-right:4px;
+}

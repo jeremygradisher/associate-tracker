@@ -114,12 +114,19 @@ class AssociatesController < ApplicationController
     @associate_attachment = @associate.associate_attachments.build
     @associate_attachments = @associate.associate_attachments.all
     @associate_resume = @associate.associate_resumes.build
+    @associate_resumes = @associate.associate_resumes.all
     @associate_gresume = @associate.associate_gresumes.build
+    @associate_gresumes = @associate.associate_gresumes.all
     @associate_contract = @associate.associate_contracts.build
+    @associate_contracts = @associate.associate_contracts.all
     @associate_w9 = @associate.associate_w9s.build
+    @associate_w9s = @associate.associate_w9s.all
     @associate_direct_deposit = @associate.associate_direct_deposits.build
+    @associate_direct_deposits = @associate.associate_direct_deposits.all
     @associate_drivers_license = @associate.associate_drivers_licenses.build
+    @associate_drivers_licenses = @associate.associate_drivers_licenses.all
     @associate_drivers_insurance = @associate.associate_drivers_insurances.build
+    @associate_drivers_insurances = @associate.associate_drivers_insurances.all
   end
 
   # GET /associates/1/edit
@@ -127,12 +134,19 @@ class AssociatesController < ApplicationController
     @associate_attachment = @associate.associate_attachments.build
     @associate_attachments = @associate.associate_attachments.all
     @associate_resume = @associate.associate_resumes.build
+    @associate_resumes = @associate.associate_resumes.all
     @associate_gresume = @associate.associate_gresumes.build
+    @associate_gresumes = @associate.associate_gresumes.all
     @associate_contract = @associate.associate_contracts.build
+    @associate_contracts = @associate.associate_contracts.all
     @associate_w9 = @associate.associate_w9s.build
+    @associate_w9s = @associate.associate_w9s.all
     @associate_direct_deposit = @associate.associate_direct_deposits.build
+    @associate_direct_deposits = @associate.associate_direct_deposits.all
     @associate_drivers_license = @associate.associate_drivers_licenses.build
+    @associate_drivers_licenses = @associate.associate_drivers_licenses.all
     @associate_drivers_insurance = @associate.associate_drivers_insurances.build
+    @associate_drivers_insurances = @associate.associate_drivers_insurances.all
   end
 
   # POST /associates
