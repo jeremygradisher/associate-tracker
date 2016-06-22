@@ -97,6 +97,7 @@ class ProjectsController < ApplicationController
     @project_prevcontracts = @project.project_prevcontracts.all
     @project_invoices = @project.project_invoices.all
     @project_pw9s = @project.project_pw9s.all
+    @project_pdocuments = @project.project_pdocuments.all
     @services = @project.services.all
   end
 
@@ -116,7 +117,10 @@ class ProjectsController < ApplicationController
     @project_invoice = @project.project_invoices.build
     @project_pw9 = @project.project_pw9s.build
     @project_pw9s = @project.project_pw9s.all
+    @project_invoices = @project.project_invoices.build
     @project_invoices = @project.project_invoices.all
+    @project_pdocument = @project.project_pdocuments.build
+    @project_pdocuments = @project.project_pdocuments.all
   end
 
   # GET /projects/1/edit
@@ -134,7 +138,10 @@ class ProjectsController < ApplicationController
     @project_invoice = @project.project_invoices.build
     @project_pw9 = @project.project_pw9s.build
     @project_pw9s = @project.project_pw9s.all
+    @project_invoices = @project.project_invoices.build
     @project_invoices = @project.project_invoices.all
+    @project_pdocument = @project.project_pdocuments.build
+    @project_pdocuments = @project.project_pdocuments.all
   end
 
   # POST /projects
@@ -177,6 +184,11 @@ class ProjectsController < ApplicationController
          if params.has_key?(:project_pw9s)
            params[:project_pw9s]['pw9'].each do |a|
               @project_pw9 = @project.project_pw9s.create!(:pw9 => a)
+           end
+         end
+         if params.has_key?(:project_pdocuments)
+           params[:project_pdocuments]['pdocument'].each do |a|
+              @project_pdocument = @project.project_pdocuments.create!(:pdocument => a)
            end
          end
          format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -226,6 +238,11 @@ class ProjectsController < ApplicationController
               @project_pw9 = @project.project_pw9s.create!(:pw9 => a)
            end
         end
+        if params.has_key?(:project_pdocuments)
+           params[:project_pdocuments]['pdocument'].each do |a|
+              @project_pdocument = @project.project_pdocuments.create!(:pdocument => a)
+           end
+        end
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -253,6 +270,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :client_name, :client_contact, :client_meeting, :client_proposal, :client_billing, :client_street, :client_city, :client_state, :client_zip, :link, :project_street, :project_city, :project_state, :project_zip, :status, :project_start, :project_finish, :brief_description, :services, :staffing_notes, :deal_terms, :rate, :additional_terms, :latitude, :longitude, { associate_ids:[] }, { service_ids:[] }, project_picons_attributes: [:id, :project_id, :picon], project_cicons_attributes: [:id, :project_id, :cicon], project_pproposals_attributes: [:id, :project_id, :pproposal], project_pcontracts_attributes: [:id, :project_id, :pcontract], project_prevcontracts_attributes: [:id, :project_id, :prevcontract], project_invoices_attributes: [:id, :project_id, :invoice], project_pw9s_attributes: [:id, :project_id, :pw9])
+      params.require(:project).permit(:name, :client_name, :client_contact, :client_meeting, :client_proposal, :client_billing, :client_street, :client_city, :client_state, :client_zip, :link, :project_street, :project_city, :project_state, :project_zip, :status, :project_start, :project_finish, :brief_description, :services, :staffing_notes, :deal_terms, :rate, :additional_terms, :latitude, :longitude, { associate_ids:[] }, { service_ids:[] }, project_picons_attributes: [:id, :project_id, :picon], project_cicons_attributes: [:id, :project_id, :cicon], project_pproposals_attributes: [:id, :project_id, :pproposal], project_pcontracts_attributes: [:id, :project_id, :pcontract], project_prevcontracts_attributes: [:id, :project_id, :prevcontract], project_invoices_attributes: [:id, :project_id, :invoice], project_pw9s_attributes: [:id, :project_id, :pw9], project_pdocuments_attributes: [:id, :project_id, :pdocument])
     end
 end

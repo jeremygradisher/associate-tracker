@@ -349,7 +349,7 @@
         <% end %>
       </div>
     <% else %>  
-         <%= f.label :pproposal, :class => 'control-label col-lg-2'  %>
+         <%= f.label :proposal, :class => 'control-label col-lg-2'  %>
          <div class="col-lg-4">
          <%= f.file_field :pproposal, :multiple => true, name: "project_pproposals[pproposal][]", :class => 'form-control' %>
          </div>
@@ -358,7 +358,7 @@
   
   <div class="form-group">  
   <% if @project_pcontracts.exists? %>
-    <%= f.label :pcontract, :class => 'control-label col-lg-2'  %>
+    <%= f.label :contract, :class => 'control-label col-lg-2'  %>
       <div class="col-lg-10">
         <% @project_pcontracts.each do |p| %>
               <div class="form-control">
@@ -375,7 +375,7 @@
         <% end %>
       </div>
     <% else %>  
-         <%= f.label :pcontract, :class => 'control-label col-lg-2'  %>
+         <%= f.label :contract, :class => 'control-label col-lg-2'  %>
          <div class="col-lg-10">
          <%= f.file_field :pcontract, :multiple => true, name: "project_pcontracts[pcontract][]", :class => 'form-control' %>
          </div>
@@ -384,7 +384,7 @@
   
   <div class="form-group">  
   <% if @project_prevcontracts.exists? %>
-    <%= f.label :prevcontract, :class => 'control-label col-lg-2'  %>
+    <%= f.label :revised_contract, :class => 'control-label col-lg-2'  %>
       <div class="col-lg-10">
         <% @project_prevcontracts.each do |p| %>
               <div class="form-control">
@@ -401,7 +401,7 @@
         <% end %>
       </div>
     <% else %>  
-         <%= f.label :prevcontract, :class => 'control-label col-lg-2'  %>
+         <%= f.label :revised_contract, :class => 'control-label col-lg-2'  %>
          <div class="col-lg-10">
          <%= f.file_field :prevcontract, :multiple => true, name: "project_prevcontracts[prevcontract][]", :class => 'form-control' %>
          </div>
@@ -436,7 +436,7 @@
   
   <div class="form-group">  
   <% if @project_pw9s.exists? %>
-    <%= f.label :pw9, :class => 'control-label col-lg-2'  %>
+    <%= f.label :w9, :class => 'control-label col-lg-2'  %>
       <div class="col-lg-10">
         <% @project_pw9s.each do |p| %>
               <div class="form-control">
@@ -453,9 +453,35 @@
         <% end %>
       </div>
     <% else %>  
-         <%= f.label :pw9, :class => 'control-label col-lg-2'  %>
+         <%= f.label :w9, :class => 'control-label col-lg-2'  %>
          <div class="col-lg-10">
          <%= f.file_field :pw9, :multiple => true, name: "project_pw9s[pw9][]", :class => 'form-control' %>
+         </div>
+    <% end %>
+  </div>
+  
+  <div class="form-group">  
+  <% if @project_pdocuments.exists? %>
+    <%= f.label :document, :class => 'control-label col-lg-2'  %>
+      <div class="col-lg-10">
+        <% @project_pdocuments.each do |p| %>
+              <div class="form-control">
+              <%= link_to p.pdocument_url, p.pdocument_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
+              <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+                    edit_project_pdocument_path(p), :class => 'form-control-button', 
+                    :style => 'color:#428bca', :title => 'Edit Attachment'  %>
+              <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+                    project_pdocument_path(p),
+                    :method => 'delete', :style => 'color:#d9534f;',
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                    :class => 'form-control-button', :title => 'Delete Attachment'  %>
+              </div>
+        <% end %>
+      </div>
+    <% else %>  
+         <%= f.label :document, :class => 'control-label col-lg-2'  %>
+         <div class="col-lg-10">
+         <%= f.file_field :pdocument, :multiple => true, name: "project_pdocuments[pdocument][]", :class => 'form-control' %>
          </div>
     <% end %>
   </div>

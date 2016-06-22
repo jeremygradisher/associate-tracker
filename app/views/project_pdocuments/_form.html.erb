@@ -1,0 +1,21 @@
+<%= link_to @project_pdocument.pdocument, @project_pdocument.pdocument_url, :target => '_blank'  %>
+  <%= form_for(@project_pdocument) do |f| %>
+    <% if @project_pdocument.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project_pdocument.errors.count, "error") %> prohibited this project_pdocument from being saved:</h2>
+
+      <ul>
+      <% @project_pdocument.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :pdocument %><br>
+      <%= f.file_field :pdocument, :id => "image_picture" %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

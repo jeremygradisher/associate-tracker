@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Project Pdocuments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Project</th>
+      <th>Pdocument</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @project_pdocuments.each do |project_pdocument| %>
+      <tr>
+        <td><%= project_pdocument.project_id %></td>
+        <td><%= project_pdocument.pdocument %></td>
+        <td><%= link_to 'Show', project_pdocument %></td>
+        <td><%= link_to 'Edit', edit_project_pdocument_path(project_pdocument) %></td>
+        <td><%= link_to 'Destroy', project_pdocument, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project pdocument', new_project_pdocument_path %>

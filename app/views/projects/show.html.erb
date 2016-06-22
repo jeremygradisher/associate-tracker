@@ -308,6 +308,31 @@
   <% end %>
   </div>
   
+  <div class="well" style="text-align:center;float:left;width:47%;margin-right:3%;">  
+  <strong>Project Documents:</strong>
+  <% if @project_pdocuments.exists? %>
+      <% @project_pdocuments.each do |p| %>
+        <%= link_to '<i class="fa fa-eye"></i>'.html_safe,
+                   p.pdocument_url, :class => 'btn btn-default', 
+                   :title => 'View Attachment', :target => '_blank'  %>
+            <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+                   edit_project_pdocument_path(p), :class => 'btn btn-primary', 
+                   :title => 'Edit Attachment' %>
+            <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+                project_pdocument_path(p),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger', :title => 'Destroy Attachment' %>
+            <%#= link_to '<i class="fa fa-upload"></i>'.html_safe,
+                   edit_project_path(@project), :class => 'btn btn-primary', 
+                   :title => 'Upload Additional Document' %><br>
+      <% end %>
+  <% else %>
+    <%= link_to '<i class="fa fa-upload"></i>'.html_safe,
+         edit_project_path(@project), :class => 'btn btn-primary', :title => 'Upload' %>
+  <% end %>
+  </div>
+  
   <hr style="clear:both;">
     
   <% if @project.link.length >= 1 %>

@@ -24,6 +24,9 @@ class Project < ActiveRecord::Base
     
     has_many :project_pw9s, dependent: :destroy
     accepts_nested_attributes_for :project_pw9s
+    
+    has_many :project_pdocuments, dependent: :destroy
+    accepts_nested_attributes_for :project_pdocuments
   
     validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 50 }
   

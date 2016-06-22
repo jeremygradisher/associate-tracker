@@ -1,0 +1,8 @@
+<h1>Editing Project Pdocument</h1>
+
+<%= render 'form' %>
+
+<%#= link_to 'Show', @project_pdocument %> |
+<%#= link_to 'Back', project_pdocuments_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              @project_pdocument.project, :class => 'btn btn-default'  %>
