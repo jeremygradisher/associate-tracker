@@ -93,6 +93,7 @@ class ProjectsController < ApplicationController
     @project_picons = @project.project_picons.all
     @project_cicons = @project.project_cicons.all
     @project_pproposals = @project.project_pproposals.all
+    @project_pcontracts = @project.project_pcontracts.all
     @services = @project.services.all
   end
 
@@ -105,6 +106,8 @@ class ProjectsController < ApplicationController
     @project_cicons = @project.project_cicons.all
     @project_pproposal = @project.project_pproposals.build
     @project_pproposals = @project.project_pproposals.all
+    @project_pcontract = @project.project_pcontracts.build
+    @project_pcontracts = @project.project_pcontracts.all
   end
 
   # GET /projects/1/edit
@@ -115,6 +118,8 @@ class ProjectsController < ApplicationController
     @project_cicons = @project.project_cicons.all
     @project_pproposal = @project.project_pproposals.build
     @project_pproposals = @project.project_pproposals.all
+    @project_pcontract = @project.project_pcontracts.build
+    @project_pcontracts = @project.project_pcontracts.all
   end
 
   # POST /projects
@@ -137,6 +142,11 @@ class ProjectsController < ApplicationController
          if params.has_key?(:project_pproposals)
            params[:project_pproposals]['pproposal'].each do |a|
               @project_pproposal = @project.project_pproposals.create!(:pproposal => a)
+           end
+         end
+         if params.has_key?(:project_pcontracts)
+           params[:project_pcontracts]['pcontract'].each do |a|
+              @project_pcontract = @project.project_pcontracts.create!(:pcontract => a)
            end
          end
          format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -166,6 +176,11 @@ class ProjectsController < ApplicationController
               @project_pproposal = @project.project_pproposals.create!(:pproposal => a)
            end
         end
+        if params.has_key?(:project_pcontracts)
+           params[:project_pcontracts]['pcontract'].each do |a|
+              @project_pcontract = @project.project_pcontracts.create!(:pcontract => a)
+           end
+        end
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -193,6 +208,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :client_name, :client_contact, :client_meeting, :client_proposal, :client_billing, :client_street, :client_city, :client_state, :client_zip, :link, :project_street, :project_city, :project_state, :project_zip, :status, :project_start, :project_finish, :brief_description, :services, :staffing_notes, :deal_terms, :rate, :additional_terms, :latitude, :longitude, { associate_ids:[] }, { service_ids:[] }, project_picons_attributes: [:id, :project_id, :picon], project_cicons_attributes: [:id, :project_id, :cicon], project_pproposals_attributes: [:id, :project_id, :pproposal])
+      params.require(:project).permit(:name, :client_name, :client_contact, :client_meeting, :client_proposal, :client_billing, :client_street, :client_city, :client_state, :client_zip, :link, :project_street, :project_city, :project_state, :project_zip, :status, :project_start, :project_finish, :brief_description, :services, :staffing_notes, :deal_terms, :rate, :additional_terms, :latitude, :longitude, { associate_ids:[] }, { service_ids:[] }, project_picons_attributes: [:id, :project_id, :picon], project_cicons_attributes: [:id, :project_id, :cicon], project_pproposals_attributes: [:id, :project_id, :pproposal], project_pcontracts_attributes: [:id, :project_id, :pcontract])
     end
 end

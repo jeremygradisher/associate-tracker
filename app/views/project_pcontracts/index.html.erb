@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Project Pcontracts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Project</th>
+      <th>Pcontract</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @project_pcontracts.each do |project_pcontract| %>
+      <tr>
+        <td><%= project_pcontract.project_id %></td>
+        <td><%= project_pcontract.pcontract %></td>
+        <td><%= link_to 'Show', project_pcontract %></td>
+        <td><%= link_to 'Edit', edit_project_pcontract_path(project_pcontract) %></td>
+        <td><%= link_to 'Destroy', project_pcontract, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project pcontract', new_project_pcontract_path %>

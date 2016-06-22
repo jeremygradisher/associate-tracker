@@ -1,0 +1,21 @@
+<%= link_to @project_pcontract.pcontract, @project_pcontract.pcontract_url, :target => '_blank'  %>
+  <%= form_for(@project_pcontract) do |f| %>
+    <% if @project_pcontract.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project_pcontract.errors.count, "error") %> prohibited this project_pcontract from being saved:</h2>
+
+      <ul>
+      <% @project_pcontract.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :pcontract %><br>
+      <%= f.file_field :pcontract, :id => "image_picture" %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

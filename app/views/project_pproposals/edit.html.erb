@@ -2,5 +2,7 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @project_pproposal %> |
-<%= link_to 'Back', project_pproposals_path %>
+<%#= link_to 'Show', @project_pproposal %> |
+<%#= link_to 'Back', project_pproposals_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              @project_pproposal.project, :class => 'btn btn-default'  %>
