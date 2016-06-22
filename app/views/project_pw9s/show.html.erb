@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @project_pw9.project_id %>
+</p>
+
+<p>
+  <strong>Pw9:</strong>
+  <%= @project_pw9.pw9 %>
+</p>
+
+<%= link_to 'Edit', edit_project_pw9_path(@project_pw9) %> |
+<%= link_to 'Back', project_pw9s_path %>
