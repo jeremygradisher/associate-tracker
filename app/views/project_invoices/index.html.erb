@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Project Invoices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Project</th>
+      <th>Invoice</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @project_invoices.each do |project_invoice| %>
+      <tr>
+        <td><%= project_invoice.project_id %></td>
+        <td><%= project_invoice.invoice %></td>
+        <td><%= link_to 'Show', project_invoice %></td>
+        <td><%= link_to 'Edit', edit_project_invoice_path(project_invoice) %></td>
+        <td><%= link_to 'Destroy', project_invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project invoice', new_project_invoice_path %>

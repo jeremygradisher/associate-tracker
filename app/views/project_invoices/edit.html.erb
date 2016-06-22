@@ -1,0 +1,8 @@
+<h1>Editing Project Invoice</h1>
+
+<%= render 'form' %>
+
+<%#= link_to 'Show', @project_invoice %> |
+<%#= link_to 'Back', project_invoices_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              @project_invoice.project, :class => 'btn btn-default'  %>

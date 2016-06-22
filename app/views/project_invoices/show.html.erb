@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @project_invoice.project_id %>
+</p>
+
+<p>
+  <strong>Invoice:</strong>
+  <%= @project_invoice.invoice %>
+</p>
+
+<%= link_to 'Edit', edit_project_invoice_path(@project_invoice) %> |
+<%= link_to 'Back', project_invoices_path %>

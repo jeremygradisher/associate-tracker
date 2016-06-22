@@ -1,0 +1,21 @@
+<%= link_to @project_invoice.invoice, @project_invoice.invoice_url, :target => '_blank'  %>
+  <%= form_for(@project_invoice) do |f| %>
+    <% if @project_invoice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project_invoice.errors.count, "error") %> prohibited this project_invoice from being saved:</h2>
+
+      <ul>
+      <% @project_invoice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :invoice %><br>
+      <%= f.file_field :invoice, :id => "image_picture" %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

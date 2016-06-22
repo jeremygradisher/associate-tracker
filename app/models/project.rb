@@ -18,6 +18,9 @@ class Project < ActiveRecord::Base
     
     has_many :project_prevcontracts, dependent: :destroy
     accepts_nested_attributes_for :project_prevcontracts
+    
+    has_many :project_invoices, dependent: :destroy
+    accepts_nested_attributes_for :project_invoices
   
     validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 50 }
   
