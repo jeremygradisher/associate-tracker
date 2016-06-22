@@ -1,0 +1,21 @@
+<%= link_to @project_pproposal.pproposal, @project_pproposal.pproposal_url, :target => '_blank'  %>
+  <%= form_for(@project_pproposal) do |f| %>
+    <% if @project_pproposal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project_pproposal.errors.count, "error") %> prohibited this project_pproposal from being saved:</h2>
+
+      <ul>
+      <% @project_pproposal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :pproposal %><br>
+      <%= f.file_field :pproposal, :id => "image_picture" %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

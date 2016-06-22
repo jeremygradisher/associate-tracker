@@ -182,27 +182,40 @@
     </div>
   <% end %>
   
+  <hr>
+  <div class="well" style="text-align:center;float:left;width:47%;margin-right:3%;">  
+  <strong>Project Proposal:</strong>
+  <% if @project_pproposals.exists? %>
+      <% @project_pproposals.each do |p| %>
+        <%= link_to '<i class="fa fa-eye"></i>'.html_safe,
+                   p.pproposal_url, :class => 'btn btn-default', 
+                   :title => 'View Attachment', :target => '_blank'  %>
+            <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+                   edit_project_pproposal_path(p), :class => 'btn btn-primary', 
+                   :title => 'Edit Attachment' %>
+            <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+                project_pproposal_path(p),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger', :title => 'Destroy Attachment' %>
+            <%#= link_to '<i class="fa fa-upload"></i>'.html_safe,
+                   edit_project_path(@project), :class => 'btn btn-primary', 
+                   :title => 'Upload Additional Document' %><br>
+      <% end %>
+  <% else %>
+    <%= link_to '<i class="fa fa-upload"></i>'.html_safe,
+         edit_project_path(@project), :class => 'btn btn-primary', :title => 'Upload' %>
+  <% end %>
+  </div>
+  <hr style="clear:both;">
   
-     <script type="text/javascript">
+  
+    <script type="text/javascript">
       $(document).ready(function() {
           $(".tag-test").tagit({
-          
               // Options
               readOnly: true,
-   
-              // Events
-              onTagClicked: function(event, ui) {
-                  console.log(ui.tag);
-                  console.log(ui.tagLabel);
-                  //window.location = ui.tag;
-                  window.open(ui.tagLabel);
-              },
-              onTagLimitExceeded: function(event, ui) {
-                  console.log(ui.tag);
-              }
-          
           });
-  
       });
     </script> 
     
