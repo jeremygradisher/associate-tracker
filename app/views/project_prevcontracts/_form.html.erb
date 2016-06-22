@@ -1,0 +1,25 @@
+<%= form_for(@project_prevcontract) do |f| %>
+  <% if @project_prevcontract.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project_prevcontract.errors.count, "error") %> prohibited this project_prevcontract from being saved:</h2>
+
+      <ul>
+      <% @project_prevcontract.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :project_id %><br>
+    <%= f.number_field :project_id %>
+  </div>
+  <div class="field">
+    <%= f.label :prevcontract %><br>
+    <%= f.text_field :prevcontract %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

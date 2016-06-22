@@ -382,6 +382,32 @@
     <% end %>
   </div>
   
+  <div class="form-group">  
+  <% if @project_prevcontracts.exists? %>
+    <%= f.label :prevcontract, :class => 'control-label col-lg-2'  %>
+      <div class="col-lg-10">
+        <% @project_prevcontracts.each do |p| %>
+              <div class="form-control">
+              <%= link_to p.prevcontract_url, p.prevcontract_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
+              <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+                    edit_project_prevcontract_path(p), :class => 'form-control-button', 
+                    :style => 'color:#428bca', :title => 'Edit Attachment'  %>
+              <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+                    project_prevcontract_path(p),
+                    :method => 'delete', :style => 'color:#d9534f;',
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                    :class => 'form-control-button', :title => 'Delete Attachment'  %>
+              </div>
+        <% end %>
+      </div>
+    <% else %>  
+         <%= f.label :prevcontract, :class => 'control-label col-lg-2'  %>
+         <div class="col-lg-10">
+         <%= f.file_field :prevcontract, :multiple => true, name: "project_prevcontracts[prevcontract][]", :class => 'form-control' %>
+         </div>
+    <% end %>
+  </div>
+  
   
   
   
