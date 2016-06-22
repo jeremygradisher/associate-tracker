@@ -45,13 +45,13 @@
     <table style="width:100%">
       <tr>
         <td style="width:50%">
-          <%= model_class.human_attribute_name(:phone_primary) %>: 
+          <u><%= model_class.human_attribute_name(:phone_primary) %></u>: 
           <%#= number_to_phone(@associate.phone_primary, area_code: true) %>
           <%= @associate.phone_primary %>
         </td>
       
         <td>
-          <%= model_class.human_attribute_name(:phone_cell) %>:
+          <u><%= model_class.human_attribute_name(:phone_cell) %></u>:
           <%#= number_to_phone(@associate.phone_cell, area_code: true) %>
           <%= @associate.phone_cell %>
         </td>
@@ -65,14 +65,14 @@
     <table style="width:100%">
       <tr>
         <td style="width:50%">
-          <%= model_class.human_attribute_name(:email) %>: 
+          <u><%= model_class.human_attribute_name(:email) %></u>: 
           <a href="mailto:<%= @associate.email %>">
             <%= @associate.email %>
           </a>
         </td>
       
         <td>
-          <%= model_class.human_attribute_name(:email_personal) %>: 
+          <u><%= model_class.human_attribute_name(:email_personal) %></u>: 
           <a href="mailto:<%= @associate.email_personal %>">
             <%= @associate.email_personal %>
           </a>
@@ -84,14 +84,14 @@
     <table style="width:100%">
       <tr>
         <td style="width:50%">
-          <u><%= model_class.human_attribute_name(:address_home) %>:</u><br>
+          <u><%= model_class.human_attribute_name(:address_home) %></u>:<br>
           <%= @associate.primary_street %><br>
           <%= @associate.primary_city %> <%= @associate.primary_state %> <%= @associate.primary_zip %><br>
 
         </td>
       
         <td>        
-          <u><%= model_class.human_attribute_name(:address_business) %>:</u><br>
+          <u><%= model_class.human_attribute_name(:address_business) %></u>:<br>
           <%= @associate.business_street %><br>
           <%= @associate.business_city %> <%= @associate.business_state %> <%= @associate.business_zip %>
         </td>
@@ -112,11 +112,11 @@
   <div class="show2">Details:</div>
   
   <div class="show3">
-      <%= model_class.human_attribute_name(:ein_ss) %>:
+      <u><%= model_class.human_attribute_name(:ein_ss) %></u>:
       <%= @associate.ein_ss %>
   </div>
   <div class="show3">
-    <%= model_class.human_attribute_name(:project_history) %>:
+    <u><%= model_class.human_attribute_name(:project_history) %></u>:
     <%= simple_format(@associate.project_history) %>
   </div>
   
@@ -134,16 +134,16 @@
     <table style="width:100%;margin-bottom:10px;">
       <tr>
         <td style="width:50%">
-          <%= model_class.human_attribute_name(:birthday) %>:
+          <u><%= model_class.human_attribute_name(:birthday) %></u>:
           <%= @associate.birthday %>
         </td>
         <td style="width:50%">    
-          <%= model_class.human_attribute_name(:family) %>:
+          <u><%= model_class.human_attribute_name(:family) %></u>:
           <%= @associate.family %>
         </td>
       </tr>
     </table>
-    <%= model_class.human_attribute_name(:notes) %>:
+    <u><%= model_class.human_attribute_name(:notes) %></u>:
     <%= @associate.notes %>
   </div>
 </div>

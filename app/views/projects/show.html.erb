@@ -1,42 +1,19 @@
 <%- model_class = Project -%>
 
-<!-- Back buttons -->
-  <div class="col-lg-12" style="text-align:center;">
-    
-      <%= link_to '<i class="fa fa-chevron-left"></i>'.html_safe,
-                    projects_path, :class => 'btn btn-default',
-                    :title => 'Back to Projects' %>
-      <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
-                    edit_project_path(@project), :class => 'btn btn-primary', 
-                    :title => 'Edit Project'  %>
-      <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
-                    project_path(@project),
-                    :method => 'delete',
-                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                    :class => 'btn btn-danger', :title => 'Delete Project' %>
-    <hr>
-  </div>
-<!-- end Back buttons -->
-
-<!--<div class="page-header"><h1><%#=t '.title', :default => model_class.model_name.human.titleize %></h1></div>-->
-
 <!-- left column 1/3 -->
   <div class="col-lg-4">
     <% @project_picons.each do |p| %>
-          <%= image_tag p.picon_url, :style => 'max-width:90%;padding:5%;' %><br>
-          
-          <div style="margin-left:auto;margin-right:auto;text-align:center;">
-          <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
-                edit_project_picon_path(p), :class => 'btn btn-primary', 
-                :title => 'Edit Attachment'  %>
-          <%#= link_to "Destroy Attachment", destroy_associate_attachment_path(p) %>
-          <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
-                project_picon_path(p),
-                :method => 'delete',
-                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                :class => 'btn btn-danger', :title => 'Delete Attachment'  %>
-          </div>
-          
+          <%= image_tag p.picon_url, :style => 'max-width:90%;padding:5%;' %>
+    <% end %>
+    
+    <hr>
+    
+    <% if @project.client_name.length >= 1 %>
+      <p style="text-align:center;">Client: <%= @project.client_name %></p>
+    <% end %>
+    
+    <% @project_cicons.each do |p| %>
+      <%= image_tag p.cicon_url, :style => 'max-width:90%;padding:5%;' %>
     <% end %>
   </div>
 <!-- end left column 1/3 -->
@@ -48,13 +25,12 @@
             
             <span style="margin-left:40px;">
               <% if @project.status == 'Prospect' %>
-                <i class="fa fa-check" style="color:#6991fd" title="Prospect"></i> Prospect
+                <span style="color:#6991fd"><i class="fa fa-check-square-o" title="Prospect"></i> Prospect</span>
               <% elsif @project.status == 'Complete' %>
-                <i class="fa fa-check" style="color:#e661ac" title="Complete"></i> Complete
+                <span style="color:#e661ac"><i class="fa fa-check-square-o" title="Complete"></i> Complete</span>
               <% else %>
-                <i class="fa fa-check" style="color:#e78b23" title="In Process"></i> In Process
+                <span style="color:#e78b23"><i class="fa fa-check-square-o" title="In Process"></i> In Process</span>
               <% end %>
-              
             </span>
     </div>
     
@@ -69,129 +45,115 @@
       </div>
     <% end %>
     <hr>
-    
-    <% if @project.project_street.length >= 1 %>
-      <div class="show2">
-        Project location:
-      </div>
-      <div class="show2">
-        <%= @project.project_street %>
-      </div>
-      <div class="show2">
-        <%= @project.project_city %>, <%= @project.project_state %> <%= @project.project_zip %>
-      </div>
-      <hr>
-    <% end %>
-    
-    <% if @project.project_start.length >= 1 %>
-      <div class="show3">
-        Project Start: <%= @project.project_start %>
-      </div>
-    <% end %>
-    <% if @project.project_finish.length >= 1 %>
-      <div class="show3">
-        Project Finish: <%= @project.project_finish %>
-      </div>
-    <% end %>
-    <% if @project.project_start.length >= 1 || @project.project_finish.length >= 1 %>
-    
-    
-    <% finish_parsed_time = Time.strptime(@project.project_finish,"%m/%d/%Y") %>
-    <% start_parsed_time = Time.strptime(@project.project_start,"%m/%d/%Y") %>
 
     <div class="show3">
-      Project Duration:
-    <%= (finish_parsed_time.to_date - start_parsed_time.to_date).to_i %> days
+      <table style="width:100%">
+        <tr>    
+          <% if @project.project_street.length >= 1 %>
+            <td>
+              <div class="show3">
+                <u>Project location</u>:
+              </div>
+              <div class="show3">
+                <%= @project.name %><br>
+                
+                <%= @project.project_street %><br>
+              
+                <%= @project.project_city %>, <%= @project.project_state %> <%= @project.project_zip %>
+              </div>
+            </td>
+          <% end %>
+              
+          <% if @project.client_billing.length >= 1 %>
+            <td>
+            <div class="show3">      
+                <u><%= model_class.human_attribute_name(:client_billing) %></u>:
+            </div>
+          
+            <div class="show3">      
+                <%= @project.client_billing %><br>
+                <%= @project.client_street %><br>
+                <%= @project.client_city %>,
+                <%= @project.client_state %>
+                <%= @project.client_zip %>
+            </div>
+            </td>
+          <% end %>
+        </tr>
+      </table>
     </div>
     
-    <hr>
-    <% end %>
-    
-  
-    <% if @project.client_name.length >= 1 %>
-      <div class="show2">
-        Client: <%= @project.client_name %>
-      </div>
-      <div class="show2">
-        <div class="col-lg-12">
-          <% @project_cicons.each do |p| %>
-                <%= image_tag p.cicon_url, :style => 'max-width:300px;max-height:200px;padding:5%;' %><br>
-                
-                <div style="margin-left:100px;">
-                <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
-                      edit_project_cicon_path(p), :class => 'btn btn-primary', 
-                      :title => 'Edit Attachment'  %>
-                <%#= link_to "Destroy Attachment", destroy_associate_attachment_path(p) %>
-                <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
-                      project_cicon_path(p),
-                      :method => 'delete',
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-danger', :title => 'Delete Attachment'  %>
-                </div>
-                
+          <% if @project.client_billing.length >= 1 || @project.project_street.length >= 1 %>
+            <hr>
           <% end %>
-        </div>
-      </div>
-    <!-- leave this as the start divider point -->
-    <hr style="clear:both;">      
-      
-    <% end %>
     
-    
+    <table style="width:100%;">
+      <tr>
+        <% if @project.project_start.length >= 1 || @project.project_finish.length >= 1 %>
+        <td>
+          <div class="show3">
+            <u>Project Start</u>: <%= @project.project_start %><br>
+            <u>Project Finish</u>: <%= @project.project_finish %>
+          </div>
+        </td>
+        <% end %>
 
+        <% if @project.project_start.length >= 1 || @project.project_finish.length >= 1 %>
+        <td>
+        <% finish_parsed_time = Time.strptime(@project.project_finish,"%m/%d/%Y") %>
+        <% start_parsed_time = Time.strptime(@project.project_start,"%m/%d/%Y") %>
     
-    
-    
+        <div class="show3">
+          <u>Project Duration</u>:
+        <%= (finish_parsed_time.to_date - start_parsed_time.to_date).to_i %> days
+        </div>
+        
+        </td>
+        <% end %>
+      </tr>
+    </table>
+
+          <% if @project.project_start.length >= 1 || @project.project_finish.length >= 1 %>
+            <hr>
+          <% end %>
+
+  
     <% if @project.client_contact.length >= 1 %>
       <div class="show3">      
-          <%= model_class.human_attribute_name(:client_contact) %>:
+          <u><%= model_class.human_attribute_name(:client_contact) %></u>:
           <%= @project.client_contact %>
       </div>
     <% end %>
     
     <% if @project.client_meeting.length >= 1 %>
       <div class="show3">      
-          <%= model_class.human_attribute_name(:client_meeting) %>:
+          <u><%= model_class.human_attribute_name(:client_meeting) %></u>:
           <%= @project.client_meeting %>
       </div>
     <% end %>
     
     <% if @project.client_proposal.length >= 1 %>
       <div class="show3">      
-          <%= model_class.human_attribute_name(:client_proposal) %>:
+          <u><%= model_class.human_attribute_name(:client_proposal) %></u>:
           <%#= @project.additional_terms %>
           <%= simple_format(@project.client_proposal) %>
       </div>
     <% end %>
-    
-    
-    <% if @project.client_billing.length >= 1 %>
-      <hr>
-      <div class="show3">      
-          <%= model_class.human_attribute_name(:client_billing) %>:
-      </div>
-    
-      <div class="show3">      
-          <%= @project.client_billing %><br>
-          <%= @project.client_street %><br>
-          <%= @project.client_city %>,
-          <%= @project.client_state %>
-          <%= @project.client_zip %>
-      </div>
-      <hr>
-    <% end %>
 
+          <% if @project.client_contact.length >= 1 || @project.client_meeting.length >= 1 || @project.client_proposal.length >= 1 %>
+            <hr>
+          <% end %>
     
   <% if @project.brief_description.length >= 1 %>
     <div class="show3">
-    Description:  <%#= @project.brief_description %>
+    <u>Description</u>:  <%#= @project.brief_description %>
     <%= simple_format(@project.brief_description) %>
     </div>
   <% end %>
   
   <% if @project.staffing_notes.length >= 1 %>
     <div class="show3">
-        <%= model_class.human_attribute_name(:staffing_notes) %>:
+        <u><%= model_class.human_attribute_name(:staffing_notes) %></u>:
         <%#= @project.staffing_notes %>
         <%= simple_format(@project.staffing_notes) %>
     </div>
@@ -199,7 +161,7 @@
     
   <% if @project.deal_terms.length >= 1 %>
     <div class="show3">      
-        <%= model_class.human_attribute_name(:deal_terms) %>:
+        <u><%= model_class.human_attribute_name(:deal_terms) %></u>:
         <%#= @project.deal_terms %>
         <%= simple_format(@project.deal_terms) %>
     </div>
@@ -207,14 +169,14 @@
   
   <% if @project.rate.length >= 1 %>
     <div class="show3">      
-        <%= model_class.human_attribute_name(:rate) %>:
+        <u><%= model_class.human_attribute_name(:rate) %></u>:
         <%= @project.rate %>
     </div>
   <% end %>
   
   <% if @project.additional_terms.length >= 1 %>
     <div class="show3">      
-        <%= model_class.human_attribute_name(:additional_terms) %>:
+        <u><%= model_class.human_attribute_name(:additional_terms) %></u>:
         <%#= @project.additional_terms %>
         <%= simple_format(@project.additional_terms) %>
     </div>
