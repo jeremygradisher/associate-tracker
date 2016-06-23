@@ -32,6 +32,10 @@
                 <span style="color:#e78b23"><i class="fa fa-check-square-o" title="In Process"></i> In Process</span>
               <% end %>
             </span>
+            
+            <% if @project.status == 'Prospect' %>
+            <span style="margin-left:40px;" class="prospect_form"><%= @project.phases %></span>
+            <% end %>
     </div>
     
     <% if @services.length >= 1 %>
