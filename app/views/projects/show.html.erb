@@ -37,9 +37,18 @@
             <span style="margin-left:40px;" class="prospect_form"><%= @project.phases %></span>
             <% end %>
     </div>
+
+    <% if @project.nbd.length >= 1 %>
+      <div class="col-lg-6" style="padding-left:0;">
+        <div class="show3">      
+            <u><%= model_class.human_attribute_name(:nbd) %></u>:
+            <%= @project.nbd %>
+        </div>
+      </div>
+    <% end %>
     
     <% if @services.length >= 1 %>
-      <div class="col-lg-6" style="padding-left:0;">
+      <div class="col-lg-6">
         <div class="show3">
               <span>
                 Services Provided:
@@ -51,14 +60,7 @@
       </div>
     <% end %>
 
-    <% if @project.nbd.length >= 1 %>
-      <div class="col-lg-6">
-        <div class="show3">      
-            <u><%= model_class.human_attribute_name(:nbd) %></u>:
-            <%= @project.nbd %>
-        </div>
-      </div>
-    <% end %>
+
 
     <hr style="clear:both;">
     
@@ -264,8 +266,10 @@
         <u style="margin-left:40px;"><%= model_class.human_attribute_name(:deal_terms) %></u>: 
         <%= @project.deal_terms %>
         
+        <% if @project.status == 'Complete' %>
         <u style="margin-left:40px;"><%= model_class.human_attribute_name(:grand_total) %></u>: 
         <%= @project.grand_total %>
+        <% end %>
     </div>
     <hr>
   <% end %>
