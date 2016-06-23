@@ -2,14 +2,14 @@
     <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
     
 <div class="col-lg-12">
-  <h1 style="text-align:center;margin-bottom:20px;">Greeby Associate Tracker</h1>
+  <h1 style="text-align:center;margin-bottom:20px;">Greeby Associates and Projects Tracker</h1>
   <hr>
 </div>
 
 <div class="col-lg-6">
     <div class="countsleft">
       
-      <h1><strong><%= link_to 'Associates', associates_path %>: <%= @associatescount %></strong></h1>
+      <h1><strong><%= link_to 'Associates', associates_path, :class=> 'stay-black' %>: <%= @associatescount %></strong></h1>
       <!--<p>Associates Positions Counted: <%#= @associatescount2 %></p>-->
       
       <% if @pm_count != 0 %>
@@ -38,7 +38,7 @@
 
 <div class="col-lg-6">
     <div class="countsleft">
-          <h1><strong><%= link_to 'Projects', projects_path  %>: <%= @projectscount %></strong></h1>
+          <h1><strong><%= link_to 'Projects', projects_path, :class=> 'stay-black'  %>: <%= @projectscount %></strong></h1>
           
           
           <% if @prospect_count != 0 %>

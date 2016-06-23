@@ -146,66 +146,9 @@
     <%=f.error_span(:phases) %>
     </div>
   </div>
-  
-  <!--
-  <div class="prospect_form" style="display: none;">This is the Prospect form.</div>
-  <div class="in_process_form" style="display: none;">This is the In Process form.</div>
-  <div class="complete_form" style="display: none;">This is the Complete form.</div>
-  -->
+<!-- Everything above here is on the form no matter the status -->
 
-  
- <script>
-    $(document).ready(function(){
-      //first checking to see what it is and changing
-     if ($('#project_status').val() == "Prospect"){
-        $(".prospect_form").show();
-     }
-     else {
-        $(".prospect_form").hide();
-     }
-     if ($('#project_status').val() == "In Process"){
-        $(".in_process_form").show();
-     }
-     else {
-        $(".in_process_form").hide();
-     }
-     if ($('#project_status').val() == "Complete"){
-        $(".complete_form").show();
-     }
-     else {
-        $(".complete_form").hide();
-     }
-      //end checking to see what it is and changing
-      
-      //then if the status changes
-      $("#project_status").change(function() {
-        if ($("#project_status").val()=="Prospect")
-          $(".prospect_form").show();
-        else
-          $(".prospect_form").hide();
-      });
-      
-      $("#project_status").change(function() {
-        if ($("#project_status").val()=="In Process")
-          $(".in_process_form").show();
-        else
-          $(".in_process_form").hide();
-      });
-      
-      $("#project_status").change(function() {
-        if ($("#project_status").val()=="Complete")
-          $(".complete_form").show();
-        else
-          $(".complete_form").hide();
-      });
-      //end if the status changes
-    });
- </script>
- 
-  
-  
-  
-  
+<!-- 2 Everything here is for prospect status only -->
 <div class="prospect_form"> 
     <hr>
     <div class="form-group">
@@ -218,16 +161,17 @@
     <div class="form-group">
       <%= f.label :client_meeting, :class => 'control-label col-lg-2' %>
       <div class="col-lg-10">
-        <%= f.text_field :client_meeting, :class => 'form-control' %>
+        <%= f.text_field :client_meeting, 'data-provide' => 'datepicker', :class => 'form-control' %>
       </div>
       <%=f.error_span(:client_meeting) %>
     </div>
 </div>
+<!-- 2 end -->
  
  
-
+<!-- 3 only available in process -->
 <div class="in_process_form">
-  <!-- not available during prospect -->
+
   <hr>
   <div class="form-group">  
     <%= f.label :client_billing, :class => 'control-label col-lg-2' %>
@@ -286,15 +230,21 @@
     </div>
     <%=f.error_span(:rate) %>
   </div>  
-  
-  
-  <!-- end not available during prospect -->
+</div>
+<!-- 3 end -->
+
+<div class="complete_form">
+<hr>
+  <div class="form-group">
+    <%= f.label "Project Grand Total", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-4">
+      <%= f.text_field :grand_total, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:grand_total) %>
+  </div>  
 </div>
 
-
-
-
-
+<!-- 4 only avaialable in process -->
 <div class="in_process_form">
   <hr>
   <div class="form-group">
@@ -314,6 +264,13 @@
   </div>
   <hr>
 
+  <div class="form-group">
+    <%= f.label :additional_terms, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :additional_terms, :rows => 4, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:additional_terms) %>
+  </div>
   
   <div class="form-group">
     <%= f.label :staffing_notes, :class => 'control-label col-lg-2' %>
@@ -323,18 +280,13 @@
     </div>
     <%=f.error_span(:staffing_notes) %>
   </div>
-  
-  <div class="form-group">
-    <%= f.label :additional_terms, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_area :additional_terms, :rows => 4, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:additional_terms) %>
-  </div>
 </div>
+<!-- 4 end -->
+
+
+<!-- 5 prospect only -->
+<div class="prospect_form">
   <hr>
-  
-  
   <div class="form-group">  
   <% if @project_pproposals.exists? %>
     <%= f.label :proposal, :class => 'control-label col-lg-2'  %>
@@ -360,7 +312,7 @@
          </div>
     <% end %>
   </div>
-  
+
   <div class="form-group">  
   <% if @project_pcontracts.exists? %>
     <%= f.label :contract, :class => 'control-label col-lg-2'  %>
@@ -412,7 +364,12 @@
          </div>
     <% end %>
   </div>
-  
+</div>
+<!-- 5 end -->
+
+<!-- 6 only available in process -->
+<div class="in_process_form"> 
+<hr>
   <div class="form-group">  
   <% if @project_invoices.exists? %>
     <%= f.label :invoice, :class => 'control-label col-lg-2'  %>
@@ -490,11 +447,11 @@
          </div>
     <% end %>
   </div>
+</div> 
+<!-- 6 end --> 
   
   
-  
-  
-  
+<!-- 7 always available -->  
   <hr>
   <div class="form-group">
     <%= f.label :document_links, :class => 'control-label col-lg-2' %>
@@ -504,14 +461,10 @@
     <%=f.error_span(:link) %>
   </div>
   <hr>
-  
-  <!-- This is what I was using to link the links before tagit
-  <script> 
-    $('.linkto').each(function(){
-     $(this).html( $(this).html().replace(/((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g, '<a href="$1" target="_blank" class="tag-test">$1</a> ') );
-    });
-  </script> 
-  -->
+<!-- 7 end -->
+
+ 
+
 
   <script type="text/javascript">
     $(document).ready(function() {
@@ -582,26 +535,6 @@
   </div>
   -->
   
-  <!--
-     <%#= f.fields_for :project_picons do |p| %>
-       <div class="form-group">
-         <%#= p.label :project_Icon, :class => 'control-label col-lg-2'  %>
-         <div class="col-lg-10">
-         <%#= p.file_field :picon, :multiple => true, name: "project_picons[picon][]" %>
-         </div>
-       </div>
-     <%# end %>
-     
-    <%#= f.fields_for :project_cicons do |p| %>
-       <div class="form-group">
-         <%#= p.label :project_cicon, :class => 'control-label col-lg-2'  %>
-         <div class="col-lg-10">
-         <%#= p.file_field :cicon, :multiple => true, name: "project_cicons[cicon][]" %>
-         </div>
-       </div>
-     <%# end %>
-  -->
-  
   
 
   <div class="form-group">
@@ -609,11 +542,57 @@
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 projects_path, :class => 'btn btn-default' %>
-      
-      <!-- The following does not work with new - needs some additional logic -->
-        <%#= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                project_path(@project), :class => 'btn btn-default' %>
     </div>
   </div>
 
 <% end %>
+
+
+ <script>
+    $(document).ready(function(){
+      //first checking to see what it is and changing
+     if ($('#project_status').val() == "Prospect"){
+        $(".prospect_form").show();
+     }
+     else {
+        $(".prospect_form").hide();
+     }
+     if ($('#project_status').val() == "In Process"){
+        $(".in_process_form").show();
+     }
+     else {
+        $(".in_process_form").hide();
+     }
+     if ($('#project_status').val() == "Complete"){
+        $(".complete_form").show();
+     }
+     else {
+        $(".complete_form").hide();
+     }
+      //end checking to see what it is and changing
+      
+      
+      //then if the status changes
+      $("#project_status").change(function() {
+        if ($("#project_status").val()=="Prospect")
+          $(".prospect_form").show();
+        else
+          $(".prospect_form").hide();
+      });
+      
+      $("#project_status").change(function() {
+        if ($("#project_status").val()=="In Process")
+          $(".in_process_form").show();
+        else
+          $(".in_process_form").hide();
+      });
+      
+      $("#project_status").change(function() {
+        if ($("#project_status").val()=="Complete")
+          $(".complete_form").show();
+        else
+          $(".complete_form").hide();
+      });
+      //end if the status changes
+    });
+ </script>

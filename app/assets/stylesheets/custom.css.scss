@@ -183,3 +183,19 @@ a:hover {
     margin-bottom:0;
     margin-right:4px;
 }
+
+a.stay-black, a.stay-black:visited {
+    color:#000;
+}
+
+a.stay-black:hover {
+    color:#000;
+    background:none;
+    background-color:none;
+}
+
+td > a:hover, td > a:visited {
+    color:#000;
+    background:none !important;
+    background-color:none !important;
+}

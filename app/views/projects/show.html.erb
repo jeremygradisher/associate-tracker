@@ -71,6 +71,8 @@
 
     <hr style="clear:both;">
 
+<!-- if prospect or in process -->
+<% if @project.status == 'Prospect' || @project.status == 'In Process' %>
     <div class="show3">
       <table style="width:100%">
         <tr>    
@@ -111,7 +113,115 @@
           <% if @project.client_billing.length >= 1 || @project.project_street.length >= 1 %>
             <hr>
           <% end %>
+<% end %>
+<!-- if prospect or in process -->
+
+
+
+
+<!-- if prospect -->  
+<% if @project.status == 'Prospect' %>
+    <% if @project.client_contact.length >= 1 %>
+      <div class="show3">      
+          <u><%= model_class.human_attribute_name(:client_contact) %></u>:
+          <%= @project.client_contact %>
+      </div>
+    <% end %>
     
+    <% if @project.client_meeting.length >= 1 %>
+      <div class="show3">      
+          <u><%= model_class.human_attribute_name(:client_meeting) %></u>:
+          <%= @project.client_meeting %>
+      </div>
+    <% end %>
+
+          <% if @project.client_contact.length >= 1 || @project.client_meeting.length >= 1 || @project.client_proposal.length >= 1 %>
+            <hr>
+          <% end %>
+<% end %>
+<!-- end if prospect -->
+
+<!-- no matter what -->
+  <div class="well" style="text-align:center;float:left;width:30%;margin-right:3%;">  
+  <strong>Project Proposal:</strong><br>
+  <% if @project_pproposals.exists? %>
+      <% @project_pproposals.each do |p| %>
+        <%= link_to '<i class="fa fa-eye"></i>'.html_safe,
+                   p.pproposal_url, :class => 'btn btn-default', 
+                   :title => 'View Attachment', :target => '_blank'  %>
+            <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+                   edit_project_pproposal_path(p), :class => 'btn btn-primary', 
+                   :title => 'Edit Attachment' %>
+            <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+                project_pproposal_path(p),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger', :title => 'Destroy Attachment' %>
+            <%#= link_to '<i class="fa fa-upload"></i>'.html_safe,
+                   edit_project_path(@project), :class => 'btn btn-primary', 
+                   :title => 'Upload Additional Document' %><br>
+      <% end %>
+  <% else %>
+    <%= link_to '<i class="fa fa-upload"></i>'.html_safe,
+         edit_project_path(@project), :class => 'btn btn-primary', :title => 'Upload' %>
+  <% end %>
+  </div>
+  
+  <div class="well" style="text-align:center;float:left;width:30%;margin-right:3%;">  
+  <strong>Project Contract:</strong><br>
+  <% if @project_pcontracts.exists? %>
+      <% @project_pcontracts.each do |p| %>
+        <%= link_to '<i class="fa fa-eye"></i>'.html_safe,
+                   p.pcontract_url, :class => 'btn btn-default', 
+                   :title => 'View Attachment', :target => '_blank'  %>
+            <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+                   edit_project_pcontract_path(p), :class => 'btn btn-primary', 
+                   :title => 'Edit Attachment' %>
+            <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+                project_pcontract_path(p),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger', :title => 'Destroy Attachment' %>
+            <%#= link_to '<i class="fa fa-upload"></i>'.html_safe,
+                   edit_project_path(@project), :class => 'btn btn-primary', 
+                   :title => 'Upload Additional Document' %><br>
+      <% end %>
+  <% else %>
+    <%= link_to '<i class="fa fa-upload"></i>'.html_safe,
+         edit_project_path(@project), :class => 'btn btn-primary', :title => 'Upload' %>
+  <% end %>
+  </div>
+  
+  <div class="well" style="text-align:center;float:left;width:30%;margin-right:3%;">  
+  <strong>Revised Contract:</strong><br>
+  <% if @project_prevcontracts.exists? %>
+      <% @project_prevcontracts.each do |p| %>
+        <%= link_to '<i class="fa fa-eye"></i>'.html_safe,
+                   p.prevcontract_url, :class => 'btn btn-default', 
+                   :title => 'View Attachment', :target => '_blank'  %>
+            <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
+                   edit_project_prevcontract_path(p), :class => 'btn btn-primary', 
+                   :title => 'Edit Attachment' %>
+            <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
+                project_prevcontract_path(p),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger', :title => 'Destroy Attachment' %>
+            <%#= link_to '<i class="fa fa-upload"></i>'.html_safe,
+                   edit_project_path(@project), :class => 'btn btn-primary', 
+                   :title => 'Upload Additional Document' %><br>
+      <% end %>
+  <% else %>
+    <%= link_to '<i class="fa fa-upload"></i>'.html_safe,
+         edit_project_path(@project), :class => 'btn btn-primary', :title => 'Upload' %>
+  <% end %>
+  </div>
+  
+  <hr style="clear:both;">
+<!-- end no matter what -->
+
+<!-- if in process or complete -->   
+<% if @project.status == 'In Process' || @project.status == 'Complete' %>
     <table style="width:100%;">
       <tr>
         <% if @project.project_start.length >= 1 || @project.project_finish.length >= 1 %>
@@ -141,51 +251,28 @@
           <% if @project.project_start.length >= 1 || @project.project_finish.length >= 1 %>
             <hr>
           <% end %>
+<% end %>
+<!-- end if in process or complete -->    
 
-  
-    <% if @project.client_contact.length >= 1 %>
-      <div class="show3">      
-          <u><%= model_class.human_attribute_name(:client_contact) %></u>:
-          <%= @project.client_contact %>
-      </div>
-    <% end %>
-    
-    <% if @project.client_meeting.length >= 1 %>
-      <div class="show3">      
-          <u><%= model_class.human_attribute_name(:client_meeting) %></u>:
-          <%= @project.client_meeting %>
-      </div>
-    <% end %>
-
-          <% if @project.client_contact.length >= 1 || @project.client_meeting.length >= 1 || @project.client_proposal.length >= 1 %>
-            <hr>
-          <% end %>
-    
-
-  
-  <% if @project.staffing_notes.length >= 1 %>
-    <div class="show3">
-        <u><%= model_class.human_attribute_name(:staffing_notes) %></u>:
-        <%#= @project.staffing_notes %>
-        <%= simple_format(@project.staffing_notes) %>
-    </div>
-  <% end %>
-    
-  <% if @project.deal_terms.length >= 1 %>
-    <div class="show3">      
-        <u><%= model_class.human_attribute_name(:deal_terms) %></u>:
-        <%#= @project.deal_terms %>
-        <%= simple_format(@project.deal_terms) %>
-    </div>
-  <% end %>
-  
-  <% if @project.rate.length >= 1 %>
-    <div class="show3">      
+<!-- if in process or complete -->  
+<% if @project.status == 'In Process' || @project.status == 'Complete' %>
+  <% if @project.deal_terms.length >= 1 || @project.rate.length >= 1 %>
+    <div class="show3">  
         <u><%= model_class.human_attribute_name(:rate) %></u>:
         <%= @project.rate %>
+    
+        <u style="margin-left:40px;"><%= model_class.human_attribute_name(:deal_terms) %></u>: 
+        <%= @project.deal_terms %>
+        
+        <u style="margin-left:40px;"><%= model_class.human_attribute_name(:grand_total) %></u>: 
+        <%= @project.grand_total %>
     </div>
+    <hr>
   <% end %>
-  
+<% end %>
+<!-- end if in process or complete -->
+
+<% if @project.status == 'In Process' %>  
   <% if @project.additional_terms.length >= 1 %>
     <div class="show3">      
         <u><%= model_class.human_attribute_name(:additional_terms) %></u>:
@@ -194,84 +281,23 @@
     </div>
   <% end %>
   
-  <hr>
-  <div class="well" style="text-align:center;float:left;width:47%;margin-right:3%;">  
-  <strong>Project Proposal:</strong>
-  <% if @project_pproposals.exists? %>
-      <% @project_pproposals.each do |p| %>
-        <%= link_to '<i class="fa fa-eye"></i>'.html_safe,
-                   p.pproposal_url, :class => 'btn btn-default', 
-                   :title => 'View Attachment', :target => '_blank'  %>
-            <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
-                   edit_project_pproposal_path(p), :class => 'btn btn-primary', 
-                   :title => 'Edit Attachment' %>
-            <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
-                project_pproposal_path(p),
-                :method => 'delete',
-                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                :class => 'btn btn-danger', :title => 'Destroy Attachment' %>
-            <%#= link_to '<i class="fa fa-upload"></i>'.html_safe,
-                   edit_project_path(@project), :class => 'btn btn-primary', 
-                   :title => 'Upload Additional Document' %><br>
-      <% end %>
-  <% else %>
-    <%= link_to '<i class="fa fa-upload"></i>'.html_safe,
-         edit_project_path(@project), :class => 'btn btn-primary', :title => 'Upload' %>
+  <% if @project.staffing_notes.length >= 1 %>
+    <div class="show3">
+        <u><%= model_class.human_attribute_name(:staffing_notes) %></u>:
+        <%#= @project.staffing_notes %>
+        <%= simple_format(@project.staffing_notes) %>
+    </div>
   <% end %>
-  </div>
   
-  <div class="well" style="text-align:center;float:left;width:47%;margin-right:3%;">  
-  <strong>Project Contract:</strong>
-  <% if @project_pcontracts.exists? %>
-      <% @project_pcontracts.each do |p| %>
-        <%= link_to '<i class="fa fa-eye"></i>'.html_safe,
-                   p.pcontract_url, :class => 'btn btn-default', 
-                   :title => 'View Attachment', :target => '_blank'  %>
-            <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
-                   edit_project_pcontract_path(p), :class => 'btn btn-primary', 
-                   :title => 'Edit Attachment' %>
-            <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
-                project_pcontract_path(p),
-                :method => 'delete',
-                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                :class => 'btn btn-danger', :title => 'Destroy Attachment' %>
-            <%#= link_to '<i class="fa fa-upload"></i>'.html_safe,
-                   edit_project_path(@project), :class => 'btn btn-primary', 
-                   :title => 'Upload Additional Document' %><br>
-      <% end %>
-  <% else %>
-    <%= link_to '<i class="fa fa-upload"></i>'.html_safe,
-         edit_project_path(@project), :class => 'btn btn-primary', :title => 'Upload' %>
-  <% end %>
-  </div>
-  
-  <div class="well" style="text-align:center;float:left;width:47%;margin-right:3%;">  
-  <strong>Revised Contract:</strong>
-  <% if @project_prevcontracts.exists? %>
-      <% @project_prevcontracts.each do |p| %>
-        <%= link_to '<i class="fa fa-eye"></i>'.html_safe,
-                   p.prevcontract_url, :class => 'btn btn-default', 
-                   :title => 'View Attachment', :target => '_blank'  %>
-            <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
-                   edit_project_prevcontract_path(p), :class => 'btn btn-primary', 
-                   :title => 'Edit Attachment' %>
-            <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
-                project_prevcontract_path(p),
-                :method => 'delete',
-                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                :class => 'btn btn-danger', :title => 'Destroy Attachment' %>
-            <%#= link_to '<i class="fa fa-upload"></i>'.html_safe,
-                   edit_project_path(@project), :class => 'btn btn-primary', 
-                   :title => 'Upload Additional Document' %><br>
-      <% end %>
-  <% else %>
-    <%= link_to '<i class="fa fa-upload"></i>'.html_safe,
-         edit_project_path(@project), :class => 'btn btn-primary', :title => 'Upload' %>
-  <% end %>
-  </div>
-  
-  <div class="well" style="text-align:center;float:left;width:47%;margin-right:3%;">  
-  <strong>Project Invoices:</strong>
+<hr>
+<% end %>
+<!-- end if in process -->
+
+
+<!-- if in process or complete -->  
+<% if @project.status == 'In Process' || @project.status == 'Complete' %>
+  <div class="well" style="text-align:center;float:left;width:30%;margin-right:3%;">  
+  <strong>Project Invoices:</strong><br>
   <% if @project_invoices.exists? %>
       <% @project_invoices.each do |p| %>
         <%= link_to '<i class="fa fa-eye"></i>'.html_safe,
@@ -295,8 +321,8 @@
   <% end %>
   </div>
   
-  <div class="well" style="text-align:center;float:left;width:47%;margin-right:3%;">  
-  <strong>Project W9:</strong>
+  <div class="well" style="text-align:center;float:left;width:30%;margin-right:3%;">  
+  <strong>Project W9:</strong><br>
   <% if @project_pw9s.exists? %>
       <% @project_pw9s.each do |p| %>
         <%= link_to '<i class="fa fa-eye"></i>'.html_safe,
@@ -320,8 +346,8 @@
   <% end %>
   </div>
   
-  <div class="well" style="text-align:center;float:left;width:47%;margin-right:3%;">  
-  <strong>Project Documents:</strong>
+  <div class="well" style="text-align:center;float:left;width:30%;margin-right:3%;">  
+  <strong>Project Documents:</strong><br>
   <% if @project_pdocuments.exists? %>
       <% @project_pdocuments.each do |p| %>
         <%= link_to '<i class="fa fa-eye"></i>'.html_safe,
@@ -344,8 +370,16 @@
          edit_project_path(@project), :class => 'btn btn-primary', :title => 'Upload' %>
   <% end %>
   </div>
-  
+
   <hr style="clear:both;">
+
+<% end %>
+<!-- end if in process or complete -->  
+
+
+
+  
+
     
   <% if @project.link.length >= 1 %>
     <%= form_for @project, :html => { :class => "form-horizontal project" } do |f| %>
