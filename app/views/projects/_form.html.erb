@@ -78,6 +78,15 @@
   </div>
   
   <div class="form-group">
+    <%= f.label :brief_description, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :brief_description, :rows => 4, :class => 'form-control' %>
+
+    </div>
+    <%=f.error_span(:brief_description) %>
+  </div>
+  
+  <div class="form-group">
     <%= f.label :client_name, :class => 'control-label col-lg-2' %>
     <div class="col-lg-4">
       <%= f.text_field :client_name, :class => 'form-control' %>
@@ -245,6 +254,32 @@
     </div>
     <%=f.error_span(:client_zip) %>
   </div>
+  
+  <div class="form-group">
+    <%= f.label "Services", :class => 'control-label col-lg-2' %>
+      <div class="col-lg-2">
+        <%= f.collection_check_boxes :service_ids, Service.all, :id, :name do |b| %>
+          <div class="collection-check-box-altered">
+            <%= b.check_box %>
+            <%= b.label %>
+          </div>
+        <% end %>
+      </div>
+
+    <%= f.label :terms, :class => 'control-label col-lg-1' %>
+    <div class="col-lg-2">
+      <%= f.select :deal_terms, ['Monthly', 'Hourly'], {include_blank: true}, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:deal_terms) %>
+
+    <%= f.label :rate, :class => 'control-label col-lg-1' %>
+    <div class="col-lg-4">
+      <%= f.text_field :rate, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:rate) %>
+  </div>  
+  
+  
   <!-- end not available during prospect -->
 </div>
 
@@ -263,53 +298,15 @@
   </div>
   
   <div class="form-group">
-    <%= f.label :project_finish, :class => 'control-label col-lg-2' %>
+    <%= f.label :grand_opening, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :project_finish, 'data-provide' => 'datepicker', :class => 'form-control' %>
     </div>
     <%=f.error_span(:project_finish) %>
   </div>
   <hr>
+
   
-  <div class="form-group">
-    <%= f.label "Services", :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
-        <%= f.collection_check_boxes :service_ids, Service.all, :id, :name do |b| %>
-          <div class="collection-check-box-altered">
-            <%= b.check_box %>
-            <%= b.label %>
-          </div>
-        <% end %>
-      </div>
-  </div>
-
-
-  <div class="form-group">
-    <%= f.label :deal_terms, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-2">
-      <%= f.select :deal_terms, ['Monthly', 'Hourly'], {include_blank: true}, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:deal_terms) %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :rate, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :rate, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:rate) %>
-  </div>
-  <hr>
-  
-  <div class="form-group">
-    <%= f.label :brief_description, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_area :brief_description, :rows => 4, :class => 'form-control' %>
-
-    </div>
-    <%=f.error_span(:brief_description) %>
-  </div>
-
   <div class="form-group">
     <%= f.label :staffing_notes, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">

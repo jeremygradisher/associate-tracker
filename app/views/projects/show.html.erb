@@ -3,7 +3,7 @@
 <!-- left column 1/3 -->
   <div class="col-lg-4">
     <% @project_picons.each do |p| %>
-          <%= image_tag p.picon_url, :style => 'max-width:90%;padding:5%;' %>
+          <%= image_tag p.picon_url, :style => 'max-width:100%;padding:5%;' %>
     <% end %>
     
     <hr>
@@ -13,7 +13,7 @@
     <% end %>
     
     <% @project_cicons.each do |p| %>
-      <%= image_tag p.cicon_url, :style => 'max-width:90%;padding:5%;' %>
+      <%= image_tag p.cicon_url, :style => 'max-width:100%;padding:5%;' %>
     <% end %>
   </div>
 <!-- end left column 1/3 -->
@@ -93,7 +93,7 @@
         <td>
           <div class="show3">
             <u>Project Start</u>: <%= @project.project_start %><br>
-            <u>Project Finish</u>: <%= @project.project_finish %>
+            <u>Grand Opening</u>: <%= @project.project_finish %>
           </div>
         </td>
         <% end %>
