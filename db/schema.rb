@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160623142010) do
+ActiveRecord::Schema.define(version: 20160623160023) do
 
   create_table "associate_attachments", force: :cascade do |t|
     t.integer  "associate_id"
@@ -199,12 +199,12 @@ ActiveRecord::Schema.define(version: 20160623142010) do
     t.string   "client_name"
     t.string   "client_contact"
     t.string   "client_meeting"
-    t.text     "client_proposal"
     t.string   "client_billing"
     t.string   "client_street"
     t.string   "client_city"
     t.string   "client_state"
     t.string   "client_zip"
+    t.string   "nbd"
   end
 
   create_table "projects_services", id: false, force: :cascade do |t|

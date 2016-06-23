@@ -35,16 +35,37 @@
     </div>
     
     <% if @services.length >= 1 %>
-      <div class="show3">
+      <div class="col-lg-6" style="padding-left:0;">
+        <div class="show3">
               <span>
                 Services Provided:
                 <% @services.each do |p| %>
                   <%= p.name %> 
                 <% end %>
               </span>
+        </div>
       </div>
     <% end %>
-    <hr>
+
+    <% if @project.nbd.length >= 1 %>
+      <div class="col-lg-6">
+        <div class="show3">      
+            <u><%= model_class.human_attribute_name(:nbd) %></u>:
+            <%= @project.nbd %>
+        </div>
+      </div>
+    <% end %>
+
+    <hr style="clear:both;">
+    
+    <% if @project.brief_description.length >= 1 %>
+      <div class="show3">
+      <u>Description</u>:  <%#= @project.brief_description %>
+      <%= simple_format(@project.brief_description) %>
+      </div>
+    <% end %>
+
+    <hr style="clear:both;">
 
     <div class="show3">
       <table style="width:100%">
@@ -131,25 +152,12 @@
           <%= @project.client_meeting %>
       </div>
     <% end %>
-    
-    <% if @project.client_proposal.length >= 1 %>
-      <div class="show3">      
-          <u><%= model_class.human_attribute_name(:client_proposal) %></u>:
-          <%#= @project.additional_terms %>
-          <%= simple_format(@project.client_proposal) %>
-      </div>
-    <% end %>
 
           <% if @project.client_contact.length >= 1 || @project.client_meeting.length >= 1 || @project.client_proposal.length >= 1 %>
             <hr>
           <% end %>
     
-  <% if @project.brief_description.length >= 1 %>
-    <div class="show3">
-    <u>Description</u>:  <%#= @project.brief_description %>
-    <%= simple_format(@project.brief_description) %>
-    </div>
-  <% end %>
+
   
   <% if @project.staffing_notes.length >= 1 %>
     <div class="show3">

@@ -81,9 +81,16 @@
     <%= f.label :brief_description, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_area :brief_description, :rows => 4, :class => 'form-control' %>
-
     </div>
     <%=f.error_span(:brief_description) %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :nbd, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.select :nbd, ['Skip', 'Garret', 'Ben'], {include_blank: true}, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:nbd) %>
   </div>
   
   <div class="form-group">
@@ -206,13 +213,6 @@
         <%= f.text_field :client_meeting, :class => 'form-control' %>
       </div>
       <%=f.error_span(:client_meeting) %>
-    </div>
-    <div class="form-group">
-      <%= f.label :client_proposal, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
-        <%= f.text_area :client_proposal, :rows => 4, :class => 'form-control' %>
-      </div>
-      <%=f.error_span(:client_proposal) %>
     </div>
 </div>
  
