@@ -107,14 +107,16 @@
     <tr>
       <!--<th><%#= model_class.human_attribute_name(:id) %></th>-->
       <th><%= model_class.human_attribute_name(:project_image) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:status) %></th>
+      <th><%= sort_link @search, :name, "Name" %></th>
+      <th><%= sort_link @search, :status, "Status" %></th>
+      <!--<th><%#= model_class.human_attribute_name(:status) %></th>-->
       <!--<th><%#= model_class.human_attribute_name(:project_street) %></th>-->
-      <th><%= model_class.human_attribute_name(:project_city) %></th>
-      <th><%= model_class.human_attribute_name(:project_state) %></th>
+      <th><%= sort_link @search, :project_city, "City" %></th>
+      <!--<th><%#= model_class.human_attribute_name(:project_city) %></th>-->
+      <th><%= sort_link @search, :project_state, "State" %></th>
       <!--<th><%#= model_class.human_attribute_name(:project_zip) %></th>-->
-      <th><%= model_class.human_attribute_name(:project_start) %></th>
-      <th><%= model_class.human_attribute_name(:project_finish) %></th>
+      <th><%= sort_link @search, :project_start, "Project Start" %></th>
+      <th><%= sort_link @search, :project_finish, "Grand Opening" %></th>
       <!--<th><%#= model_class.human_attribute_name(:brief_description) %></th>-->
       <th><%= model_class.human_attribute_name(:services) %></th>
       <!--<th><%#= model_class.human_attribute_name(:staffing_notes) %></th>-->
@@ -161,7 +163,7 @@
                       project_path(project), :class => 'btn btn-default btn-xs' %>
           <%#= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_project_path(project), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+          <%#= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       project_path(project),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },

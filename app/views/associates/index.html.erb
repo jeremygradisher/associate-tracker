@@ -115,6 +115,9 @@
 </div>
 -->
 
+
+<% if params[:q].present? && @associates.count >= 1 %>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -192,7 +195,10 @@
   <%= will_paginate @associates, renderer: BootstrapPagination::Rails %>
 </div>
 
-<hr>
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<% end %>
+
+<hr style="clear:both;">
+<%#= link_to t('.new', :default => t("helpers.links.new")),
             new_associate_path,
             :class => 'btn btn-primary' %>
+            

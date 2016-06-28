@@ -154,7 +154,14 @@ class AssociatesController < ApplicationController
   def create
      @associate = Associate.new(associate_params)
      
-     @associate_attachments = @associate.associate_attachments.all
+    @associate_attachments = @associate.associate_attachments.all
+    @associate_resumes = @associate.associate_resumes.all
+    @associate_gresumes = @associate.associate_gresumes.all
+    @associate_contracts = @associate.associate_contracts.all
+    @associate_w9s = @associate.associate_w9s.all
+    @associate_direct_deposits = @associate.associate_direct_deposits.all
+    @associate_drivers_licenses = @associate.associate_drivers_licenses.all
+    @associate_drivers_insurances = @associate.associate_drivers_insurances.all
 
      respond_to do |format|
        if @associate.save
@@ -208,7 +215,15 @@ class AssociatesController < ApplicationController
   # PATCH/PUT /associates/1
   # PATCH/PUT /associates/1.json
   def update
+    
     @associate_attachments = @associate.associate_attachments.all
+    @associate_resumes = @associate.associate_resumes.all
+    @associate_gresumes = @associate.associate_gresumes.all
+    @associate_contracts = @associate.associate_contracts.all
+    @associate_w9s = @associate.associate_w9s.all
+    @associate_direct_deposits = @associate.associate_direct_deposits.all
+    @associate_drivers_licenses = @associate.associate_drivers_licenses.all
+    @associate_drivers_insurances = @associate.associate_drivers_insurances.all
     
     respond_to do |format|
       if @associate.update(associate_params)

@@ -148,6 +148,15 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
+    
+    @project_picons = @project.project_picons.all
+    @project_cicons = @project.project_cicons.all
+    @project_pproposals = @project.project_pproposals.all
+    @project_pcontracts = @project.project_pcontracts.all
+    @project_prevcontracts = @project.project_prevcontracts.all
+    @project_invoices = @project.project_invoices.all
+    @project_pw9s = @project.project_pw9s.all
+    @project_pdocuments = @project.project_pdocuments.all
 
     respond_to do |format|
       if @project.save
@@ -201,6 +210,15 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    @project_picons = @project.project_picons.all
+    @project_cicons = @project.project_cicons.all
+    @project_pproposals = @project.project_pproposals.all
+    @project_pcontracts = @project.project_pcontracts.all
+    @project_prevcontracts = @project.project_prevcontracts.all
+    @project_invoices = @project.project_invoices.all
+    @project_pw9s = @project.project_pw9s.all
+    @project_pdocuments = @project.project_pdocuments.all
+    
     respond_to do |format|
       if @project.update(project_params)
         if params.has_key?(:project_picons)

@@ -1,12 +1,16 @@
 class Associate < ActiveRecord::Base
     has_many :associate_attachments, dependent: :destroy
     accepts_nested_attributes_for :associate_attachments
+    
     has_many :associate_resumes, dependent: :destroy
     accepts_nested_attributes_for :associate_resumes
+    
     has_many :associate_gresumes, dependent: :destroy
     accepts_nested_attributes_for :associate_gresumes
+    
     has_and_belongs_to_many :positions, dependent: :destroy
     has_and_belongs_to_many :wrklocs, dependent: :destroy
+    
     has_many :associate_contracts, dependent: :destroy
     accepts_nested_attributes_for :associate_contracts
     has_many :associate_w9s, dependent: :destroy
