@@ -33,10 +33,44 @@
               <% end %>
             </span>
             
-            <% if @project.status == 'Prospect' %>
-            <span style="margin-left:40px;" class="prospect_form"><%= @project.phases %></span>
-            <% end %>
+            
     </div>
+    
+
+      <div class="show2">
+        <% if @project.status == 'Prospect' %>
+          <span class="prospect_form"><u>Prospect Phase</u>: <%= @project.phases %></span>
+            <% if @project.phases == '(1) Marketing' %>
+              <br><%= image_tag("progress1.png", style: "max-width:100%;margin-top:20px;") %>
+            <% end %>
+            <% if @project.phases == '(2) Contact' %>
+              <br><%= image_tag("progress2.png", style: "max-width:100%;margin-top:20px;") %>
+            <% end %>
+            <% if @project.phases == '(3) Profile' %>
+              <br><%= image_tag("progress3.png", style: "max-width:100%;margin-top:20px;") %>
+            <% end %>
+            <% if @project.phases == '(4) Project' %>
+              <br><%= image_tag("progress4.png", style: "max-width:100%;margin-top:20px;") %>
+            <% end %>
+            <% if @project.phases == '(5) Meeting' %>
+              <br><%= image_tag("progress5.png", style: "max-width:100%;margin-top:20px;") %>
+            <% end %>
+            <% if @project.phases == '(6) Proposal' %>
+              <br><%= image_tag("progress6.png", style: "max-width:100%;margin-top:20px;") %>
+            <% end %>
+            <% if @project.phases == '(7) Interview' %>
+              <br><%= image_tag("progress7.png", style: "max-width:100%;margin-top:20px;") %>
+            <% end %>
+            <% if @project.phases == '(8) Agreement' %>
+              <br><%= image_tag("progress8.png", style: "max-width:100%;margin-top:20px;") %>
+            <% end %>
+            <% if @project.phases == '(9) Start Date' %>
+              <br><%= image_tag("progress9.png", style: "max-width:100%;margin-top:20px;") %>
+            <% end %>
+          <hr>
+        <% end %>
+      </div>
+
 
     <% if @project.nbd.length >= 1 %>
       <div class="col-lg-6" style="padding-left:0;">

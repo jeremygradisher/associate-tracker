@@ -20,10 +20,13 @@
           <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Search for..." %>
       </div>
       
+
       <div class="col-lg-3">
           <%= f.label :status_cont, "Project Status:" %><br>
           <%= f.select :status_cont, options_for_select([['Prospect'], ['In Process'], ['Complete']], :selected => @search.status_cont), include_blank: true %>
       </div>
+
+      
       
       <div class="col-lg-2">
         <div class="actions" style="text-align:right;margin-top:23px;">
@@ -64,6 +67,7 @@
         legend: {position: "none"},
         chartArea:{left:0,top:0,width:'100%',height:200}} %>
       </div>
+
   
 </div>
 
