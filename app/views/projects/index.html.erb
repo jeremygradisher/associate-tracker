@@ -1,42 +1,41 @@
 <%- model_class = Project -%>
     <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
 
-<div class="panel panel-default">
-  <!-- Default panel contents -->
-  <div class="panel-heading"><strong style="font-size:125%;">Project Database Search</strong></div>
-  <div class="panel-body">
-
-  <fieldset class="search-field">
-    <!--<legend>Search Our Database</legend>-->
-    <%= search_form_for @search do |f| %>
-      
-      <div class="col-lg-3">
-        <%= f.label :name_cont, "Search Near:" %>
-        <%= f.text_field_tag :searchnear, params[:searchnear], :class => "form-control", :placeholder => "Search Near..."  %>
+<div class="new-user-login">
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading"><strong style="font-size:125%;">Project Database Search</strong></div>
+      <div class="panel-body">
+    
+      <fieldset class="search-field">
+        <!--<legend>Search Our Database</legend>-->
+        <%= search_form_for @search do |f| %>
+          
+          <div class="col-lg-3">
+            <%= f.label :name_cont, "Search Near:" %>
+            <%= f.text_field_tag :searchnear, params[:searchnear], :class => "form-control", :placeholder => "Search Near..."  %>
+          </div>
+          
+          <div class="col-lg-3">
+              <%= f.label :name_cont, "Project Name Contains:" %><br>
+              <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Search for..." %>
+          </div>
+          
+          <div class="col-lg-3">
+              <%= f.label :status_cont, "Project Status:" %><br>
+              <%= f.select :status_cont, options_for_select([['Prospect'], ['In Process'], ['Complete']], :selected => @search.status_cont), include_blank: true %>
+          </div>
+          
+          <div class="col-lg-2">
+            <div class="actions" style="text-align:right;margin-top:23px;">
+              <%= f.submit "Search", :class => "btn btn-primary-branded jicon" %>
+              <%= link_to "Clear", request.path, :class => "btn btn-default jicon" %>
+            </div>
+          </div>
+        <% end %>
+      </fieldset>
       </div>
-      
-      <div class="col-lg-3">
-          <%= f.label :name_cont, "Project Name Contains:" %><br>
-          <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Search for..." %>
-      </div>
-      
-
-      <div class="col-lg-3">
-          <%= f.label :status_cont, "Project Status:" %><br>
-          <%= f.select :status_cont, options_for_select([['Prospect'], ['In Process'], ['Complete']], :selected => @search.status_cont), include_blank: true %>
-      </div>
-
-      
-      
-      <div class="col-lg-2">
-        <div class="actions" style="text-align:right;margin-top:23px;">
-          <%= f.submit "Search", :class => "btn btn-primary jicon" %>
-          <%= link_to "Clear", request.path, :class => "btn btn-default jicon" %>
-        </div>
-      </div>
-    <% end %>
-  </fieldset>
-  </div>
+    </div>
 </div>
 
 <div class="col-lg-3 counts">
@@ -63,11 +62,10 @@
       <div>
         <%#= pie_chart Project.group(:status).count %>
         <%= pie_chart Project.group(:status).count, 
-        library: {backgroundColor: "#FFF", pieHole: 0.5,
+        library: {backgroundColor: "none", pieHole: 0.5,
         legend: {position: "none"},
         chartArea:{left:0,top:0,width:'100%',height:200}} %>
       </div>
-
   
 </div>
 

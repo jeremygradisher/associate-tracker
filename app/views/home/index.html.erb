@@ -30,7 +30,7 @@
       <hr>
       <div>
         <%= pie_chart @associates.joins(:positions).group(Position.arel_table[:pos_name]).count, 
-        library: {pieHole: 0.5, legend: {position: "right"},
+        library: {backgroundColor: "none", pieHole: 0.5, legend: {position: "right"},
         chartArea:{left:0,top:0,width:'100%',height:300}} %>
       </div>
     </div>
@@ -56,7 +56,7 @@
           
       <hr>
       <div>
-        <%= pie_chart Project.group(:status).count, library: {pieHole: 0.5,
+        <%= pie_chart Project.group(:status).count, library: {backgroundColor: "none", pieHole: 0.5,
         legend: {position: "right"},
         chartArea:{left:0,top:0,width:'100%',height:300}} %>
         <%#= pie_chart @projects.group(Project.status).count, 

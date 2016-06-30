@@ -84,6 +84,9 @@ min-height: 664px;
 .collection-check-box-altered {float: left;margin-right: 10px;}
 .collection-check-box-altered label {width: 28px;margin-top:6px;}
 
+.collection-check-box-altered-again {float: left;margin-right: 20px;}
+.collection-check-box-altered-again label {width: auto;margin-top:6px;}
+
 .collection-check-box-alt {float: left;margin-right: 20px;}
 .collection-check-box-alt label {width: 40px; height: 100%; margin: 10px 0 10px 0;}
 .collection-check-box-alt input[type="checkbox"] { margin: 0; height: 20px; width: 20px; }
@@ -199,3 +202,59 @@ td > a:hover, td > a:visited {
     background:none !important;
     background-color:none !important;
 }
+
+.form-control {
+    height:38px;
+}
+
+/* Tim's additions */
+.new-user-login .panel-default {
+  border-color: #58595b;
+}
+.new-user-login .panel-default .panel-heading {
+  color: #fff;
+  background-color: #58595b;
+  border-color: #58595b;
+  padding: 10px;
+}
+.new-user-login .panel-default .panel-body {
+  padding: 10px;
+}
+.new-user-login .input-group-addon {
+  min-width: 40px;
+}
+.new-user-login .btn-primary {
+  width: 100%;
+  color: #fff;
+  background-color: #f16133;
+  border-color: #f16133;
+}
+.new-user-login .btn-primary:hover, .new-user-login .btn-primary:focus, .new-user-login .btn-primary:active {
+  color: #fff;
+  background-color: #ff3d00;
+  border-color: #ff3d00;
+}
+
+.new-user-login .btn-primary-branded {
+  color: #fff;
+  background-color: #f16133;
+  border-color: #f16133;
+}
+.new-user-login .btn-primary-branded:hover, .new-user-login .btn-primary-branded:focus, .new-user-login .btn-primary-branded:active {
+  color: #fff;
+  background-color: #ff3d00;
+  border-color: #ff3d00;
+}
+
+.new-user-login .footer-text {
+  text-align: center;
+  color: #777;
+}
+.new-user-login .footer-text a {
+  color: #777;
+}
+.new-user-login .footer-text a:hover, .new-user-login .footer-text a:focus, .new-user-login .footer-text a:active {
+  color: #000;
+  background-color: transparent;
+}
+/* Tim's additions */
