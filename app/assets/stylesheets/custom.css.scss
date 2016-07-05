@@ -209,12 +209,15 @@ td > a:hover, td > a:visited {
 
 /* Tim's additions */
 .new-user-login .panel-default {
-  border-color: #58595b;
+  /*border-color: #58595b;*/
+  border-color: #210f5b;
 }
 .new-user-login .panel-default .panel-heading {
   color: #fff;
-  background-color: #58595b;
-  border-color: #58595b;
+  /*background-color: #58595b;
+  border-color: #58595b;*/
+  background-color: #210f5b;
+  border-color: #210f5b;
   padding: 10px;
 }
 .new-user-login .panel-default .panel-body {
@@ -226,8 +229,10 @@ td > a:hover, td > a:visited {
 .new-user-login .btn-primary {
   width: 100%;
   color: #fff;
-  background-color: #f16133;
-  border-color: #f16133;
+  /*background-color: #f16133;
+  border-color: #f16133;*/
+  background-color: #566e92;
+  border-color: #566e92;
 }
 .new-user-login .btn-primary:hover, .new-user-login .btn-primary:focus, .new-user-login .btn-primary:active {
   color: #fff;
@@ -237,8 +242,10 @@ td > a:hover, td > a:visited {
 
 .new-user-login .btn-primary-branded {
   color: #fff;
-  background-color: #f16133;
-  border-color: #f16133;
+  /*background-color: #f16133;
+  border-color: #f16133;*/
+  background-color: #566e92;
+  border-color: #566e92;
 }
 .new-user-login .btn-primary-branded:hover, .new-user-login .btn-primary-branded:focus, .new-user-login .btn-primary-branded:active {
   color: #fff;
