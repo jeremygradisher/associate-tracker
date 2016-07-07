@@ -1,6 +1,5 @@
 # Greeby Associate Tracker - Main Branch
-
--------------------------
+----------------------------------------
 
 Overall this project is complete. There are a couple of outstanding items:
 
@@ -16,7 +15,7 @@ Overall this project is complete. There are a couple of outstanding items:
 
 
 
-If cloning this realize a couple of things:
+# If cloning this realize a couple of things:
 -------------------------------------------
 
 -it's using sqlite3 in development and PostgreSQL in production (gemfile)
