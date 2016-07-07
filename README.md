@@ -4,7 +4,7 @@
 
 Overall this project is complete. There are a couple of outstanding items:
 
--Within the Associates model there is a HABTM association with working_locations - within _form it needs checkboxes replaced with tag-it and jQuery auto-complete or some equivelant.
+-Within the Associates model there is a HABTM association with working_locations - within _form.html.erb it needs checkboxes replaced with tag-it and jQuery auto-complete or some equivelant.
 
 -Projects index search - multiselect status - he wants "Prospect" and "In Process" checked and "Complete" unchecked by default. Currently they are all represented on the map and with search you can select just one such as "Prospect" to narrow it down.
 
@@ -35,7 +35,7 @@ $ heroku config:set S3_BUCKET=xxxxxxxxxxxxxxxxxx
 -config/environments/development.rb and production has something that needs to be addressed:
 
 development:<br>
-config.action_mailer.default_url_options = { :host => 'http://greeby-associate-tracker-jeremygradisher.c9users.io'}
+config.action_mailer.default_url_options = { :host => 'hxxp://greeby-associate-tracker-jxxxxxxxxxxxer.c9users.io'}
 
 production:<br>
 config.action_mailer.default_url_options = { :host => 'greeby-associate-tracker.herokuapp.com', :protocol => 'https'}
