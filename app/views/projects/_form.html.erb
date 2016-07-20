@@ -139,14 +139,14 @@
     <%=f.error_span(:status) %>
     
     <div class="prospect_form">
-    <%= f.label :phases, :class => 'control-label col-lg-2' %>
+    <%= f.label :phases, :class => 'control-label col-lg-1' %>
     <div class="col-lg-2">
       <%= f.select :phases, ['(1) Marketing', '(2) Contact', '(3) Profile', '(4) Project', '(5) Meeting', '(6) Proposal', '(7) Interview', '(8) Agreement', '(9) Start Date'], {include_blank: false}, :class => 'form-control' %>
     </div>
     <%=f.error_span(:phases) %>
     </div>
     
-        <%= f.label "Services", :class => 'control-label col-lg-2' %>
+        <%= f.label "Services", :class => 'control-label col-lg-1' %>
       <div class="col-lg-3">
         <%= f.collection_check_boxes :service_ids, Service.all, :id, :name do |b| %>
           <div class="collection-check-box-altered">
