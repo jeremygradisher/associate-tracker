@@ -88,7 +88,7 @@
   <div class="form-group">
     <%= f.label :nbd, :class => 'control-label col-lg-2' %>
     <div class="col-lg-2">
-      <%= f.select :nbd, ['Skip', 'Garret', 'Ben'], {include_blank: true}, :class => 'form-control' %>
+      <%= f.select :nbd, ['Skip', 'Garrett', 'Ben'], {include_blank: true}, :class => 'form-control' %>
     </div>
     <%=f.error_span(:nbd) %>
   </div>
@@ -145,6 +145,16 @@
     </div>
     <%=f.error_span(:phases) %>
     </div>
+    
+        <%= f.label "Services", :class => 'control-label col-lg-2' %>
+      <div class="col-lg-3">
+        <%= f.collection_check_boxes :service_ids, Service.all, :id, :name do |b| %>
+          <div class="collection-check-box-altered">
+            <%= b.check_box %>
+            <%= b.label %>
+          </div>
+        <% end %>
+      </div>
   </div>
 <!-- Everything above here is on the form no matter the status -->
 
@@ -208,17 +218,7 @@
   </div>
   
   <div class="form-group">
-    <%= f.label "Services", :class => 'control-label col-lg-2' %>
-      <div class="col-lg-2">
-        <%= f.collection_check_boxes :service_ids, Service.all, :id, :name do |b| %>
-          <div class="collection-check-box-altered">
-            <%= b.check_box %>
-            <%= b.label %>
-          </div>
-        <% end %>
-      </div>
-
-    <%= f.label :terms, :class => 'control-label col-lg-1' %>
+    <%= f.label :terms, :class => 'control-label col-lg-2' %>
     <div class="col-lg-2">
       <%= f.select :deal_terms, ['Monthly', 'Hourly'], {include_blank: true}, :class => 'form-control' %>
     </div>
@@ -497,6 +497,7 @@
             onTagLimitExceeded: function(event, ui) {
                 console.log(ui.tag);
             }
+        
         });
 
     });
