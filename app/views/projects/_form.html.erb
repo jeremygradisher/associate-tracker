@@ -162,19 +162,45 @@
 <div class="prospect_form"> 
     <hr>
     <div class="form-group">
-      <%= f.label :client_contact, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
-        <%= f.text_field :client_contact, :class => 'form-control' %>
-      </div>
-      <%=f.error_span(:client_contact) %>
-    </div>
-    <div class="form-group">
       <%= f.label :client_meeting, :class => 'control-label col-lg-2' %>
       <div class="col-lg-10">
         <%= f.text_field :client_meeting, 'data-provide' => 'datepicker', :class => 'form-control' %>
       </div>
       <%=f.error_span(:client_meeting) %>
     </div>
+
+    <div class="form-group">
+      <%= f.label :client_contact, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.text_field :client_contact, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:client_contact) %>
+    </div>
+
+
+  <div class="form-group">
+    <%= f.label :email, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-4">
+      <%= f.text_field :email, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:email) %>
+
+    <%= f.label :telephone, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-4">
+      <%= f.text_field :telephone, :class => 'form-control',
+      :onkeydown => 'javascript:backspacerDOWN(this,event);', :onkeyup => 'javascript:backspacerUP(this,event);' %>
+    </div>
+    <%=f.error_span(:telephone) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :correspondence_notes, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%#= f.text_field :correspondence_notes, :class => 'form-control' %>
+      <%= f.text_area :correspondence_notes, :rows => 4, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:correspondence_notes) %>
+  </div>
 </div>
 <!-- 2 end -->
  

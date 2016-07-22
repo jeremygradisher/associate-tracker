@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160623194934) do
+ActiveRecord::Schema.define(version: 20160722171058) do
 
   create_table "associate_attachments", force: :cascade do |t|
     t.integer  "associate_id"
@@ -190,8 +190,8 @@ ActiveRecord::Schema.define(version: 20160623194934) do
     t.string   "additional_terms"
     t.float    "latitude"
     t.float    "longitude"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.string   "project_start"
     t.string   "project_finish"
     t.string   "status"
@@ -207,6 +207,9 @@ ActiveRecord::Schema.define(version: 20160623194934) do
     t.string   "nbd"
     t.string   "phases"
     t.string   "grand_total"
+    t.string   "email"
+    t.string   "telephone"
+    t.text     "correspondence_notes"
   end
 
   create_table "projects_services", id: false, force: :cascade do |t|
