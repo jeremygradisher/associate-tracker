@@ -293,7 +293,7 @@
       <div class="col-lg-10">
         <% @project_pproposals.each do |p| %>
               <div class="form-control">
-              <%= link_to p.pproposal_url, p.pproposal_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
+              <%= link_to p.pproposal_url.gsub("https://gassociatebucket.s3.amazonaws.com/uploads/project_pproposal", ""), p.pproposal_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
               <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
                     edit_project_pproposal_path(p), :class => 'form-control-button', 
                     :style => 'color:#428bca', :title => 'Edit Attachment'  %>
@@ -319,7 +319,7 @@
       <div class="col-lg-10">
         <% @project_pcontracts.each do |p| %>
               <div class="form-control">
-              <%= link_to p.pcontract_url, p.pcontract_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
+              <%= link_to p.pcontract_url.gsub("https://gassociatebucket.s3.amazonaws.com/uploads/project_pcontract", ""), p.pcontract_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
               <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
                     edit_project_pcontract_path(p), :class => 'form-control-button', 
                     :style => 'color:#428bca', :title => 'Edit Attachment'  %>
@@ -345,7 +345,7 @@
       <div class="col-lg-10">
         <% @project_prevcontracts.each do |p| %>
               <div class="form-control">
-              <%= link_to p.prevcontract_url, p.prevcontract_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
+              <%= link_to p.prevcontract_url.gsub("https://gassociatebucket.s3.amazonaws.com/uploads/project_prevcontract", ""), p.prevcontract_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
               <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
                     edit_project_prevcontract_path(p), :class => 'form-control-button', 
                     :style => 'color:#428bca', :title => 'Edit Attachment'  %>
@@ -369,83 +369,27 @@
 
 <!-- 6 only available in process -->
 <div class="in_process_form"> 
-<hr>
+  <h3>Documents</h3>
+  <hr>
   <div class="form-group">  
-  <% if @project_invoices.exists? %>
-    <%= f.label :invoice, :class => 'control-label col-lg-2'  %>
-      <div class="col-lg-10">
-        <% @project_invoices.each do |p| %>
-              <div class="form-control">
-              <%= link_to p.invoice_url, p.invoice_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
-              <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
-                    edit_project_invoice_path(p), :class => 'form-control-button', 
-                    :style => 'color:#428bca', :title => 'Edit Attachment'  %>
-              <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
-                    project_invoice_path(p),
-                    :method => 'delete', :style => 'color:#d9534f;',
-                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                    :class => 'form-control-button', :title => 'Delete Attachment'  %>
-              </div>
-        <% end %>
-      </div>
-    <% else %>  
-         <%= f.label :invoice, :class => 'control-label col-lg-2'  %>
-         <div class="col-lg-10">
-         <%= f.file_field :invoice, :multiple => true, name: "project_invoices[invoice][]", :class => 'form-control' %>
-         </div>
-    <% end %>
+   <%= f.label :invoice, :class => 'control-label col-lg-2'  %>
+   <div class="col-lg-10">
+   <%= f.file_field :invoice, :multiple => true, name: "project_invoices[invoice][]", :class => 'form-control' %>
+   </div>
   </div>
   
   <div class="form-group">  
-  <% if @project_pw9s.exists? %>
-    <%= f.label :w9, :class => 'control-label col-lg-2'  %>
-      <div class="col-lg-10">
-        <% @project_pw9s.each do |p| %>
-              <div class="form-control">
-              <%= link_to p.pw9_url, p.pw9_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
-              <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
-                    edit_project_pw9_path(p), :class => 'form-control-button', 
-                    :style => 'color:#428bca', :title => 'Edit Attachment'  %>
-              <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
-                    project_pw9_path(p),
-                    :method => 'delete', :style => 'color:#d9534f;',
-                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                    :class => 'form-control-button', :title => 'Delete Attachment'  %>
-              </div>
-        <% end %>
-      </div>
-    <% else %>  
-         <%= f.label :w9, :class => 'control-label col-lg-2'  %>
-         <div class="col-lg-10">
-         <%= f.file_field :pw9, :multiple => true, name: "project_pw9s[pw9][]", :class => 'form-control' %>
-         </div>
-    <% end %>
+   <%= f.label :w9, :class => 'control-label col-lg-2'  %>
+   <div class="col-lg-10">
+   <%= f.file_field :pw9, :multiple => true, name: "project_pw9s[pw9][]", :class => 'form-control' %>
+   </div>
   </div>
   
   <div class="form-group">  
-  <% if @project_pdocuments.exists? %>
-    <%= f.label :document, :class => 'control-label col-lg-2'  %>
-      <div class="col-lg-10">
-        <% @project_pdocuments.each do |p| %>
-              <div class="form-control">
-              <%= link_to p.pdocument_url, p.pdocument_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
-              <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
-                    edit_project_pdocument_path(p), :class => 'form-control-button', 
-                    :style => 'color:#428bca', :title => 'Edit Attachment'  %>
-              <%= link_to '<i class="fa fa-remove"></i>'.html_safe,
-                    project_pdocument_path(p),
-                    :method => 'delete', :style => 'color:#d9534f;',
-                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                    :class => 'form-control-button', :title => 'Delete Attachment'  %>
-              </div>
-        <% end %>
-      </div>
-    <% else %>  
-         <%= f.label :document, :class => 'control-label col-lg-2'  %>
-         <div class="col-lg-10">
-         <%= f.file_field :pdocument, :multiple => true, name: "project_pdocuments[pdocument][]", :class => 'form-control' %>
-         </div>
-    <% end %>
+   <%= f.label :document, :class => 'control-label col-lg-2'  %>
+   <div class="col-lg-10">
+   <%= f.file_field :pdocument, :multiple => true, name: "project_pdocuments[pdocument][]", :class => 'form-control' %>
+   </div>
   </div>
 </div> 
 <!-- 6 end --> 

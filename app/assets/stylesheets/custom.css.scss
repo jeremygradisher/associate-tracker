@@ -265,3 +265,25 @@ td > a:hover, td > a:visited {
   background-color: transparent;
 }
 /* Tim's additions */
+
+
+.align-center { text-align:center;margin-left:auto;margin-right:auto;}
+
+.btn-primary-altered {background-color:#f16133;border-color: #f16133;}
+
+.nav.navbar-right li .btn-primary:hover, .nav.navbar-right li .btn-primary:focus {
+    background-color: #ff3d00 !important; border-color: #ff3d00 !important;
+}
+
+.btn-danger-altered {background-color:#58595b;border-color:#58595b;}
+.btn-danger-altered:hover {background-color:#ff3d00;border-color:#ff3d00;}
+.nav.navbar-right li .btn-danger-altered:hover {background-color:#f16133 !important;border-color:#f16133 !important;}
+
+.branded-orange { color:#f16133 !important; }
+
+.btn-grey { background-color:#58595b;border-color:#58595b;}
+.btn-grey:hover { background-color:#f16133;border-color:#f16133;}
+
+.form-control-button {
+    vertical-align: middle;
+    font-size: 16pt; }
