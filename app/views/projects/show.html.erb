@@ -71,18 +71,8 @@
         <% end %>
       </div>
 
-
-    <% if @project.nbd.length >= 1 %>
-      <div class="col-lg-6" style="padding-left:0;">
-        <div class="show3">      
-            <u><%= model_class.human_attribute_name(:nbd) %></u>:
-            <%= @project.nbd %>
-        </div>
-      </div>
-    <% end %>
-    
     <% if @services.length >= 1 %>
-      <div class="col-lg-6">
+      <div class="col-lg-6" style="padding-left:0;">
         <div class="show3">
               <span>
                 Services Provided:
@@ -93,6 +83,17 @@
         </div>
       </div>
     <% end %>
+
+    <% if @project.nbd.length >= 1 %>
+      <div class="col-lg-6">
+        <div class="show3">      
+            <u><%= model_class.human_attribute_name(:nbd) %></u>:
+            <%= @project.nbd %>
+        </div>
+      </div>
+    <% end %>
+    
+
 
 
 
