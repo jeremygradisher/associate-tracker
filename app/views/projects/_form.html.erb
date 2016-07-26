@@ -100,7 +100,7 @@
   <div class="form-group">
     <%= f.label :status, :class => 'control-label col-lg-2' %>
     <div class="col-lg-2">
-      <%= f.select :status, ['Prospect', 'In Process', 'Complete'], {include_blank: true}, :class => 'form-control' %>
+      <%= f.select :status, ['Prospect', 'In Process', 'Complete'], {include_blank:false}, :class => 'form-control' %>
     </div>
     <%=f.error_span(:status) %>
     
