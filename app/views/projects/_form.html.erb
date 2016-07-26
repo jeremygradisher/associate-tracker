@@ -15,6 +15,9 @@
     </div>
   <% end %>
 
+  <h3>Project Information</h3>
+  <hr>
+
   <div class="form-group">
     <%= f.label :project_name, :class => 'control-label col-lg-2' %>
     <div class="col-lg-4">
@@ -78,7 +81,7 @@
   </div>
   
   <div class="form-group">
-    <%= f.label :brief_description, :class => 'control-label col-lg-2' %>
+    <%= f.label :description, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_area :brief_description, :rows => 4, :class => 'form-control' %>
     </div>
@@ -92,7 +95,40 @@
     </div>
     <%=f.error_span(:nbd) %>
   </div>
-  
+
+
+  <div class="form-group">
+    <%= f.label :status, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.select :status, ['Prospect', 'In Process', 'Complete'], {include_blank: true}, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:status) %>
+    
+    <div class="prospect_form">
+    <%= f.label :phases, :class => 'control-label col-lg-1' %>
+    <div class="col-lg-2">
+      <%= f.select :phases, ['(1) Marketing', '(2) Contact', '(3) Profile', '(4) Project', '(5) Meeting', '(6) Proposal', '(7) Interview', '(8) Agreement', '(9) Start Date'], {include_blank: false}, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:phases) %>
+    </div>
+    
+        <%= f.label "Services", :class => 'control-label col-lg-1' %>
+      <div class="col-lg-3">
+        <%= f.collection_check_boxes :service_ids, Service.all, :id, :name do |b| %>
+          <div class="collection-check-box-altered">
+            <%= b.check_box %>
+            <%= b.label %>
+          </div>
+        <% end %>
+      </div>
+  </div>
+<!-- Everything above here is on the form no matter the status -->
+
+<!-- 1 Everything here is for prospect status only -->
+<div class="prospect_form"> 
+    <h3>Client</h3>
+    <hr style="clear:both;">
+
   <div class="form-group">
     <%= f.label :client_name, :class => 'control-label col-lg-2' %>
     <div class="col-lg-4">
@@ -130,44 +166,8 @@
      <%# end %>
     <% end %>
   </div>
-  
-  <div class="form-group">
-    <%= f.label :status, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-2">
-      <%= f.select :status, ['Prospect', 'In Process', 'Complete'], {include_blank: true}, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:status) %>
     
-    <div class="prospect_form">
-    <%= f.label :phases, :class => 'control-label col-lg-1' %>
-    <div class="col-lg-2">
-      <%= f.select :phases, ['(1) Marketing', '(2) Contact', '(3) Profile', '(4) Project', '(5) Meeting', '(6) Proposal', '(7) Interview', '(8) Agreement', '(9) Start Date'], {include_blank: false}, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:phases) %>
-    </div>
-    
-        <%= f.label "Services", :class => 'control-label col-lg-1' %>
-      <div class="col-lg-3">
-        <%= f.collection_check_boxes :service_ids, Service.all, :id, :name do |b| %>
-          <div class="collection-check-box-altered">
-            <%= b.check_box %>
-            <%= b.label %>
-          </div>
-        <% end %>
-      </div>
-  </div>
-<!-- Everything above here is on the form no matter the status -->
 
-<!-- 2 Everything here is for prospect status only -->
-<div class="prospect_form"> 
-    <hr>
-    <div class="form-group">
-      <%= f.label :client_meeting, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
-        <%= f.text_field :client_meeting, 'data-provide' => 'datepicker', :class => 'form-control' %>
-      </div>
-      <%=f.error_span(:client_meeting) %>
-    </div>
 
     <div class="form-group">
       <%= f.label :client_contact, :class => 'control-label col-lg-2' %>
@@ -192,7 +192,7 @@
     </div>
     <%=f.error_span(:telephone) %>
   </div>
-
+  
   <div class="form-group">
     <%= f.label :correspondence_notes, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
@@ -201,24 +201,9 @@
     </div>
     <%=f.error_span(:correspondence_notes) %>
   </div>
-</div>
-<!-- 2 end -->
- 
- 
-<!-- 3 only available in process -->
-<div class="in_process_form">
 
-  <hr>
   <div class="form-group">  
-    <%= f.label :client_billing, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :client_billing, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:client_billing) %>
-  </div>
-  
-  <div class="form-group">  
-    <%= f.label :client_street, :class => 'control-label col-lg-2' %>
+    <%= f.label :billing_address, :class => 'control-label col-lg-2' %>
     <div class="col-lg-3">
       <%= f.text_field :client_street, :class => 'form-control' %>
     </div>
@@ -241,78 +226,24 @@
       <%= f.text_field :client_zip, :class => 'form-control' %>
     </div>
     <%=f.error_span(:client_zip) %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :terms, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-2">
-      <%= f.select :deal_terms, ['Monthly', 'Hourly'], {include_blank: true}, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:deal_terms) %>
-
-    <%= f.label :rate, :class => 'control-label col-lg-1' %>
-    <div class="col-lg-4">
-      <%= f.text_field :rate, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:rate) %>
   </div>  
-</div>
-<!-- 3 end -->
-
-<div class="complete_form">
-<hr>
-  <div class="form-group">
-    <%= f.label "Project Grand Total", :class => 'control-label col-lg-2' %>
-    <div class="col-lg-4">
-      <%= f.text_field :grand_total, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:grand_total) %>
-  </div>  
-</div>
-
-<!-- 4 only avaialable in process -->
-<div class="in_process_form">
-  <hr>
-  <div class="form-group">
-    <%= f.label :contract_start, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :project_start, 'data-provide' => 'datepicker', :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:project_start) %>
-  </div>
   
-  <div class="form-group">
-    <%= f.label :contract_finish, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :project_finish, 'data-provide' => 'datepicker', :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:project_finish) %>
-  </div>
-  <hr>
-
-  <div class="form-group">
-    <%= f.label :additional_terms, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_area :additional_terms, :rows => 4, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:additional_terms) %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :staffing_notes, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_area :staffing_notes, :rows => 4, :class => 'form-control' %>
-
-    </div>
-    <%=f.error_span(:staffing_notes) %>
-  </div>
+    <div class="form-group">
+      <%= f.label :client_meeting, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.text_field :client_meeting, 'data-provide' => 'datepicker', :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:client_meeting) %>
+    </div>  
 </div>
-<!-- 4 end -->
-
-
-<!-- 5 prospect only -->
+<!-- 1 end -->
+ 
+<!-- 2 prospect only -->
 <div class="prospect_form">
+
+  <h3>Client Documents</h3>
   <hr>
+
   <div class="form-group">  
   <% if @project_pproposals.exists? %>
     <%= f.label :proposal, :class => 'control-label col-lg-2'  %>
@@ -391,7 +322,77 @@
     <% end %>
   </div>
 </div>
+<!-- 2 end --> 
+
+
+<!-- 3 only available in process -->
+<div class="in_process_form">
+  <h3>Progress</h3>
+  <hr style="clear:both;">
+  <div class="form-group">
+    <%= f.label :project_start, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :project_start, 'data-provide' => 'datepicker', :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:project_start) %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :project_finish, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :project_finish, 'data-provide' => 'datepicker', :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:project_finish) %>
+  </div>
+  <hr>
+</div>
+<!-- 3 end -->
+
+<!-- 5 only available in process -->
+<div class="in_process_form">
+  <h3>Additional notes</h3>
+  <hr style="clear:both;">
+ 
+  <div class="form-group">
+    <%= f.label :terms, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.select :deal_terms, ['Monthly', 'Hourly'], {include_blank: true}, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:deal_terms) %>
+
+    <%= f.label :rate, :class => 'control-label col-lg-1' %>
+    <div class="col-lg-6">
+      <%= f.text_field :rate, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:rate) %>
+  </div>  
+ 
+  <div class="form-group">
+    <%= f.label :staffing_notes, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :staffing_notes, :rows => 4, :class => 'form-control' %>
+
+    </div>
+    <%=f.error_span(:staffing_notes) %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :additional_terms, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :additional_terms, :rows => 4, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:additional_terms) %>
+  </div>  
+</div>
 <!-- 5 end -->
+
+
+<!-- 6 only available in process -->
+<div class="in_process_form">    
+  <hr style="clear:both;">
+
+</div>
+<!-- 6 end -->
 
 <!-- 6 only available in process -->
 <div class="in_process_form"> 
@@ -419,7 +420,18 @@
   </div>
 </div> 
 <!-- 6 end --> 
-  
+ 
+<div class="complete_form">
+<hr>
+  <div class="form-group">
+    <%= f.label "Project Grand Total", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-4">
+      <%= f.text_field :grand_total, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:grand_total) %>
+  </div>  
+</div>
+ 
   
 <!-- 7 always available -->  
   <hr>
@@ -566,3 +578,18 @@
       //end if the status changes
     });
  </script>
+ 
+ 
+ 
+ 
+ 
+<!-- 
+   <hr>
+  <div class="form-group">  
+    <%#= f.label :client_billing, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%#= f.text_field :client_billing, :class => 'form-control' %>
+    </div>
+    <%#=f.error_span(:client_billing) %>
+  </div>
+-->
