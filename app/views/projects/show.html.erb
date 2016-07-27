@@ -6,15 +6,18 @@
           <%= image_tag p.picon_url, :style => 'max-width:100%;padding:5%;' %>
     <% end %>
     
-    <hr>
-    
+
+    <div style="width:100%;padding:10px;background-color:#f4f4f4;border-radius:4px;">
     <% if @project.client_name.length >= 1 %>
       <p style="text-align:center;">Client: <%= @project.client_name %></p>
     <% end %>
+
+    <hr style="margin-top:6px;margin-bottom:6px;">
     
     <% @project_cicons.each do |p| %>
       <%= image_tag p.cicon_url, :style => 'max-width:100%;padding:5%;' %>
     <% end %>
+    </div>
   </div>
 <!-- end left column 1/3 -->
 
