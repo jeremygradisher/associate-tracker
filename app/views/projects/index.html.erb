@@ -136,9 +136,16 @@
       <tr>
         <!--<td><%#= link_to project.id, project_path(project) %></td>-->
         <td>
-          <% project.project_picons.each do |p| %>
-            <%= link_to image_tag(p.picon_url, :style => 'max-width:50px;padding:2px;'), project_path(project) %>
+          <% if project.project_picons.exists? %>
+            <% project.project_picons.each do |p| %>
+              <%= link_to image_tag(p.picon_url, :style => 'max-width:50px;padding:2px;'), project_path(project) %>
+            <% end %>
+          <% else %>
+            <% project.project_cicons.each do |p| %>
+              <%= link_to image_tag(p.cicon_url, :style => 'max-width:50px;padding:2px;'), project_path(project) %>
+            <% end %>
           <% end %>
+          
         </td>
         <td><%= link_to project.name, project_path(project) %></td>
         <td><%= project.status %></td>
