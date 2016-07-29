@@ -115,9 +115,13 @@
   <h1><%#=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 -->
-
+<br style="clear:both;">
 
 <% if params[:q].present? && @associates.count >= 1 %>
+
+<div class="row" style="text-align:center;">
+  <%= will_paginate @associates, renderer: BootstrapPagination::Rails %>
+</div>
 
 <table class="table table-striped">
   <thead>
