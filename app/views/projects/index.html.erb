@@ -97,13 +97,18 @@
 
 
 
-
-
-<!--
-<div class="page-header">
-  <h1><%#=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+<% if @projectscount >= 25 %>
+<hr>
+<div style="margin-left:auto;margin-right:auto;text-align:center;">
+<% end %>
+<%= will_paginate @projects, renderer: BootstrapPagination::Rails %>
+<% if @projectscount >= 25 %>
 </div>
--->
+<hr>
+<% end %>
+
+
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -183,7 +188,16 @@
   </tbody>
 </table>
 
-<%= will_paginate @projects %>
+<%#= will_paginate @projects %>
+<% if @projectscount >= 25 %>
+<hr>
+<div style="margin-left:auto;margin-right:auto;text-align:center;">
+<% end %>
+<%= will_paginate @projects, renderer: BootstrapPagination::Rails %>
+<% if @projectscount >= 25 %>
+</div>
+<hr>
+<% end %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_project_path,
