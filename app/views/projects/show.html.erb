@@ -131,14 +131,15 @@
             </td>
           <% end %>
               
-          <% if @project.client_billing.length >= 1 %>
+          <% if @project.client_contact.length >= 1 %>
             <td>
             <div class="show3">      
-                <u><%= model_class.human_attribute_name(:client_billing) %></u>:
+                <u><%= model_class.human_attribute_name(:client_contact) %></u>:
             </div>
           
-            <div class="show3">      
-                <%= @project.client_billing %><br>
+            <div class="show3">    
+                <%= @project.client_name %><br>
+                C/O: <%= @project.client_contact %><br>
                 <%= @project.client_street %><br>
                 <%= @project.client_city %>,
                 <%= @project.client_state %>
@@ -150,7 +151,7 @@
       </table>
     </div>
     
-          <% if @project.client_billing.length >= 1 || @project.project_street.length >= 1 %>
+          <% if @project.client_contact.length >= 1 || @project.project_street.length >= 1 %>
             <hr>
           <% end %>
 <% end %>
