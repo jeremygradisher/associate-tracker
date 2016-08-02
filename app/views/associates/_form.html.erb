@@ -113,7 +113,7 @@
   </div>
   
   <div class="form-group">
-    <%= f.label :primary_address, :class => 'control-label col-lg-2' %>
+    <%= f.label :primary_address, "Primary Address", :class => 'control-label col-lg-2' %>
     <div class="col-lg-3">
       <%= f.text_field :primary_street, :class => 'form-control' %>
     </div>
@@ -134,7 +134,7 @@
 
   
   <div class="form-group">
-    <%= f.label :business_address, :class => 'control-label col-lg-2' %>
+    <%= f.label :business_address, "Business Address", :class => 'control-label col-lg-2' %>
     <div class="col-lg-3">
       <%= f.text_field :business_street, :class => 'form-control' %>
     </div>
@@ -155,7 +155,7 @@
   
   <!-- The original checkbox way of grabbing work locations -->
   <div class="form-group">
-    <%= f.label "Working Locations", :class => 'control-label col-lg-2' %>
+    <%= f.label :working_locations, "Working Locations", :class => 'control-label col-lg-2' %>
       <div class="col-lg-10">
         <%= f.collection_check_boxes :wrkloc_ids, Wrkloc.all, :id, :wrkstate do |b| %>
           <div class="collection-check-box-altered">
@@ -179,7 +179,7 @@
   <!-- trying to get tagit to work here -->
   
   <div class="form-group">
-    <%= f.label :project_history, :class => 'control-label col-lg-2' %>
+    <%= f.label :project_history, "Project History", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_area :project_history, :rows => 4, :class => 'form-control' %>
       <%=f.error_span(:project_history) %>
@@ -201,7 +201,7 @@
   -->
   
   <div class="form-group">
-    <%= f.label "ein/ss#", :class => 'control-label col-lg-2' %>
+    <%= f.label :ein_ss, "EIN/SS#", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :ein_ss, :class => 'form-control' %>
       <%=f.error_span(:ein_ss) %>
@@ -244,7 +244,7 @@
         <div class="col-lg-10">
           <% @associate_resumes.each do |p| %>
                 <div class="form-control">
-                <%= link_to p.resume_url, p.resume_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
+                <%= link_to p.resume_url.gsub("https://gassociatebucket.s3.amazonaws.com/uploads", ""), p.resume_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
                 <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
                       edit_associate_resume_path(p), :class => 'form-control-button', 
                       :style => 'color:#428bca', :title => 'Edit Attachment'  %>
@@ -267,11 +267,11 @@
 
   <div class="form-group">  
     <% if @associate_gresumes.exists? %>
-        <%= f.label :gresume, :class => 'control-label col-lg-2'  %>
+        <%= f.label :gresume, "Greeby Resume", :class => 'control-label col-lg-2'  %>
         <div class="col-lg-10">
           <% @associate_gresumes.each do |p| %>
                 <div class="form-control">
-                <%= link_to p.gresume_url, p.gresume_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
+                <%= link_to p.gresume_url.gsub("https://gassociatebucket.s3.amazonaws.com/uploads", ""), p.gresume_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
                 <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
                       edit_associate_gresume_path(p), :class => 'form-control-button', 
                       :style => 'color:#428bca', :title => 'Edit Attachment'  %>
@@ -284,7 +284,7 @@
           <% end %>
         </div>
     <% else %>  
-         <%= f.label :resume, :class => 'control-label col-lg-2'  %>
+         <%= f.label :gresume, "Greeby Resume", :class => 'control-label col-lg-2'  %>
          <div class="col-lg-10">
          <%= f.file_field :gresume, :multiple => true, name: "associate_gresumes[gresume][]", :class => 'form-control' %>
          </div>
@@ -297,7 +297,7 @@
         <div class="col-lg-10">
           <% @associate_contracts.each do |p| %>
                 <div class="form-control">
-                <%= link_to p.contract_url, p.contract_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
+                <%= link_to p.contract_url.gsub("https://gassociatebucket.s3.amazonaws.com/uploads", ""), p.contract_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
                 <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
                       edit_associate_contract_path(p), :class => 'form-control-button', 
                       :style => 'color:#428bca', :title => 'Edit Attachment'  %>
@@ -323,7 +323,7 @@
         <div class="col-lg-10">
           <% @associate_w9s.each do |p| %>
                 <div class="form-control">
-                <%= link_to p.w9_url, p.w9_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
+                <%= link_to p.w9_url.gsub("https://gassociatebucket.s3.amazonaws.com/uploads", ""), p.w9_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
                 <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
                       edit_associate_w9_path(p), :class => 'form-control-button', 
                       :style => 'color:#428bca', :title => 'Edit Attachment'  %>
@@ -345,11 +345,11 @@
 
   <div class="form-group">  
     <% if @associate_direct_deposits.exists? %>
-        <%= f.label :direct_deposit, :class => 'control-label col-lg-2'  %>
+        <%= f.label :direct_deposit, "Direct Deposit", :class => 'control-label col-lg-2'  %>
         <div class="col-lg-10">
           <% @associate_direct_deposits.each do |p| %>
                 <div class="form-control">
-                <%= link_to p.direct_deposit_url, p.direct_deposit_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
+                <%= link_to p.direct_deposit_url.gsub("https://gassociatebucket.s3.amazonaws.com/uploads", ""), p.direct_deposit_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
                 <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
                       edit_associate_direct_deposit_path(p), :class => 'form-control-button', 
                       :style => 'color:#428bca', :title => 'Edit Attachment'  %>
@@ -362,7 +362,7 @@
           <% end %>
         </div>
     <% else %>  
-         <%= f.label :direct_deposit, :class => 'control-label col-lg-2'  %>
+         <%= f.label :direct_deposit, "Direct Deposit", :class => 'control-label col-lg-2'  %>
          <div class="col-lg-10">
          <%= f.file_field :direct_deposit, :multiple => true, name: "associate_direct_deposits[direct_deposit][]", :class => 'form-control' %>
          </div>
@@ -371,11 +371,11 @@
 
   <div class="form-group">  
     <% if @associate_drivers_licenses.exists? %>
-        <%= f.label :drivers_license, :class => 'control-label col-lg-2'  %>
+        <%= f.label :drivers_license, "Driver's License", :class => 'control-label col-lg-2'  %>
         <div class="col-lg-10">
           <% @associate_drivers_licenses.each do |p| %>
                 <div class="form-control">
-                <%= link_to p.drivers_license_url, p.drivers_license_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
+                <%= link_to p.drivers_license_url.gsub("https://gassociatebucket.s3.amazonaws.com/uploads", ""), p.drivers_license_url, :target => '_blank', :style => 'margin-right: 4px;vertical-align:top;' %>
                 <%= link_to '<i class="fa fa-edit"></i>'.html_safe,
                       edit_associate_drivers_license_path(p), :class => 'form-control-button', 
                       :style => 'color:#428bca', :title => 'Edit Attachment'  %>
@@ -388,7 +388,7 @@
           <% end %>
         </div>
     <% else %>  
-         <%= f.label :drivers_license, :class => 'control-label col-lg-2'  %>
+         <%= f.label :drivers_license, "Driver's License", :class => 'control-label col-lg-2'  %>
          <div class="col-lg-10">
          <%= f.file_field :drivers_license, :multiple => true, name: "associate_drivers_licenses[drivers_license][]", :class => 'form-control' %>
          </div>
@@ -397,7 +397,7 @@
   
   <div class="form-group">  
     <% if @associate_drivers_insurances.exists? %>
-        <%= f.label :drivers_insurance, :class => 'control-label col-lg-2'  %>
+        <%= f.label :drivers_insurance, "Driver's Insurance", :class => 'control-label col-lg-2'  %>
         <div class="col-lg-10">
           <% @associate_drivers_insurances.each do |p| %>
                 <div class="form-control">
@@ -414,7 +414,7 @@
           <% end %>
         </div>
     <% else %>  
-         <%= f.label :drivers_insurance, :class => 'control-label col-lg-2'  %>
+         <%= f.label :drivers_insurance, "Driver's Insurance", :class => 'control-label col-lg-2'  %>
          <div class="col-lg-10">
          <%= f.file_field :drivers_insurance, :multiple => true, name: "associate_drivers_insurances[drivers_insurance][]", :class => 'form-control' %>
          </div>
