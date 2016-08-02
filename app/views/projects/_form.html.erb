@@ -19,14 +19,14 @@
   <hr>
 
   <div class="form-group">
-    <%= f.label :project_name, :class => 'control-label col-lg-2' %>
+    <%= f.label :project_name, "Project Name", :class => 'control-label col-lg-2' %>
     <div class="col-lg-4">
       <%= f.text_field :name, :class => 'form-control' %>
     </div>
     <%=f.error_span(:name) %>
     
     <% if @project_picons.exists? %>
-    <%= f.label :project_Icon, :class => 'control-label col-lg-2'  %>
+    <%= f.label :project_icon, "Project Icon", :class => 'control-label col-lg-2'  %>
       <div class="col-lg-4">
         <% @project_picons.each do |p| %>
               <div class="form-control">
@@ -43,7 +43,7 @@
         <% end %>
       </div>
     <% else %>  
-         <%= f.label :project_Icon, :class => 'control-label col-lg-2'  %>
+         <%= f.label :project_icon, "Project Icon", :class => 'control-label col-lg-2'  %>
          <div class="col-lg-4">
          <%= f.file_field :picon, :multiple => true, name: "project_picons[picon][]", :class => 'form-control' %>
          </div>
@@ -89,7 +89,7 @@
   </div>
   
   <div class="form-group">
-    <%= f.label :nbd, :class => 'control-label col-lg-2' %>
+    <%= f.label :nbd, "NBD", :class => 'control-label col-lg-2' %>
     <div class="col-lg-2">
       <%= f.select :nbd, ['Skip', 'Garrett', 'Ben'], {include_blank: true}, :class => 'form-control' %>
     </div>
@@ -130,14 +130,14 @@
     <hr style="clear:both;">
 
   <div class="form-group">
-    <%= f.label :client_name, :class => 'control-label col-lg-2' %>
+    <%= f.label :client_name, "Client Name", :class => 'control-label col-lg-2' %>
     <div class="col-lg-4">
       <%= f.text_field :client_name, :class => 'form-control' %>
     </div>
     <%=f.error_span(:client_name) %>
     
     <% if @project_cicons.exists? %>
-    <%= f.label :client_Icon, :class => 'control-label col-lg-2'  %>
+    <%= f.label :client_icon, "Client Icon", :class => 'control-label col-lg-2'  %>
         <div class="col-lg-4">
           <% @project_cicons.each do |p| %>
           <div class="form-control">
@@ -159,7 +159,7 @@
     <% else %>
     
      <%#= f.fields_for :project_picons do |p| %>
-         <%= f.label :client_icon, :class => 'control-label col-lg-2'  %>
+         <%= f.label :client_icon, "Client Icon", :class => 'control-label col-lg-2'  %>
          <div class="col-lg-4">
          <%= f.file_field :cicon, :multiple => true, name: "project_cicons[cicon][]", :class => 'form-control' %>
          </div>
@@ -170,7 +170,7 @@
 
 
     <div class="form-group">
-      <%= f.label :client_contact, :class => 'control-label col-lg-2' %>
+      <%= f.label :client_contact, "Client Contact", :class => 'control-label col-lg-2' %>
       <div class="col-lg-10">
         <%= f.text_field :client_contact, :class => 'form-control' %>
       </div>
@@ -194,7 +194,7 @@
   </div>
   
   <div class="form-group">
-    <%= f.label :correspondence_notes, :class => 'control-label col-lg-2' %>
+    <%= f.label :correspondence_notes, "Correspondence Notes", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%#= f.text_field :correspondence_notes, :class => 'form-control' %>
       <%= f.text_area :correspondence_notes, :rows => 4, :class => 'form-control' %>
@@ -203,7 +203,7 @@
   </div>
 
   <div class="form-group">  
-    <%= f.label :billing_address, :class => 'control-label col-lg-2' %>
+    <%= f.label :billing_address, "Billing Address", :class => 'control-label col-lg-2' %>
     <div class="col-lg-3">
       <%= f.text_field :client_street, :class => 'form-control' %>
     </div>
@@ -229,7 +229,7 @@
   </div>  
   
     <div class="form-group">
-      <%= f.label :client_meeting, :class => 'control-label col-lg-2' %>
+      <%= f.label :client_meeting, "Client Meeting", :class => 'control-label col-lg-2' %>
       <div class="col-lg-10">
         <%= f.text_field :client_meeting, 'data-provide' => 'datepicker', :class => 'form-control' %>
       </div>
@@ -298,7 +298,7 @@
   
   <div class="form-group">  
   <% if @project_prevcontracts.exists? %>
-    <%= f.label :revised_contract, :class => 'control-label col-lg-2'  %>
+    <%= f.label :revised_contract, "Revised Contract", :class => 'control-label col-lg-2'  %>
       <div class="col-lg-10">
         <% @project_prevcontracts.each do |p| %>
               <div class="form-control">
@@ -315,7 +315,7 @@
         <% end %>
       </div>
     <% else %>  
-         <%= f.label :revised_contract, :class => 'control-label col-lg-2'  %>
+         <%= f.label :revised_contract, "Revised Contract", :class => 'control-label col-lg-2'  %>
          <div class="col-lg-10">
          <%= f.file_field :prevcontract, :multiple => true, name: "project_prevcontracts[prevcontract][]", :class => 'form-control' %>
          </div>
@@ -330,7 +330,7 @@
   <h3>Progress</h3>
   <hr style="clear:both;">
   <div class="form-group">
-    <%= f.label :project_start, :class => 'control-label col-lg-2' %>
+    <%= f.label :project_start, "Project Start", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :project_start, 'data-provide' => 'datepicker', :class => 'form-control' %>
     </div>
@@ -338,7 +338,7 @@
   </div>
   
   <div class="form-group">
-    <%= f.label :project_finish, :class => 'control-label col-lg-2' %>
+    <%= f.label :project_finish, "Project Finish", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :project_finish, 'data-provide' => 'datepicker', :class => 'form-control' %>
     </div>
@@ -368,7 +368,7 @@
   </div>  
  
   <div class="form-group">
-    <%= f.label :staffing_notes, :class => 'control-label col-lg-2' %>
+    <%= f.label :staffing_notes, "Staffing Notes", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_area :staffing_notes, :rows => 4, :class => 'form-control' %>
 
@@ -377,7 +377,7 @@
   </div>
   
   <div class="form-group">
-    <%= f.label :additional_terms, :class => 'control-label col-lg-2' %>
+    <%= f.label :additional_terms, "Additional Terms", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_area :additional_terms, :rows => 4, :class => 'form-control' %>
     </div>
@@ -424,7 +424,7 @@
 <div class="complete_form">
 <hr>
   <div class="form-group">
-    <%= f.label "Project Grand Total", :class => 'control-label col-lg-2' %>
+    <%= f.label :grand_total, "Project Grand Total", :class => 'control-label col-lg-2' %>
     <div class="col-lg-4">
       <%= f.text_field :grand_total, :class => 'form-control' %>
     </div>
@@ -436,7 +436,7 @@
 <!-- 7 always available -->  
   <hr>
   <div class="form-group">
-    <%= f.label :document_links, :class => 'control-label col-lg-2' %>
+    <%= f.label :document_links, "Document Links", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :link, :class => 'form-control tag-test' %>
     </div>
