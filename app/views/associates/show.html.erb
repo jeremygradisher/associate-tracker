@@ -30,9 +30,14 @@
     Home State: <strong><%= @associate.primary_state %></strong>&nbsp;&nbsp;&nbsp;&nbsp;
     Working Locations: 
     <strong>
-    <% @wrklocs.each do |p| %>
-      <%= p.wrkstate %> 
+    <% if @wrklocs.count >= 50 %>
+      All U.S. States
+    <% else %>
+      <% @wrklocs.each do |p| %>
+        <%= p.wrkstate %> 
+      <% end %>
     <% end %>
+    
     </strong>
   </div>
   

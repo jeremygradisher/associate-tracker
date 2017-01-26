@@ -157,6 +157,7 @@
   <div class="form-group">
     <%= f.label :working_locations, "Working Locations", :class => 'control-label col-lg-2' %>
       <div class="col-lg-10">
+        <input type="checkbox" id="selectAll" value="selectAll"> Select / Deselect All<br>
         <%= f.collection_check_boxes :wrkloc_ids, Wrkloc.all, :id, :wrkstate do |b| %>
           <div class="collection-check-box-altered">
             <%= b.check_box %>
@@ -471,4 +472,18 @@
         });
 
     });
+  </script>
+  
+  <script>
+    $('#selectAll').click(function() {
+   if (this.checked) {
+       $('input[id^="associate_wrkloc_ids').each(function() {
+           this.checked = true;                        
+       });
+   } else {
+      $('input[id^="associate_wrkloc_ids').each(function() {
+           this.checked = false;                        
+       });
+   } 
+  });
   </script>

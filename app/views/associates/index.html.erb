@@ -175,9 +175,15 @@
         
         <td><%= associate.primary_state %></td>
         
-        <td><% associate.wrklocs.each do |p| %>
+        <td>
+          <% if associate.wrklocs.count >= 50 %>
+            All U.S. States
+          <% else %>
+            <% associate.wrklocs.each do |p| %>
               <%= p.wrkstate %> 
             <% end %>
+          <% end %>
+            
         </td>
         
         
