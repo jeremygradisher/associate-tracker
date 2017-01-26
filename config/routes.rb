@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  #get 'archived_projects/index'
+  #get 'archived_projects/show'
+  resources :archived_projects
+
   resources :project_pdocuments
   resources :project_pw9s
   resources :project_invoices

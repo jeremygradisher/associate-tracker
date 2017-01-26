@@ -5,9 +5,10 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     
-    @search = Project.search(params[:q])
+    @search = Project.where.not(:status => "Complete").search(params[:q])
     
     #@projects = Project.all
+    #@projects = Project.where.not(:status => "Complete")
 
     if params[:searchnear].present?
       #@projects = @search.result(distinct: true).near(params[:searchnear], 100).paginate(:page => params[:page], :per_page => 25)
@@ -21,7 +22,7 @@ class ProjectsController < ApplicationController
     
     @prospect_count = @projects.where(:status => 'Prospect').count
     @in_process_count = @projects.where(:status => 'In Process').count
-    @complete_count = @projects.where(:status => 'Complete').count
+    #@complete_count = @projects.where(:status => 'Complete').count
     
     @hash = Gmaps4rails.build_markers(@associates) do |associate, marker|
       marker.lat associate.latitude
