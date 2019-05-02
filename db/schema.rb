@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -99,16 +98,14 @@ ActiveRecord::Schema.define(version: 20160729142644) do
   create_table "associates_positions", id: false, force: :cascade do |t|
     t.integer "associate_id", null: false
     t.integer "position_id",  null: false
+    t.index ["associate_id", "position_id"], name: "index_associates_positions_on_associate_id_and_position_id"
   end
-
-  add_index "associates_positions", ["associate_id", "position_id"], name: "index_associates_positions_on_associate_id_and_position_id"
 
   create_table "associates_projects", id: false, force: :cascade do |t|
     t.integer "associate_id", null: false
     t.integer "project_id",   null: false
+    t.index ["associate_id", "project_id"], name: "index_associates_projects_on_associate_id_and_project_id"
   end
-
-  add_index "associates_projects", ["associate_id", "project_id"], name: "index_associates_projects_on_associate_id_and_project_id"
 
   create_table "associates_wrklocs", id: false, force: :cascade do |t|
     t.integer "associate_id", null: false
@@ -214,9 +211,8 @@ ActiveRecord::Schema.define(version: 20160729142644) do
   create_table "projects_services", id: false, force: :cascade do |t|
     t.integer "project_id", null: false
     t.integer "service_id", null: false
+    t.index ["project_id", "service_id"], name: "index_projects_services_on_project_id_and_service_id"
   end
-
-  add_index "projects_services", ["project_id", "service_id"], name: "index_projects_services_on_project_id_and_service_id"
 
   create_table "services", force: :cascade do |t|
     t.string   "name"
@@ -241,10 +237,9 @@ ActiveRecord::Schema.define(version: 20160729142644) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "wrklocs", force: :cascade do |t|
     t.string   "wrkstate"

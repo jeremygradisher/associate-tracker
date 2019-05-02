@@ -2,6 +2,9 @@
 
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
+#Getting an error after moving to AWS Cloud9 - this may help:
+#Rails.application.config.assets.precompile += %w( chartkick.js )
+#changing the version of chartkick solved this.
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path

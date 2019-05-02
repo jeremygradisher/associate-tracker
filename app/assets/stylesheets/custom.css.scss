@@ -287,3 +287,7 @@ td > a:hover, td > a:visited {
 .form-control-button {
     vertical-align: middle;
     font-size: 16pt; }
+    
+.fa-remove:before {
+    content: "\f00d";
+}
