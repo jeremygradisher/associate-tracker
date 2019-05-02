@@ -29,7 +29,7 @@ gem 'will_paginate-bootstrap'
 # gem 'therubyracer', platforms: :ruby
 gem 'underscore-rails'
 gem 'geocoder'
-gem 'gmaps4rails'
+gem 'gmaps4rails', '~> 2.1.2'
 gem 'chartkick', '~> 2.2.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
