@@ -1,3 +1,6 @@
+<% if current_user %>
+
+
 <!--<div class="jumbotron"><h1>Associate Tracker</h1></div>-->
     <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
     
@@ -66,3 +69,7 @@
           
     </div>
 </div>
+
+<% else %>
+
+<% end %>

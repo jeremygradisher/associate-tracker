@@ -9,7 +9,7 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
   config.action_mailer.delivery_method = :test
-  config.action_mailer.default_url_options = { :host => 'http://greeby-associate-tracker-jeremygradisher.c9users.io'}
+  config.action_mailer.default_url_options = { :host => 'https://9ebae7e2520744b3829e2f74ffb6e3fb.vfs.cloud9.us-east-1.amazonaws.com'}
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
