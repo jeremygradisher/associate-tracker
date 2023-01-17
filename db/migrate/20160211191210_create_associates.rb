@@ -1,4 +1,4 @@
-class CreateAssociates < ActiveRecord::Migration
+class CreateAssociates < ActiveRecord::Migration[5.0]
   def change
     create_table :associates do |t|
       t.string :name

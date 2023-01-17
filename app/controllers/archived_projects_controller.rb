@@ -1,6 +1,6 @@
 class ArchivedProjectsController < ApplicationController
   def index
-    @search = Project.where(:status => "Complete").search(params[:q])
+    @search = Project.where(:status => "Complete").ransack(params[:q])
     
     #@projects = Project.all
     #@projects = Project.where(:status => "Complete")

@@ -1,4 +1,4 @@
-class CreateAssociateContracts < ActiveRecord::Migration
+class CreateAssociateContracts < ActiveRecord::Migration[5.0]
   def change
     create_table :associate_contracts do |t|
       t.integer :associate_id

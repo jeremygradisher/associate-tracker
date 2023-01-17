@@ -5,9 +5,9 @@ class AssociatesController < ApplicationController
   # GET /associates.json
   def index
 
-    @search = Associate.search(params[:q])
-    @searchlocs = Wrkloc.search(params[:q])
-    @searchpos = Position.search(params[:q])
+    @search = Associate.ransack(params[:q])
+    @searchlocs = Wrkloc.ransack(params[:q])
+    @searchpos = Position.ransack(params[:q])
     
     #@associates = @search.result(distinct: true).order(:name, :id).paginate(:page => params[:page], :per_page => 25)
 

@@ -1,4 +1,4 @@
-class AlterColumnAssociatesBirthday < ActiveRecord::Migration
+class AlterColumnAssociatesBirthday < ActiveRecord::Migration[5.0]
   def self.up
     change_table :associates do |t|
       t.change :birthday, :string

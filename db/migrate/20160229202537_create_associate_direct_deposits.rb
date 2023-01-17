@@ -1,4 +1,4 @@
-class CreateAssociateDirectDeposits < ActiveRecord::Migration
+class CreateAssociateDirectDeposits < ActiveRecord::Migration[5.0]
   def change
     create_table :associate_direct_deposits do |t|
       t.integer :associate_id

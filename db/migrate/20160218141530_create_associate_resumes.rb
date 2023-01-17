@@ -1,4 +1,4 @@
-class CreateAssociateResumes < ActiveRecord::Migration
+class CreateAssociateResumes < ActiveRecord::Migration[5.0]
   def change
     create_table :associate_resumes do |t|
       t.integer :associate_id

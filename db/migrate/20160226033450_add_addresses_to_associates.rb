@@ -1,4 +1,4 @@
-class AddAddressesToAssociates < ActiveRecord::Migration
+class AddAddressesToAssociates < ActiveRecord::Migration[5.0]
   def change
     add_column :associates, :primary_street, :string
     add_column :associates, :primary_city, :string

@@ -1,4 +1,4 @@
-class CreateAssociateAttachments < ActiveRecord::Migration
+class CreateAssociateAttachments < ActiveRecord::Migration[5.0]
   def change
     create_table :associate_attachments do |t|
       t.integer :associate_id
