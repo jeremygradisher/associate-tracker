@@ -50,6 +50,8 @@ gem 'sdoc', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'bundler', '>= 2.4.4'
+
 gem 'sendgrid-ruby'
 
 gem 'sprockets-rails', :require => 'sprockets/railtie'
