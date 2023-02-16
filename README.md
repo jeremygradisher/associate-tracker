@@ -1,12 +1,10 @@
 # Associate Tracker - Main Branch
 
 Associate Tracker (Ruby on Rails SaaS app) to track leasing representatives 
-for development projects. Devise user auth. Leaflet.js for mapping.
+for property development projects. Devise user auth. Leaflet.js for mapping.
 
 
 # If cloning this realize a couple of things:
-
--it's using sqlite3 in development and PostgreSQL in production (gemfile)
 
 -it's using sendgrid for sign-up email confirmations (.baschrc)<br>
 export SENDGRID_USERNAME=xxxxxxxxxx<br>
@@ -22,13 +20,13 @@ $ heroku config:set S3_BUCKET=xxxxxxxxxxxxxxxxxx
 -config/environments/development.rb and production has something that needs to be addressed:
 
 development:<br>
-config.action_mailer.default_url_options = { :host => 'hxxp://greeby-associate-tracker-jxxxxxxxxxxxer.c9users.io'}
+config.action_mailer.default_url_options = { :host => 'hxxp://asdf-associate-tracker-jxxxxxxxxxxxer.c9users.io'}
 
 production:<br>
-config.action_mailer.default_url_options = { :host => 'greeby-associate-tracker.herokuapp.com', :protocol => 'https'}
+config.action_mailer.default_url_options = { :host => 'asdf-associate-tracker.herokuapp.com', :protocol => 'https'}
   
 -config/initializers/devise.rb - where the email notifications are coming from:<br>
-config.mailer_sender = 'no-reply@workshop-mg.com'
+config.mailer_sender = 'no-reply@youremail.com'
 
 
 
