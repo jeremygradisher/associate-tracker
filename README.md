@@ -1,17 +1,7 @@
-# Greeby Associate Tracker - Main Branch
+# Associate Tracker - Main Branch
 
-Overall this project is complete. There are a couple of outstanding items:
-
--Within the Associates model there is a HABTM association with working_locations - within _form.html.erb it needs checkboxes replaced with tag-it and jQuery auto-complete or some equivelant.
-
--Projects index search - multiselect status - he wants "Prospect" and "In Process" checked and "Complete" unchecked by default. Currently they are all represented on the map and with search you can select just one such as "Prospect" to narrow it down.
-
--Piechart colors need to match Projects colors on status - Prospect/blue, In Process/orange and Complete/pink
-
--Carrierwave validation error kicks you to the 422 page as opposed to showing on the form and saying what the error is.
-
--After sign up, if home page is protected message "Check your email for confirmation" is overidden by "you must sign-in or sign-up to continue"
-
+Associate Tracker (Ruby on Rails SaaS app) to track leasing representatives 
+for development projects. Devise user auth. Leaflet.js for mapping.
 
 
 # If cloning this realize a couple of things:
