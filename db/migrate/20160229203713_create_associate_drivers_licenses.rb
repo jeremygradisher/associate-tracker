@@ -1,4 +1,4 @@
-class CreateAssociateDriversLicenses < ActiveRecord::Migration
+class CreateAssociateDriversLicenses < ActiveRecord::Migration[5.0]
   def change
     create_table :associate_drivers_licenses do |t|
       t.integer :associate_id

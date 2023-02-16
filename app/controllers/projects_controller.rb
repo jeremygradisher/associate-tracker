@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     
-    @search = Project.where.not(:status => "Complete").search(params[:q])
+    @search = Project.where.not(:status => "Complete").ransack(params[:q])
     
     #@projects = Project.all
     #@projects = Project.where.not(:status => "Complete")

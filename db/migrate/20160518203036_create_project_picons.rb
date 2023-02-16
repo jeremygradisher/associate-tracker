@@ -1,4 +1,4 @@
-class CreateProjectPicons < ActiveRecord::Migration
+class CreateProjectPicons < ActiveRecord::Migration[5.0]
   def change
     create_table :project_picons do |t|
       t.integer :project_id

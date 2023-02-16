@@ -1,4 +1,4 @@
-class AddThreeColumnsToProjects < ActiveRecord::Migration
+class AddThreeColumnsToProjects < ActiveRecord::Migration[5.0]
   def change
     add_column :projects, :email, :string
     add_column :projects, :telephone, :string

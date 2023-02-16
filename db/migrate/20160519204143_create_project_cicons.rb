@@ -1,4 +1,4 @@
-class CreateProjectCicons < ActiveRecord::Migration
+class CreateProjectCicons < ActiveRecord::Migration[5.0]
   def change
     create_table :project_cicons do |t|
       t.integer :project_id

@@ -1,4 +1,4 @@
-class RemoveProjectDurationFromProjects < ActiveRecord::Migration
+class RemoveProjectDurationFromProjects < ActiveRecord::Migration[5.0]
   def change
     remove_column :projects, :project_duration, :string
   end

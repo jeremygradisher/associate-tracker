@@ -1,4 +1,4 @@
-class CreateAssociateW9s < ActiveRecord::Migration
+class CreateAssociateW9s < ActiveRecord::Migration[5.0]
   def change
     create_table :associate_w9s do |t|
       t.integer :associate_id
